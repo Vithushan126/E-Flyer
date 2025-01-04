@@ -1,5 +1,6 @@
 import React from "react";
 import { BedDouble, Heart, Star, ThumbsUp } from "lucide-react";
+import { Tooltip } from "react-tooltip";
 import CardIcon1 from "../../../../assets/adventure/CardIcon1.svg";
 import CardIcon2 from "../../../../assets/adventure/CardIcon2.svg";
 import CardIcon3 from "../../../../assets/adventure/CardIcon3.svg";
@@ -44,7 +45,11 @@ const CommonCard = ({ adventure, small }) => {
                   30% Off
                 </span>
               )}
-              <Heart className="h-6 w-6 text-white" />
+              <Heart
+                className="h-6 w-6 text-white cursor-pointer"
+                data-tooltip-id="watchlist-tooltip"
+                data-tooltip-content="Add to Watch List"
+              />
             </div>
 
             <div className="flex">
@@ -101,6 +106,13 @@ const CommonCard = ({ adventure, small }) => {
           </div>
         </div>
       </div>
+      {/* tooltip */}
+      <Tooltip
+        id="watchlist-tooltip"
+        place="top"
+        variant="light"
+        className="bg-black text-white rounded p-1 text-9xl"
+      />
     </div>
   );
 };
