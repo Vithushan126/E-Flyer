@@ -114,7 +114,7 @@ const SearchForm = () => {
   }, []);
 
   return (
-    <div className="w-full flex  justify-center ">
+    <div className="w-full flex  justify-center">
       <div className="max-w-[1100px] w-full bg-white rounded-3xl shadow-lg p-2 lg:p-8 space-y-4 lg:space-y-8">
         <div className="flex flex-row w-full justify-between items-center gap-4 overflow-x-auto scrollbar-hide  pt-4">
           {searchStatus.map((item, index) => (
