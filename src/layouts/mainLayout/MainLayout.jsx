@@ -7,7 +7,7 @@ const MainLayout = () => {
   return (
     <>
       <Header />
-      <main className="bg-textColor flex-1">
+      <main className="flex-1">
         <Outlet />
       </main>
       <Footer />

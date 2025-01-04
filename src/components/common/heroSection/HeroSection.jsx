@@ -23,7 +23,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-screen flex justify-center">
+    <div className="relative w-full h-screen flex justify-center  ">
       {/* Static overlay image */}
       <div className="absolute inset-0 z-0">
         <img
@@ -44,17 +44,19 @@ const HeroSection = () => {
       /> */}
 
       {/* Content overlay */}
-      <div className="max-w-[1100px] flex flex-row justify-center  relative z-20  h-full w-full">
+      <div className="max-w-[1100px] flex flex-col lg:flex-row justify-center  relative z-20  h-full w-full px-2 space-y-4">
         {/* <div className="container mx-auto px-6 pt-32"> */}
-        <div className="w-2/3 pt-44">
-          <h1 className="text-6xl font-bold text-white mb-8">
+        <div className="w-full lg:w-2/3 pt-0 lg:pt-44 ">
+          <h1 className="text-5xl lg:text-6xl font-bold text-white mb-8">
             Your Next Adventure Starts Here
           </h1>
-          <ButtonCom size="lg">Book Now</ButtonCom>
+          <ButtonCom size="lg" className="hover:scale-105">
+            Book Now
+          </ButtonCom>
         </div>
 
         {/* Offer Card */}
-        <div className="w-1/3 pt-40 flex justify-end ">
+        <div className="w-full lg:w-1/3 pt-0 lg:pt-40 flex justify-center lg:justify-end  ">
           <div className="bg-black bg-opacity-30 h-[240px] w-[261px] rounded-2xl p-4 text-white flex flex-col justify-center items-center ">
             <div className="text-sm  text-base">OFFER ENDS SOON</div>
             <div className="text-xl mb-2">- 0D : 5H : 32M : 55S</div>
@@ -70,7 +72,7 @@ const HeroSection = () => {
               </div>
             </div>
 
-            <ButtonCom className="bg-orange px-8 py-2 text-white hover:bg-orange-500 transition-colors rounded-3xl text-2xl">
+            <ButtonCom className="bg-orange px-8 py-2 text-white hover:bg-orange-500 transition-colors rounded-3xl text-2xl hover:scale-105">
               Claim Offer
             </ButtonCom>
           </div>
