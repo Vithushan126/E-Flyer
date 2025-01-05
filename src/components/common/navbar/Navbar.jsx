@@ -1,46 +1,125 @@
-import React from "react";
+import React, { useState } from "react";
 import EflyLogo from "../../../assets/navbar/EflyLogo.svg";
 import SearchIcon from "../../../assets/navbar/SearchIcon.svg";
 import UserCircleIcon from "../../../assets/navbar/UserCircleIcon.svg";
 import EnglandFlag from "../../../assets/navbar/EnglandFlag.svg";
+import {
+  BookOpen,
+  ChevronRight,
+  Globe,
+  MapPin,
+  Menu,
+  Package,
+  Search,
+  X,
+} from "lucide-react";
 
-const headerText = ["Explore", "Book", "Destinations", "Packages"];
+const headerText = [
+  { text: "Explore", icon: <Globe className="h-5 w-5" /> },
+  { text: "Book", icon: <BookOpen className="h-5 w-5" /> },
+  { text: "Destinations", icon: <MapPin className="h-5 w-5" /> },
+  { text: "Packages", icon: <Package className="h-5 w-5" /> },
+];
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
   return (
-    <div className="w-full h-[67px] flex justify-center items-center absolute z-50  bg-white  bg-opacity-30 shadow-lg">
-      <div className="max-w-[1100px] w-full flex justify-between items-center h-full font-semibold text-xl text-darkBlue ">
-        <div className="flex flex-row items-center space-x-12">
-          <img src={EflyLogo} alt="Efly Logo" className="cursor-pointer" />
-          <div className="flex space-x-8">
-            {headerText.map((text, index) => (
-              <span
+    <div className="w-full absolute z-50">
+      <div className="h-[67px] flex justify-center items-center  bg-white  bg-opacity-30 shadow-lg">
+        {/* header links */}
+        <div className="max-w-[1100px] w-full flex justify-between items-center h-full font-semibold text-xl text-darkBlue px-2 md:px-4">
+          <div className="flex flex-row items-center space-x-12">
+            <img src={EflyLogo} alt="Efly Logo" className="cursor-pointer" />
+            <div className="hidden lg:flex space-x-8">
+              {headerText.map((item, index) => (
+                <span
+                  key={index}
+                  className=" cursor-pointer hover:text-primaryColor"
+                >
+                  {item.text}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="hidden lg:flex space-x-8 items-center">
+            <button className="focus:outline-none">
+              <img src={SearchIcon} alt="Search" className="h-6 w-6" />
+            </button>
+            <div className="flex flex-row space-x-2 items-center">
+              <img
+                src={EnglandFlag}
+                alt="England Flag"
+                className="w-5 h-5 rounded-full object-cover"
+              />
+              <span className="">EN</span>
+            </div>
+            <button className="flex flex-row space-x-2 items-center focus:outline-none">
+              <img src={UserCircleIcon} alt="User " className="h-6 w-6" />
+              <span className="">Login</span>
+            </button>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="lg:hidden">
+            <button onClick={toggleMenu} className="p-2 focus:outline-none">
+              {isOpen ? (
+                <X className="h-6 w-6 hover:cursor-pointer" />
+              ) : (
+                <div className="flex flex-row space-x-4 items-center">
+                  <div className="flex flex-row space-x-2 items-center">
+                    <img
+                      src={EnglandFlag}
+                      alt="England Flag"
+                      className="w-5 h-5 rounded-full object-cover"
+                    />
+                    <span className="">EN</span>
+                  </div>
+                  <button className="flex flex-row space-x-2 items-center focus:outline-none">
+                    <img src={UserCircleIcon} alt="User " className="h-6 w-6" />
+                  </button>
+                  <Menu className="h-6 w-6 hover:cursor-pointer" />
+                </div>
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile menu dropdown */}
+      {isOpen && (
+        <div className="lg:hidden bg-white bg-opacity-95 shadow-lg p-1 md:px-4">
+          <div className="flex flex-row justify-between py-2">
+            <div className="">Search</div>
+            <div className="opacity-50">
+              <Search />
+            </div>
+          </div>
+          <div className="border-t border-gray-200 opacity-10"></div>
+          <div className="py-2 space-y-2">
+            {headerText.map((item, index) => (
+              <div
                 key={index}
-                className=" cursor-pointer hover:text-primaryColor"
+                className="block text-darkBlue hover:text-primaryColor cursor-pointer py-2 text-lg font-semibold"
               >
-                {text}
-              </span>
+                <div className="flex flex-row justify-between ">
+                  <div className="flex flex-row items-center space-x-2">
+                    <div className="opacity-50">{item.icon}</div>
+                    <div className="">{item.text}</div>
+                  </div>
+                  <div className="opacity-50">
+                    <ChevronRight />
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
-        <div className="flex space-x-8 items-center">
-          <button className="focus:outline-none">
-            <img src={SearchIcon} alt="Search" className="h-6 w-6" />
-          </button>
-          <div className="flex flex-row space-x-2 items-center">
-            <img
-              src={EnglandFlag}
-              alt="England Flag"
-              className="w-5 h-5 rounded-full object-cover"
-            />
-            <span className="">EN</span>
-          </div>
-          <button className="flex flex-row space-x-2 items-center focus:outline-none">
-            <img src={UserCircleIcon} alt="User " className="h-6 w-6" />
-            <span className="">Login</span>
-          </button>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

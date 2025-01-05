@@ -32,6 +32,7 @@ export default {
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
         inter: ["Inter", "sans-serif"],
+        italiana: ["Italiana", "serif"],
       },
 
       fontWeight: {},

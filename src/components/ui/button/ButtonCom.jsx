@@ -21,7 +21,7 @@ const ButtonCom = ({ children, className, variant, size, ...props }) => {
 const buttonVariants = cva("rounded-xl px-8 py-4 transition-colors", {
   variants: {
     variant: {
-      default: "bg-white font-semibold text-darkBlue  hover:bg-primaryColor ",
+      default: "bg-white font-semibold text-darkBlue",
       primary: "bg-blue-500 text-white hover:bg-blue-600",
       danger: "bg-red-500 text-white hover:bg-red-600",
       disabled: "bg-gray-300 text-gray-500 cursor-not-allowed",
