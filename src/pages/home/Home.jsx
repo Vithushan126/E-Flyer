@@ -6,6 +6,7 @@ import HolidayPlaneCard from "./HolidayPlaneCard";
 import TravelCategory from "../../components/common/travelcategory/TravelCategory";
 import Explore from "../../components/common/explore/Explore";
 import Feedback from "../../components/common/feedback/Feedback";
+import BeachHoliday from "./BeachHoliday";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
         <TrendingAdventures />
         <CardAndCity />
         <HolidayPlaneCard />
+        <BeachHoliday />
         <TravelCategory />
         <Explore />
         <Feedback />
