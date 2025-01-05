@@ -13,19 +13,30 @@ import {
   Search,
   X,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const headerText = [
-  { text: "Explore", icon: <Globe className="h-5 w-5" /> },
-  { text: "Book", icon: <BookOpen className="h-5 w-5" /> },
-  { text: "Destinations", icon: <MapPin className="h-5 w-5" /> },
-  { text: "Packages", icon: <Package className="h-5 w-5" /> },
+  { text: "Explore", icon: <Globe className="h-5 w-5" />, url: "/explore" },
+  { text: "Book", icon: <BookOpen className="h-5 w-5" />, url: "/book" },
+  {
+    text: "Destinations",
+    icon: <MapPin className="h-5 w-5" />,
+    url: "/destinations",
+  },
+  { text: "Packages", icon: <Package className="h-5 w-5" />, url: "/packages" },
 ];
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleNavigation = (url) => {
+    navigate(url);
+    setIsOpen(false);
   };
   return (
     <div className="w-full absolute z-50">
@@ -33,12 +44,18 @@ const Navbar = () => {
         {/* header links */}
         <div className="max-w-[1100px] w-full flex justify-between items-center h-full font-semibold text-xl text-darkBlue px-2 md:px-4">
           <div className="flex flex-row items-center space-x-12">
-            <img src={EflyLogo} alt="Efly Logo" className="cursor-pointer" />
+            <img
+              src={EflyLogo}
+              alt="Efly Logo"
+              className="cursor-pointer"
+              onClick={() => handleNavigation("/")}
+            />
             <div className="hidden lg:flex space-x-8">
               {headerText.map((item, index) => (
                 <span
                   key={index}
                   className=" cursor-pointer hover:text-primaryColor"
+                  onClick={() => handleNavigation(item?.url)}
                 >
                   {item.text}
                 </span>
@@ -58,7 +75,10 @@ const Navbar = () => {
               />
               <span className="">EN</span>
             </div>
-            <button className="flex flex-row space-x-2 items-center focus:outline-none">
+            <button
+              className="flex flex-row space-x-2 items-center focus:outline-none"
+              onClick={() => handleNavigation("/login")}
+            >
               <img src={UserCircleIcon} alt="User " className="h-6 w-6" />
               <span className="">Login</span>
             </button>
@@ -79,7 +99,10 @@ const Navbar = () => {
                     />
                     <span className="">EN</span>
                   </div>
-                  <button className="flex flex-row space-x-2 items-center focus:outline-none">
+                  <button
+                    className="flex flex-row space-x-2 items-center focus:outline-none"
+                    onClick={() => handleNavigation("/login")}
+                  >
                     <img src={UserCircleIcon} alt="User " className="h-6 w-6" />
                   </button>
                   <Menu className="h-6 w-6 hover:cursor-pointer" />
@@ -105,6 +128,7 @@ const Navbar = () => {
               <div
                 key={index}
                 className="block text-darkBlue hover:text-primaryColor cursor-pointer py-2 text-lg font-semibold"
+                onClick={() => handleNavigation(item?.url)}
               >
                 <div className="flex flex-row justify-between ">
                   <div className="flex flex-row items-center space-x-2">
