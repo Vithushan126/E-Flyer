@@ -1,5 +1,5 @@
 import React from "react";
-import CommonCard from "../../components/ui/button/commonCard/CommonCard";
+import CommonCard from "../../components/ui/commonCard/CommonCard";
 import HotelImage1 from "../../assets/adventure/HotelImage1.svg";
 import HotelImage2 from "../../assets/adventure/HotelImage2.svg";
 import HotelImage3 from "../../assets/adventure/HotelImage3.svg";

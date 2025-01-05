@@ -1,6 +1,6 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import CommonCard from "../components/ui/button/commonCard/CommonCard";
+import CommonCard from "../components/ui/commonCard/CommonCard";
 const MainLayout = React.lazy(() => import("../layouts/mainLayout/MainLayout"));
 const NotFound = React.lazy(() =>
   import("../components/common/notFound/NotFound")

@@ -1,11 +1,11 @@
 import React from "react";
 import { BedDouble, Heart, Star, ThumbsUp } from "lucide-react";
 import { Tooltip } from "react-tooltip";
-import CardIcon1 from "../../../../assets/adventure/CardIcon1.svg";
-import CardIcon2 from "../../../../assets/adventure/CardIcon2.svg";
-import CardIcon3 from "../../../../assets/adventure/CardIcon3.svg";
-import CardIcon4 from "../../../../assets/adventure/CardIcon4.svg";
-import CardIcon5 from "../../../../assets/adventure/CardIcon5.svg";
+import CardIcon1 from "../../../assets/adventure/CardIcon1.svg";
+import CardIcon2 from "../../../assets/adventure/CardIcon2.svg";
+import CardIcon3 from "../../../assets/adventure/CardIcon3.svg";
+import CardIcon4 from "../../../assets/adventure/CardIcon4.svg";
+import CardIcon5 from "../../../assets/adventure/CardIcon5.svg";
 
 const icons = [CardIcon1, CardIcon2, CardIcon3, CardIcon4, CardIcon5];
 
