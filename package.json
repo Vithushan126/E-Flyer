@@ -23,7 +23,7 @@
     "react-router-dom": "^7.1.1",
     "react-tooltip": "^5.28.0",
     "tailwind-merge": "^2.6.0",
-    "yup": "^1.6.1"
+    "yup": "^1.6.1",
     "react-slick": "^0.30.3",
     "slick-carousel": "^1.8.1"
   },

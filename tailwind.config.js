@@ -18,6 +18,7 @@ export default {
         gray: "#3C3C3C",
         smokyGray: "#5A5A5A",
         red: "#E30606",
+        lightGray: "#9C9C9C",
       },
 
       maxWidth: {
