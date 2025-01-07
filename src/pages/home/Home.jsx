@@ -7,6 +7,9 @@ import TravelCategory from "../../components/common/travelcategory/TravelCategor
 import Explore from "../../components/common/explore/Explore";
 import Feedback from "../../components/common/feedback/Feedback";
 import BeachHoliday from "./BeachHoliday";
+import SunnyHoliday from "./SunnyHoliday";
+import HillCamping from "./HillCamping";
+
 
 const Home = () => {
   return (
@@ -17,6 +20,8 @@ const Home = () => {
         <CardAndCity />
         <HolidayPlaneCard />
         <BeachHoliday />
+        <SunnyHoliday/>
+        <HillCamping/>
         <TravelCategory />
         <Explore />
         <Feedback />

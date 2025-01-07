@@ -15,35 +15,36 @@ const categories = [
 
 function TravelCategory() {
   return (
-    <div className="w-full flex justify-center">
-      <div className="max-w-[1100px] w-full flex flex-col space-y-6 ">
-        <h1 className="text-3xl font-medium text-left text-gray mb-8">
+    <div className="w-full flex justify-center py-6">
+      <div className="max-w-[1100px] w-full flex flex-col space-y-6">
+        <h1 className="text-3xl font-medium text-left text-gray-800 mb-8">
           The Best Tour and Adventure For Everyone
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {categories.map((category, index) => (
             <div
               key={category?.id}
-              className={`relative group ${
+              className={`relative group rounded-lg overflow-hidden bg-gray-200 shadow-md ${
                 index === 0
                   ? "col-span-1 sm:col-span-2 md:col-span-1 row-span-2"
                   : "col-span-1 sm:col-span-1 md:col-span-1"
               }`}
-              style={{
-                width: "100%",
-                height: index === 0 ? "auto" : "auto", // Flexible height
-                borderRadius: "20px",
-              }}
             >
               <img
                 src={category?.image}
                 alt={category?.title}
-                className="w-full h-full object-cover rounded-lg transition-transform duration-300 ease-in-out group-hover:scale-105"
-                style={{
-                  borderRadius: "20px",
-                }}
+                className="w-full h-full object-cover transition-all duration-500 ease-in-out transform group-hover:scale-105"
               />
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-2xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+              {/* Always visible title on mobile */}
+              <div
+                className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-2xl font-semibold opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out block md:hidden"
+              >
+                {category?.title}
+              </div>
+              {/* Visible title on hover for larger screens */}
+              <div
+                className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-2xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out hidden md:block"
+              >
                 {category?.title}
               </div>
             </div>
