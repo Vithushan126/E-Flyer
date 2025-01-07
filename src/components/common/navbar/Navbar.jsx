@@ -99,17 +99,17 @@ const Navbar = () => {
                     />
                     <span className="">EN</span>
                   </div>
-                  <button
-                    className="flex flex-row space-x-2 items-center focus:outline-none"
-                    onClick={() => handleNavigation("/login")}
-                  >
+                  {/* Replace the inner button with a div */}
+                  <div className="flex flex-row space-x-2 items-center focus:outline-none" onClick={() => handleNavigation("/login")}>
                     <img src={UserCircleIcon} alt="User " className="h-6 w-6" />
-                  </button>
+                    <span className="">Login</span>
+                  </div>
                   <Menu className="h-6 w-6 hover:cursor-pointer" />
                 </div>
               )}
             </button>
           </div>
+
         </div>
       </div>
 

@@ -75,17 +75,25 @@ const CommonCard = ({ adventure, small }) => {
               </div>
 
               {/* Right Section */}
-              <div className=" w-1/2 text-right ">
+              <div className="w-1/2 text-right">
+                {/* On Mobile, "Per person from" appears above prices */}
+                <div className="block lg:hidden">
+                  <p className="text-sm ">Per person from</p>
+                </div>
+
+                {/* Original Price */}
                 <div>
                   <span className="text-lg text-right line-through">
                     {adventure?.originalPrice}
                   </span>
                 </div>
+
+                {/* On Desktop, "Per person from" stays inline with discounted price */}
                 <div className="flex justify-end items-center space-x-4 ">
-                  <p className={`text-sm ${small ? "hidden" : "block"}`}>
+                  <p className="text-sm hidden lg:block ">
                     Per person from
                   </p>
-                  <p className="text-xl font-semibold text-nowrap ">
+                  <p className="text-xl font-semibold text-nowrap">
                     {adventure?.discountedPrice}
                   </p>
                 </div>
