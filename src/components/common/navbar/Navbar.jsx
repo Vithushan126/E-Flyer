@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import EflyLogo from "../../../assets/navbar/EflyLogo.svg";
 import SearchIcon from "../../../assets/navbar/SearchIcon.svg";
 import UserCircleIcon from "../../../assets/navbar/UserCircleIcon.svg";
@@ -29,6 +29,8 @@ const headerText = [
 const Navbar = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null); // Ref for the dropdown menu
+  const buttonRef = useRef(null); // Ref for the menu toggle button
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -38,6 +40,25 @@ const Navbar = () => {
     navigate(url);
     setIsOpen(false);
   };
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) && // If click is outside dropdown
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target) // And also outside the toggle button
+      ) {
+        setIsOpen(false); // Close the dropdown
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="w-full absolute z-50">
       <div className="h-[67px] flex justify-center items-center  bg-white  bg-opacity-30 shadow-lg">
@@ -86,7 +107,11 @@ const Navbar = () => {
 
           {/* Mobile menu button */}
           <div className="lg:hidden">
-            <button onClick={toggleMenu} className="p-2 focus:outline-none">
+            <button
+              ref={buttonRef} // Attach ref to button
+              onClick={toggleMenu}
+              className="p-2 focus:outline-none"
+            >
               {isOpen ? (
                 <X className="h-6 w-6 hover:cursor-pointer" />
               ) : (
@@ -115,7 +140,9 @@ const Navbar = () => {
 
       {/* Mobile menu dropdown */}
       {isOpen && (
-        <div className="lg:hidden bg-white bg-opacity-95 shadow-lg p-1 md:px-4">
+        <div
+          ref={menuRef} // Attach ref to dropdown menu
+          className="lg:hidden bg-white bg-opacity-95 shadow-lg p-1 md:px-4">
           <div className="flex flex-row justify-between py-2">
             <div className="">Search</div>
             <div className="opacity-50">
