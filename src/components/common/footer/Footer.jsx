@@ -86,7 +86,7 @@ const Footer = () => {
           style={{ backgroundImage: `url(${WhiteLogo})` }}></div>
 
         {/* Footer Bottom Section */}
-        <div className="mt-8 border-t border-lightGray pt-8">
+        <div className="mt-8 border-t border-lightGray pt-8 max-w-full">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Subscription */}
             <div>
@@ -170,7 +170,7 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom Links */}
-        <div className="mt-8 border-t border-lightGray pt-2">
+         <div className="mt-8 border-t border-lightGray pt-8 max-w-full">
           <div className="flex justify-center gap-5 space-x-4 mt-2 flex-wrap">
             <a href="#" className="text-lightGray font-medium text-sm hover:underline">Accessibility statement</a>
             <a href="#" className="text-lightGray font-medium text-sm hover:underline">Contact us</a>
