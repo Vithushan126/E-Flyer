@@ -60,7 +60,9 @@ const CommonCard = ({ adventure, small }) => {
           </div>
 
           {/* Bottom Content */}
-          <div className="absolute bottom-0 w-full px-6 pb-4 text-white bg-black bg-opacity-10">
+          <div className="relative -bottom-11 w-full px-6 pb-4 text-white bg-black bg-opacity-10 
+                       transform translate-y-20 opacity-80 group-hover:translate-y-0 group-hover:opacity-100
+                       transition-all duration-700 ease-in-out">
             <h2 className=" text-xl font-bold border-b-2 border-white border-opacity-20">
               {adventure?.title}
             </h2>

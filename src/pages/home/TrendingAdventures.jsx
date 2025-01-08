@@ -38,7 +38,7 @@ const TrendingAdventures = () => {
     },
     {
       id: 3,
-      title: "Catalonia Riviera Maya3",
+      title: "Catalonia Riviera Maya",
       location: "France",
       dates: "13 Feb 2025-15 Feb 2025",
       duration: "3 nights - 2 Adults",
