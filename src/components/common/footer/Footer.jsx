@@ -19,27 +19,27 @@ const Footer = () => {
     <footer className="w-full bg-footercolor text-smokyGray py-10 mt-10 relative">
       <div className="container mx-auto px-4">
         {/* Logo Section */}
-        <div className="flex justify-evenly items-center mb-8 flex-wrap md:flex-nowrap lg:flex-nowrap gap-4">
+        <div className="flex justify-center items-center mb-8 gap-4">
           <div
-            className="w-[174px] h-[44px] bg-center bg-cover mb-4"
+            className="w-[120px] h-[35px] sm:w-[140px] sm:h-[40px] md:w-[160px] md:h-[50px] lg:w-[174px] lg:h-[55px] bg-center bg-cover"
             style={{ backgroundImage: `url(${Image2})` }}
           ></div>
           <div
-            className="w-[174px] h-[55px] bg-center bg-cover mb-4"
+            className="w-[120px] h-[35px] sm:w-[140px] sm:h-[40px] md:w-[160px] md:h-[50px] lg:w-[174px] lg:h-[55px] bg-center bg-cover"
             style={{ backgroundImage: `url(${Image4})` }}
           ></div>
           <div
-            className="w-[191px] h-[54px] bg-center bg-contain bg-no-repeat mb-4"
+            className="w-[140px] h-[40px] sm:w-[160px] sm:h-[45px] md:w-[180px] md:h-[50px] lg:w-[191px] lg:h-[54px] bg-center bg-contain bg-no-repeat"
             style={{ backgroundImage: `url(${SRVLogo})` }}
           ></div>
         </div>
 
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        <div className="grid grid-cols-2 mx-[60px] sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {/* Help Section */}
           <div>
-            <h3 className="font-medium text-base mb-4 text-smokyGray">Help</h3>
-            <ul className="space-y-2 mt-2">
+            <h3 className="font-medium text-sm mb-4 text-smokyGray">Help</h3>
+            <ul className="space-y-2">
               <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">EDA Travel Instruction</a></li>
               <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">EDA Itineraries</a></li>
               <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Travel Medical Advice</a></li>
@@ -50,7 +50,7 @@ const Footer = () => {
           {/* Travellers Section */}
           <div>
             <h3 className="font-medium text-base mb-4 text-smokyGray">Travellers</h3>
-            <ul className="space-y-2 mt-2">
+            <ul className="space-y-2 ">
               <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Baggage</a></li>
               <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Visa & Passport Information</a></li>
               <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Health</a></li>
@@ -61,7 +61,7 @@ const Footer = () => {
           {/* Guide Section */}
           <div>
             <h3 className="font-medium text-base mb-4 text-smokyGray">Guide</h3>
-            <ul className="space-y-2 mt-2">
+            <ul className="space-y-2 ">
               <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Imprint</a></li>
               <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Terms and Conditions</a></li>
               <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Data Protection</a></li>
@@ -72,7 +72,7 @@ const Footer = () => {
           {/* About Us Section */}
           <div>
             <h3 className="font-medium text-base mb-4 text-smokyGray">About Us</h3>
-            <ul className="space-y-2 mt-2">
+            <ul className="space-y-2 ">
               <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">About Us</a></li>
               <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Career</a></li>
               <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Our People</a></li>
@@ -82,39 +82,39 @@ const Footer = () => {
         </div>
 
         {/* Logo */}
-        <div className="bg-darkBlue absolute top-1/2 right-0 w-[120px] h-[71px] bg-contain bg-no-repeat -rotate-90"
+        <div className="bg-darkBlue absolute top-1/2 -right-6 transform -translate-y-1/2 w-[120px] h-[71px] bg-contain bg-no-repeat -rotate-90"
           style={{ backgroundImage: `url(${WhiteLogo})` }}></div>
 
         {/* Footer Bottom Section */}
-        <div className="mt-8 border-t border-lightGray pt-8 max-w-full">
+        <div className="mt-4 border-t border-lightGray pt-8 max-w-[1137px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Subscription */}
             <div>
               <h3 className="font-medium text-base mb-4 text-smokyGray">Subscribe to our special offer</h3>
-              <p className="text-lightGray font-medium text-sm mt-8 max-w-[320px] leading-relaxed">
+              <p className="text-lightGray font-medium text-sm mt-6 max-w-[320px] leading-relaxed">
                 Save with our latest fares and offers.{" "}
-                <a href="#" className="underline">Unsubscribe or change your preferences</a>.
+                <a href="#" className="underline block">Unsubscribe or change your preferences</a>.
               </p>
-              <form className="flex flex-wrap items-center space-x-2 mt-8">
+              <form className="flex flex-col sm:flex-row sm:items-center sm:space-x-2 mt-4 space-y-4 sm:space-y-0">
                 <input
                   type="email"
                   placeholder="Email Address"
                   className="p-2 border border-lightGray w-[231px] h-8 sm:w-[auto]" />
                 <button
                   type="submit"
-                  className="bg-darkBlue text-white font-medium text-sm w-[132px] p2 h-8 hover:bg-blue-600">Subscribe</button>
+                  className="bg-darkBlue text-white font-medium text-sm w-[132px] h-8 hover:bg-blue-600">Subscribe</button>
               </form>
-              <p className="text-lightGray font-medium text-sm mt-8 whitespace-pre-line">
-                For details on how we use your information, please see our{" "}
+              <p className="text-lightGray font-medium text-sm mt-6 whitespace-pre-line">
+                For details on how we use your information, <br /> please see our{" "}
                 <a href="#" className="underline">privacy policy</a>.
               </p>
             </div>
 
             {/* Payment & Language */}
-            <div className="flex flex-col space-y-2 text-left">
+            <div className="flex flex-col space-y-4 text-center md:text-start">
               <div>
                 <h3 className="font-medium text-base mb-4 text-smokyGray">Payment Method</h3>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex justify-center flex-wrap gap-3 md:justify-start">
                   <img src={Visa} alt="Visa" className="h-6 w-8 md:h-8 md:w-11 object-contain" />
                   <img src={Master} alt="MasterCard" className="h-6 w-8 md:h-8 md:w-11 object-contain" />
                   <img src={Amex} alt="PayPal" className="h-6 w-8 md:h-8 md:w-11 object-contain" />
@@ -125,7 +125,7 @@ const Footer = () => {
               </div>
               <div>
                 <h3 className="font-medium text-base mb-4 mt-8 text-smokyGray">Select Language</h3>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap justify-center gap-4 md:justify-start">
                   <button className="px-2 py-1 h-9 w-12 border rounded-xl hover:bg-darkBlue hover:text-white">EN</button>
                   <button className="px-2 py-1 h-9 w-12 border rounded-xl hover:bg-darkBlue hover:text-white">FR</button>
                   <button className="px-2 py-1 h-9 w-12 border rounded-xl hover:bg-darkBlue hover:text-white">GR</button>
@@ -135,18 +135,18 @@ const Footer = () => {
             </div>
 
             {/* Contact Info */}
-            <div className="flex flex-col space-y-2 text-left">
+            <div className="flex flex-col space-y-4 text-center md:text-start">
               <div>
                 <h3 className="font-medium text-base mb-4 text-smokyGray ">Contact</h3>
-                <p className="text-lightGray font-medium text-sm mt-2 max-w-[320px] leading-relaxed">Langstrasse 214, 8005 Zurich</p>
-                <p><a href="mailto:info@efly.ch" className="text-lightGray font-medium text-sm mt-2 max-w-[320px] leading-relaxed hover:underline">info@efly.ch</a></p>
-                <p className="text-lightGray font-medium text-sm mt-2 max-w-[320px] leading-relaxed">+41 44 668 0606</p>
+                <p className="text-lightGray font-medium text-sm mt-2 leading-relaxed">Langstrasse 214, 8005 Zurich</p>
+                <p><a href="mailto:info@efly.ch" className="text-lightGray font-medium text-sm mt-2 leading-relaxed hover:underline">info@efly.ch</a></p>
+                <p className="text-lightGray font-medium text-sm mt-2 leading-relaxed">+41 44 668 0606</p>
                 <div className="relative mt-8">
                   {/* Social Media Title */}
                   <h3 className="font-medium text-base mb-4 text-smokyGray">Social Media</h3>
 
                   {/* Social Media Icons */}
-                  <div className="flex space-x-6">
+                  <div className="flex justify-center space-x-6 md:justify-start">
                     <a href="#" className="text-gray-500 hover:text-gray-800">
                       <SlSocialFacebook size={20} />
                     </a>
@@ -170,17 +170,17 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom Links */}
-         <div className="mt-8 border-t border-lightGray pt-8 max-w-full">
-          <div className="flex justify-center gap-5 space-x-4 mt-2 flex-wrap">
-            <a href="#" className="text-lightGray font-medium text-sm hover:underline">Accessibility statement</a>
-            <a href="#" className="text-lightGray font-medium text-sm hover:underline">Contact us</a>
-            <a href="#" className="text-lightGray font-medium text-sm hover:underline">Privacy policy</a>
-            <a href="#" className="text-lightGray font-medium text-sm hover:underline">Terms and conditions</a>
-            <a href="#" className="text-lightGray font-medium text-sm hover:underline">Cookie Policy</a>
+        <div className="mt-4 border-t border-lightGray pt-8 max-w-[1137px] mx-auto">
+          <div className="flex justify-center gap-4 font-medium text-sm space-x-2 mt-2 sm:flex-nowrap">
+            <a href="#" className="text-lightGray hover:underline">Accessibility statement</a>
+            <a href="#" className="text-lightGray hover:underline">Contact us</a>
+            <a href="#" className="text-lightGray hover:underline">Privacy policy</a>
+            <a href="#" className="text-lightGray hover:underline">Terms and conditions</a>
+            <a href="#" className="text-lightGray hover:underline">Cookie Policy</a>
           </div>
           <p className="text-darkcolor mt-4 text-center font-medium text-sm" aria-hidden="true">
-  &copy; {new Date().getFullYear()} The EFly Travels. All Rights Reserved.
-</p>
+            &copy; {new Date().getFullYear()} The EFly Travels. All Rights Reserved.
+          </p>
 
         </div>
       </div>
