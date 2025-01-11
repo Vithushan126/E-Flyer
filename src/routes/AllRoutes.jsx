@@ -1,5 +1,6 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
+import Adventure from "../pages/adventure/Adventure";
 const MainLayout = React.lazy(() => import("../layouts/mainLayout/MainLayout"));
 const NotFound = React.lazy(() =>
   import("../components/common/notFound/NotFound")
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
       {
         path: "packages",
         element: <Packages />,
+      },
+      {
+        path: "adventure",
+        element: <Adventure />,
       },
       {
         path: "login",

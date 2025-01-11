@@ -5,8 +5,8 @@ import ButtonCom from "../../ui/button/ButtonCom";
 const HeroSection = () => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
-   // Function to calculate remaining time for the offer
-   function calculateTimeLeft() {
+  // Function to calculate remaining time for the offer
+  function calculateTimeLeft() {
     const targetDate = new Date("March 1, 2025 12:00:00"); // Offer end time
     const now = new Date();
     const difference = targetDate - now;
@@ -22,8 +22,8 @@ const HeroSection = () => {
     }
   }
 
-   // Update the timer every second
-   useEffect(() => {
+  // Update the timer every second
+  useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
@@ -32,7 +32,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-screen flex justify-center  ">
+    <div className=" w-full h-screen flex justify-center   ">
       {/* Static overlay image */}
       <div className="absolute inset-0 z-0">
         <img
@@ -53,19 +53,22 @@ const HeroSection = () => {
       /> */}
 
       {/* Content overlay */}
-      <div className="max-w-[1100px] flex flex-col lg:flex-row justify-center  relative z-20  h-full w-full px-2 space-y-4">
+      <div className="max-w-[1100px] flex flex-col lg:flex-row justify-start lg:justify-center  relative z-20  h-full w-full px-2 space-y-4">
         {/* <div className="container mx-auto px-6 pt-32"> */}
-        <div className="w-full lg:w-2/3 pt-0 lg:pt-44 ">
+        <div className="w-full lg:w-2/3 pt-0 lg:pt-20  ">
           <h1 className="text-5xl lg:text-6xl font-bold text-white mb-8">
             Your Next Adventure Starts Here
           </h1>
-          <ButtonCom size="lg" className="hover:scale-105">
+          <ButtonCom
+            size="lg"
+            className="hover:scale-105 px:6 py-4 lg:py-6 lg:px-8 text-lg lg:text-2xl"
+          >
             Book Now
           </ButtonCom>
         </div>
 
-       {/* Offer Card Section */}
-       <div className="w-full lg:w-1/3 pt-0 lg:pt-40 flex justify-center lg:justify-end">
+        {/* Offer Card Section */}
+        <div className="w-full lg:w-1/3 pt-0 lg:pt-20 flex justify-center lg:justify-end">
           <div className="bg-black bg-opacity-30 h-[240px] w-[261px] rounded-2xl p-4 text-white flex flex-col justify-center items-center">
             <div className="text-sm text-base">OFFER ENDS SOON</div>
             <div className="text-xl mb-2">

@@ -1,7 +1,7 @@
 import React from "react";
-import AdventureSearchForm from "../adventure/AdventureSearchForm";
+import AdventureSearchForm from "./AdventureSearchForm";
 
-const Packages = () => {
+const Adventure = () => {
   return (
     <>
       <div className="w-full flex justify-center  mx-2">
@@ -13,4 +13,4 @@ const Packages = () => {
   );
 };
 
-export default Packages;
+export default Adventure;
