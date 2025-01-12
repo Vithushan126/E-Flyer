@@ -14,7 +14,7 @@ import HeroSection from "../../components/common/heroSection/HeroSection";
 const Home = () => {
   return (
     <>
-      <div className=" ">
+      <div className="">
         <HeroSection />
         <div className="px-2 w-full">
           <SearchForm />

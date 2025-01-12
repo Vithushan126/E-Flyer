@@ -50,7 +50,7 @@ const AdventureSearchForm = () => {
 
   return (
     <div className="w-full flex  justify-center  mt-10">
-      <div className="max-w-[1100px] w-full bg-white rounded-3xl shadow-lg p-2 lg:p-4 space-y-4 lg:space-y-8">
+      <div className="w-full rounded-3xl shadow-lg p-2 lg:p-4 space-y-4 lg:space-y-8 ">
         <Formik
           initialValues={{
             destination: "",
