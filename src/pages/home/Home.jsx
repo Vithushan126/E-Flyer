@@ -9,22 +9,31 @@ import Feedback from "../../components/common/feedback/Feedback";
 import BeachHoliday from "./BeachHoliday";
 import SunnyHoliday from "./SunnyHoliday";
 import HillCamping from "./HillCamping";
-
+import HeroSection from "../../components/common/heroSection/HeroSection";
 
 const Home = () => {
   return (
     <>
-      <div className="-mt-6 lg:-mt-24 relative z-50 space-y-20 px-2 ">
-        <SearchForm />
-        <TrendingAdventures />
-        <CardAndCity />
-        <HolidayPlaneCard />
-        <BeachHoliday />
-        <SunnyHoliday/>
-        <HillCamping/>
-        <TravelCategory />
-        <Explore />
-        <Feedback />
+      <div className="">
+        <HeroSection />
+        <div className="px-2 w-full">
+          <SearchForm />
+        </div>
+        <div className="space-y-20 mx-2">
+          <TrendingAdventures
+            title=" Trending Adventures"
+            subtitle=" Thinking of travelling somewhere soon? Here are some options to help
+            you get started."
+          />
+          <CardAndCity title="Top city trips with Flight & Hotel" />
+          <HolidayPlaneCard />
+          <BeachHoliday />
+          <SunnyHoliday />
+          <HillCamping />
+          <TravelCategory />
+          <Explore />
+          <Feedback />
+        </div>
       </div>
     </>
   );

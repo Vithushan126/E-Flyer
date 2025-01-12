@@ -45,9 +45,9 @@ const Navbar = () => {
     const handleClickOutside = (event) => {
       if (
         menuRef.current &&
-        !menuRef.current.contains(event.target) && // If click is outside dropdown
+        !menuRef.current.contains(event.target) &&
         buttonRef.current &&
-        !buttonRef.current.contains(event.target) // And also outside the toggle button
+        !buttonRef.current.contains(event.target)
       ) {
         setIsOpen(false); // Close the dropdown
       }
@@ -60,7 +60,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="w-full absolute z-50">
+    <div className="w-full relative z-50 ">
       <div className="h-[67px] flex justify-center items-center  bg-white  bg-opacity-30 shadow-lg">
         {/* header links */}
         <div className="max-w-[1100px] w-full flex justify-between items-center h-full font-semibold text-xl text-darkBlue px-2 md:px-4">
@@ -115,7 +115,7 @@ const Navbar = () => {
               {isOpen ? (
                 <X className="h-6 w-6 hover:cursor-pointer" />
               ) : (
-                <div className="flex flex-row space-x-4 items-center">
+                <div className="flex flex-row space-x-4 items-center  ">
                   <div className="flex flex-row space-x-2 items-center">
                     <img
                       src={EnglandFlag}
@@ -125,7 +125,10 @@ const Navbar = () => {
                     <span className="">EN</span>
                   </div>
                   {/* Replace the inner button with a div */}
-                  <div className="flex flex-row space-x-2 items-center focus:outline-none" onClick={() => handleNavigation("/login")}>
+                  <div
+                    className="flex flex-row space-x-2 items-center focus:outline-none"
+                    onClick={() => handleNavigation("/login")}
+                  >
                     <img src={UserCircleIcon} alt="User " className="h-6 w-6" />
                     <span className="">Login</span>
                   </div>
@@ -134,7 +137,6 @@ const Navbar = () => {
               )}
             </button>
           </div>
-
         </div>
       </div>
 
@@ -142,7 +144,8 @@ const Navbar = () => {
       {isOpen && (
         <div
           ref={menuRef} // Attach ref to dropdown menu
-          className="lg:hidden bg-white bg-opacity-95 shadow-lg p-1 md:px-4">
+          className="lg:hidden bg-white bg-opacity-95 shadow-lg p-1 md:px-4 "
+        >
           <div className="flex flex-row justify-between py-2">
             <div className="">Search</div>
             <div className="opacity-50">
