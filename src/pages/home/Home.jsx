@@ -20,8 +20,12 @@ const Home = () => {
           <SearchForm />
         </div>
         <div className="space-y-20 mx-2">
-          <TrendingAdventures />
-          <CardAndCity />
+          <TrendingAdventures
+            title=" Trending Adventures"
+            subtitle=" Thinking of travelling somewhere soon? Here are some options to help
+            you get started."
+          />
+          <CardAndCity title="Top city trips with Flight & Hotel" />
           <HolidayPlaneCard />
           <BeachHoliday />
           <SunnyHoliday />

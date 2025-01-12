@@ -7,7 +7,7 @@ import HotelImage3 from "../../assets/adventure/HotelImage3.svg";
 import HotelImage4 from "../../assets/adventure/HotelImage4.svg";
 import HotelImage5 from "../../assets/adventure/HotelImage5.svg";
 import CommonCard from "../../components/ui/commonCard/CommonCard";
-import TravelFilter from "../../components/common/filter/AdventureFilter";
+import AdventureFilter from "../../components/common/filter/AdventureFilter";
 
 const adventures = [
   {
@@ -102,7 +102,7 @@ const Adventure = () => {
             <div className="flex flex-col lg:flex-row w-full  lg:space-x-10 ">
               {/* filter section */}
               <div className="flex flex-col w-full lg:w-96 -mt-8 ">
-                <TravelFilter />
+                <AdventureFilter />
               </div>
 
               {/* card section */}

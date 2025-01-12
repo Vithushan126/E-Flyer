@@ -172,7 +172,7 @@ const FilterSection = ({ title, isOpen, onToggle, children }) => (
   </div>
 );
 
-const AdventureFilter = () => {
+const PackageFilter = () => {
   const [openSection, setOpenSection] = useState("important");
   const [selectedTags, setSelectedTags] = useState([]);
   const [values, setValues] = useState([1, 1000]);
@@ -515,4 +515,4 @@ const AdventureFilter = () => {
   );
 };
 
-export default AdventureFilter;
+export default PackageFilter;
