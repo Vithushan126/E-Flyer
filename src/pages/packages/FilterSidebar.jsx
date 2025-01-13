@@ -71,6 +71,15 @@ const FilterSidebar = () => {
 
   return (
     <div className="mx-auto px-4 py-8">
+      {/* Main Title */}
+      <div className="relative text-2xl font-medium font-inter left-[150px] mb-6 text-gray">
+        Top city trips with Flight & Hotel
+      </div>
+      {/* Filter Subtitle */}
+      <div className="relative text-base font-normal font-inter left-[171px] mb-6 text-darkBlue">
+        Filter
+      </div>
+
       {/* Filter Box */}
       <div className="relative bg-white border border-[#004679] rounded-[20px] p-4 h-auto shadow-md" style={{ width: "389px", boxSizing: "border-box", left: "150px" }}>
         {/* Filter Sections */}

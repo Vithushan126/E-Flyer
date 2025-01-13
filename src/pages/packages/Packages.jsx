@@ -45,7 +45,7 @@ const App = () => {
         </div>
 
         {/* Hotel List */}
-        <div className="flex-1 flex justify-center">
+        <div className="flex-1 flex justify-center"> 
           <HotelList />
         </div>
       </div>
