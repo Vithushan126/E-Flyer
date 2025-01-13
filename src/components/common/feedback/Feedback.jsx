@@ -78,8 +78,8 @@ const Feedback = () => {
   };
 
   return (
-    <div className="w-full flex justify-center">
-      <div className="max-w-[1100px] w-full ">
+    <div className="w-full flex justify-center  ">
+      <div className="max-w-[1100px] w-full mb-20">
         <h2 className="text-3xl font-semibold text-[#004679] mb-8 text-left">
           Feedback and Reviews
         </h2>

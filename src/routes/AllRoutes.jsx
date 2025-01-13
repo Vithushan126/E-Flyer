@@ -1,5 +1,11 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
+import Adventure from "../pages/adventure/Adventure";
+import CupleAdventure from "../pages/adventure/cupleAdventure/CupleAdventure";
+import FamilyAdventure from "../pages/adventure/familyAdventure/FamilyAdventure";
+import SeaniorAdventure from "../pages/adventure/seaniorAdventure/SeaniorAdventure";
+import SoloAdventure from "../pages/adventure/soloAdventure/SoloAdventure";
+import YungAdultAdventure from "../pages/adventure/youngAdultAdventure/YungAdultAdventure";
 const MainLayout = React.lazy(() => import("../layouts/mainLayout/MainLayout"));
 const NotFound = React.lazy(() =>
   import("../components/common/notFound/NotFound")
@@ -43,6 +49,30 @@ export const router = createBrowserRouter([
       {
         path: "packages",
         element: <Packages />,
+      },
+      {
+        path: "adventure",
+        element: <Adventure />,
+      },
+      {
+        path: "soloAdventure",
+        element: <SoloAdventure />,
+      },
+      {
+        path: "familyAdventure",
+        element: <FamilyAdventure />,
+      },
+      {
+        path: "couplesAdventure",
+        element: <CupleAdventure />,
+      },
+      {
+        path: "seniorsAdventure",
+        element: <SeaniorAdventure />,
+      },
+      {
+        path: "youngAdultsAdventure",
+        element: <YungAdultAdventure />,
       },
       {
         path: "login",
