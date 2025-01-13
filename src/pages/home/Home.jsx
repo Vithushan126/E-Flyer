@@ -10,7 +10,6 @@ import BeachHoliday from "./BeachHoliday";
 import SunnyHoliday from "./SunnyHoliday";
 import HillCamping from "./HillCamping";
 
-
 const Home = () => {
   return (
     <>

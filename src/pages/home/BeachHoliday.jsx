@@ -57,7 +57,7 @@ const BeachHoliday = () => {
 
         {/* card section */}
         <div className="flex flex-row space-x-6 ">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
             {cardCitys?.map((cardCity) => {
               return <CityCard cardCity={cardCity} key={cardCity.id} />;
             })}

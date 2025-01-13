@@ -56,7 +56,7 @@ const HillCamping = () => {
         <h2 className="text-4xl font-semibold text-gray">Hill Country Camping</h2>
 
         {/* Card Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {cardCitys?.map((cardCity) => (
             <CityCard cardCity={cardCity} key={cardCity.id} />
           ))}
