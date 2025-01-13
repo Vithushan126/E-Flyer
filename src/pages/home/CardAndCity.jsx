@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CityCard from "../../components/ui/cityCard/CityCard";
 import CityCard1 from "../../assets/cityAndTrip/CityAndTip4.svg";
 import CityCard2 from "../../assets/adventure/HotelImage1.svg";
@@ -67,9 +68,11 @@ const CardAndCity = ({ title }) => {
 
         {/* button contant */}
         <div className="flex justify-center">
-          <button className="px-6 py-3 font-semibold text-darkBlue border border-darkBlue rounded-full hover:bg-blue-50 hover:scale-105 transition-colors">
-            View more Offers
-          </button>
+          <Link to="/TopCityPackage">
+            <button className="px-6 py-3 font-semibold text-darkBlue border border-darkBlue rounded-full hover:bg-blue-50 hover:scale-105 transition-colors">
+              View more Offers
+            </button>
+          </Link>
         </div>
       </div>
     </div>

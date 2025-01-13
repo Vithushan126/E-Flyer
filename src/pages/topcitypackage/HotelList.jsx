@@ -73,30 +73,15 @@ const Header = ({ totalHotels, startingPrice }) => (
 // Sort Dropdown Component
 const SortDropdown = () => (
   <div className="flex flex-col items-start gap-4 ">
-    {/* Sort By Label */}
-    <div className="text-sm text-darkBlue font-inter font-normal leading-[19px]">
-      Sort By
-    </div>
 
-    {/* Dropdown Container */}
-    <div className="relative flex items-center border border-darkBlue rounded-full w-[194px] h-[40px] px-6">
-      <span className="text-sm text-gray font-inter font-normal leading-[22px] flex-grow">
-        Most Popular
-      </span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-4 h-4 text-gray-600"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M19 9l-7 7-7-7"
-        />
-      </svg>
+    {/* sorting section */}
+    <div className="flex justify-end items-center z-50">
+      <div className="flex flex-col space-y-2">
+        <label className="pl-4 text-darkBlue">Short By</label>
+        <select className="border border-darkBlue text-smokeygray rounded-full px-4 py-1">
+          <option>Most Popular</option>
+        </select>
+      </div>
     </div>
   </div>
 );

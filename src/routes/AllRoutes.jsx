@@ -1,11 +1,12 @@
 import React from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Adventure from "../pages/adventure/Adventure";
 import CupleAdventure from "../pages/adventure/cupleAdventure/CupleAdventure";
 import FamilyAdventure from "../pages/adventure/familyAdventure/FamilyAdventure";
 import SeaniorAdventure from "../pages/adventure/seaniorAdventure/SeaniorAdventure";
 import SoloAdventure from "../pages/adventure/soloAdventure/SoloAdventure";
 import YungAdultAdventure from "../pages/adventure/youngAdultAdventure/YungAdultAdventure";
+import TopCityPackage from "../pages/TopCityPackage/TopCityPackage";
 const MainLayout = React.lazy(() => import("../layouts/mainLayout/MainLayout"));
 const NotFound = React.lazy(() =>
   import("../components/common/notFound/NotFound")
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
       {
         path: "destinations",
         element: <Destinations />,
+      },
+      {
+        path: "topcitypackage",
+        element: <TopCityPackage />,
       },
       {
         path: "packages",
@@ -98,3 +103,4 @@ export const router = createBrowserRouter([
   //   ],
   // },
 ]);
+const App = () => <RouterProvider router={router} />;

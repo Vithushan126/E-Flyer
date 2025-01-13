@@ -9,7 +9,7 @@ import Feedback from "../../components/common/feedback/Feedback";
 import BeachHoliday from "./BeachHoliday";
 import SunnyHoliday from "./SunnyHoliday";
 import HillCamping from "./HillCamping";
-
+import HeroSection from "../../components/common/heroSection/HeroSection";
 
 const Home = () => {
   return (
