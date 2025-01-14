@@ -1,7 +1,191 @@
 import React from "react";
+import SRVLogo from "../../../assets/footer/logo-4.png";
+import Image2 from "../../../assets/footer/logo-2.png";
+import Image4 from "../../../assets/footer/logo-3.png";
+import Visa from "../../../assets/footer/paymentmethod/Visa.png";
+import Master from "../../../assets/footer/paymentmethod/Mastercard.png";
+import Amex from "../../../assets/footer/paymentmethod/Amex.png";
+import Paypal from "../../../assets/footer/paymentmethod/PayPal.png";
+import Googlepay from "../../../assets/footer/paymentmethod/Googlepay.png";
+import Applepay from "../../../assets/footer/paymentmethod/ApplePay.png";
+import WhiteLogo from "../../../assets/footer/whitelogo.png";
+import { SlSocialFacebook, SlSocialInstagram } from "react-icons/sl";
+import { PiTiktokLogoBold } from "react-icons/pi";
+import { FaXTwitter } from "react-icons/fa6";
+import { RiYoutubeLine } from "react-icons/ri";
 
 const Footer = () => {
-  return <div>Footer</div>;
+  return (
+    <footer className="w-full bg-footercolor text-smokyGray py-10 mt-10 relative">
+      <div className="container mx-auto px-4">
+        {/* Logo Section */}
+        <div className="flex justify-evenly items-center mb-8 flex-wrap md:flex-nowrap lg:flex-nowrap gap-4">
+          <div
+            className="w-[174px] h-[44px] bg-center bg-cover mb-4"
+            style={{ backgroundImage: `url(${Image2})` }}
+          ></div>
+          <div
+            className="w-[174px] h-[55px] bg-center bg-cover mb-4"
+            style={{ backgroundImage: `url(${Image4})` }}
+          ></div>
+          <div
+            className="w-[191px] h-[54px] bg-center bg-contain bg-no-repeat mb-4"
+            style={{ backgroundImage: `url(${SRVLogo})` }}
+          ></div>
+        </div>
+
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          {/* Help Section */}
+          <div>
+            <h3 className="font-medium text-base mb-4 text-smokyGray">Help</h3>
+            <ul className="space-y-2 mt-2">
+              <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">EDA Travel Instruction</a></li>
+              <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">EDA Itineraries</a></li>
+              <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Travel Medical Advice</a></li>
+              <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Currency Calculator</a></li>
+            </ul>
+          </div>
+
+          {/* Travellers Section */}
+          <div>
+            <h3 className="font-medium text-base mb-4 text-smokyGray">Travellers</h3>
+            <ul className="space-y-2 mt-2">
+              <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Baggage</a></li>
+              <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Visa & Passport Information</a></li>
+              <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Health</a></li>
+              <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Travel Information</a></li>
+            </ul>
+          </div>
+
+          {/* Guide Section */}
+          <div>
+            <h3 className="font-medium text-base mb-4 text-smokyGray">Guide</h3>
+            <ul className="space-y-2 mt-2">
+              <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Imprint</a></li>
+              <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Terms and Conditions</a></li>
+              <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Data Protection</a></li>
+              <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Travel Information</a></li>
+            </ul>
+          </div>
+
+          {/* About Us Section */}
+          <div>
+            <h3 className="font-medium text-base mb-4 text-smokyGray">About Us</h3>
+            <ul className="space-y-2 mt-2">
+              <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">About Us</a></li>
+              <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Career</a></li>
+              <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Our People</a></li>
+              <li><a href="#" className="text-lightGray font-medium text-sm hover:underline">Our Community</a></li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Logo */}
+        <div className="bg-darkBlue absolute top-1/2 right-0 w-[120px] h-[71px] bg-contain bg-no-repeat -rotate-90"
+          style={{ backgroundImage: `url(${WhiteLogo})` }}></div>
+
+        {/* Footer Bottom Section */}
+        <div className="mt-8 border-t border-lightGray pt-8 max-w-full">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Subscription */}
+            <div>
+              <h3 className="font-medium text-base mb-4 text-smokyGray">Subscribe to our special offer</h3>
+              <p className="text-lightGray font-medium text-sm mt-8 max-w-[320px] leading-relaxed">
+                Save with our latest fares and offers.{" "}
+                <a href="#" className="underline">Unsubscribe or change your preferences</a>.
+              </p>
+              <form className="flex flex-wrap items-center space-x-2 mt-8">
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  className="p-2 border border-lightGray w-[231px] h-8 sm:w-[auto]" />
+                <button
+                  type="submit"
+                  className="bg-darkBlue text-white font-medium text-sm w-[132px] p2 h-8 hover:bg-blue-600">Subscribe</button>
+              </form>
+              <p className="text-lightGray font-medium text-sm mt-8 whitespace-pre-line">
+                For details on how we use your information, please see our{" "}
+                <a href="#" className="underline">privacy policy</a>.
+              </p>
+            </div>
+
+            {/* Payment & Language */}
+            <div className="flex flex-col space-y-2 text-left">
+              <div>
+                <h3 className="font-medium text-base mb-4 text-smokyGray">Payment Method</h3>
+                <div className="flex flex-wrap gap-3">
+                  <img src={Visa} alt="Visa" className="h-6 w-8 md:h-8 md:w-11 object-contain" />
+                  <img src={Master} alt="MasterCard" className="h-6 w-8 md:h-8 md:w-11 object-contain" />
+                  <img src={Amex} alt="PayPal" className="h-6 w-8 md:h-8 md:w-11 object-contain" />
+                  <img src={Paypal} alt="Apple Pay" className="h-6 w-8 md:h-8 md:w-11 object-contain" />
+                  <img src={Googlepay} alt="PayPal" className="h-6 w-8 md:h-8 md:w-11 object-contain" />
+                  <img src={Applepay} alt="Apple Pay" className="h-6 w-8 md:h-8 md:w-11 object-contain" />
+                </div>
+              </div>
+              <div>
+                <h3 className="font-medium text-base mb-4 mt-8 text-smokyGray">Select Language</h3>
+                <div className="flex flex-wrap gap-4">
+                  <button className="px-2 py-1 h-9 w-12 border rounded-xl hover:bg-darkBlue hover:text-white">EN</button>
+                  <button className="px-2 py-1 h-9 w-12 border rounded-xl hover:bg-darkBlue hover:text-white">FR</button>
+                  <button className="px-2 py-1 h-9 w-12 border rounded-xl hover:bg-darkBlue hover:text-white">GR</button>
+                  <button className="px-2 py-1 h-9 w-12 border rounded-xl hover:bg-darkBlue hover:text-white">IT</button>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Info */}
+            <div className="flex flex-col space-y-2 text-left">
+              <div>
+                <h3 className="font-medium text-base mb-4 text-smokyGray ">Contact</h3>
+                <p className="text-lightGray font-medium text-sm mt-2 max-w-[320px] leading-relaxed">Langstrasse 214, 8005 Zurich</p>
+                <p><a href="mailto:info@efly.ch" className="text-lightGray font-medium text-sm mt-2 max-w-[320px] leading-relaxed hover:underline">info@efly.ch</a></p>
+                <p className="text-lightGray font-medium text-sm mt-2 max-w-[320px] leading-relaxed">+41 44 668 0606</p>
+                <div className="relative mt-8">
+                  {/* Social Media Title */}
+                  <h3 className="font-medium text-base mb-4 text-smokyGray">Social Media</h3>
+
+                  {/* Social Media Icons */}
+                  <div className="flex space-x-6">
+                    <a href="#" className="text-gray-500 hover:text-gray-800">
+                      <SlSocialFacebook size={20} />
+                    </a>
+                    <a href="#" className="text-gray-500 hover:text-gray-800">
+                      <FaXTwitter size={20} />
+                    </a>
+                    <a href="#" className="text-gray-500 hover:text-gray-800">
+                      <RiYoutubeLine size={26} />
+                    </a>
+                    <a href="#" className="text-gray-500 hover:text-gray-800">
+                      <SlSocialInstagram size={20} />
+                    </a>
+                    <a href="#" className="text-gray-500 hover:text-gray-800">
+                      <PiTiktokLogoBold size={20} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Bottom Links */}
+         <div className="mt-8 border-t border-lightGray pt-8 max-w-full">
+          <div className="flex justify-center gap-5 space-x-4 mt-2 flex-wrap">
+            <a href="#" className="text-lightGray font-medium text-sm hover:underline">Accessibility statement</a>
+            <a href="#" className="text-lightGray font-medium text-sm hover:underline">Contact us</a>
+            <a href="#" className="text-lightGray font-medium text-sm hover:underline">Privacy policy</a>
+            <a href="#" className="text-lightGray font-medium text-sm hover:underline">Terms and conditions</a>
+            <a href="#" className="text-lightGray font-medium text-sm hover:underline">Cookie Policy</a>
+          </div>
+          <p className="text-darkcolor mt-4 text-center font-medium text-sm" aria-hidden="true">
+  &copy; {new Date().getFullYear()} The EFly Travels. All Rights Reserved.
+</p>
+
+        </div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;

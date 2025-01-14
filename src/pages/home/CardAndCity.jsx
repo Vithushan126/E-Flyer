@@ -6,7 +6,7 @@ import CityCard5 from "../../assets/adventure/HotelImage2.svg";
 import CityCard3 from "../../assets/adventure/HotelImage4.svg";
 import CityCard4 from "../../assets/adventure/HotelImage5.svg";
 
-const CardAndCity = () => {
+const CardAndCity = ({ title }) => {
   const cardCitys = [
     {
       id: 1,
@@ -54,9 +54,7 @@ const CardAndCity = () => {
     <div className="w-full flex justify-center">
       <div className="max-w-[1100px] w-full space-y-8">
         {/* title contant */}
-        <h2 className="text-4xl font-semibold text-gray">
-          Top city trips with Flight & Hotel
-        </h2>
+        <h2 className="text-4xl font-semibold text-gray">{title}</h2>
 
         {/* card section */}
         <div className="flex flex-row space-x-6 ">

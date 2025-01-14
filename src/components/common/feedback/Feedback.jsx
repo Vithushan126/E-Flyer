@@ -38,7 +38,7 @@ const reviews = [
   },
 ];
 
-const Feedback = () => {
+const Feedback = ({title}) => {
   var settings = {
     dots: true,
     arrows: false,
@@ -78,10 +78,10 @@ const Feedback = () => {
   };
 
   return (
-    <div className="w-full flex justify-center">
-      <div className="max-w-[1100px] w-full ">
-        <h2 className="text-3xl font-semibold text-[#004679] mb-8 text-left">
-          Feedback and Reviews
+    <div className="w-full flex justify-center  ">
+      <div className="max-w-[1100px] w-full mb-20">
+        <h2 className="text-4xl font-semibold text-[#004679] mb-8 text-left">
+          {title}
         </h2>
         <div className="px-0 lg:px-4 ">
           <Slider {...settings}>

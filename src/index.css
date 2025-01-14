@@ -10,4 +10,21 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  .custom-slider .rc-slider-track {
+    background-color: #024575; /* Dark Blue Color */
+  }
+
+  .custom-slider .rc-slider-handle {
+    border-color: #024575; /* Dark Blue Color */
+    box-shadow: none;
+  }
+
+  .custom-slider .rc-slider-handle:active {
+    border-color: #024575;
+  }
+
+  .custom-slider .rc-slider-rail {
+    background-color: #e5e7eb; /* Light Gray for the rail */
+  }
 }

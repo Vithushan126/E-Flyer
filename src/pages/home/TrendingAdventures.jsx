@@ -6,7 +6,7 @@ import HotelImage3 from "../../assets/adventure/HotelImage3.svg";
 import HotelImage4 from "../../assets/adventure/HotelImage4.svg";
 import HotelImage5 from "../../assets/adventure/HotelImage5.svg";
 
-const TrendingAdventures = () => {
+const TrendingAdventures = ({ title, subtitle }) => {
   const adventures = [
     {
       id: 1,
@@ -38,7 +38,7 @@ const TrendingAdventures = () => {
     },
     {
       id: 3,
-      title: "Catalonia Riviera Maya3",
+      title: "Catalonia Riviera Maya",
       location: "France",
       dates: "13 Feb 2025-15 Feb 2025",
       duration: "3 nights - 2 Adults",
@@ -84,13 +84,8 @@ const TrendingAdventures = () => {
     <div className="w-full flex justify-center">
       <div className="max-w-[1100px] w-full space-y-8">
         <div className="space-y-2">
-          <h2 className="text-4xl font-semibold text-gray">
-            Trending Adventures
-          </h2>
-          <p className="text-xl text-smokyGray">
-            Thinking of travelling somewhere soon? Here are some options to help
-            you get started.
-          </p>
+          <h2 className="text-4xl font-semibold text-gray">{title}</h2>
+          <p className="text-xl text-smokyGray">{subtitle}</p>
         </div>
 
         <div className="flex flex-col space-y-6 ">
