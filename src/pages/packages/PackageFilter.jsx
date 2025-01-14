@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronDown, ChevronUp, Star } from "lucide-react";
+import { ChevronDown, ChevronUp, Star, MapPin} from "lucide-react";
 import Slider from "rc-slider";
 import { Tooltip } from "react-tooltip";
 import { RxStarFilled } from "react-icons/rx";
@@ -36,6 +36,14 @@ const option = {
     { label: "Breakfast", count: 23 },
     { label: "Half Board", count: 27 },
     { label: "Full Board", count: 0 },
+  ],
+  departureAirport: [
+    { label: "Top ", count: 45 },
+    { label: "Beach Holiday ", count: 34 },
+    { label: "Luxury ", count: 45 },
+    { label: "Sustainable Accommodation ", count: 45 },
+    { label: "Family Vacation", count: 0 },
+    { label: " Winter Sports", count: 0 },
   ],
   stopover: [
     { label: "Any", count: 45 },
@@ -153,15 +161,14 @@ const option = {
 const FilterTag = ({ label, count, selected, onClick }) => (
   <button
     onClick={onClick}
-    className={`px-4 py-1 rounded-lg transition-colors border border-borderGray ${
-      selected ? "bg-darkBlue text-white text-xs " : " text-smokyGray text-xs hover:bg-gray-200"
-    }`}
+    className={`px-4 py-1 rounded-lg transition-colors border border-borderGray ${selected ? "bg-darkBlue text-white text-xs " : " text-smokyGray text-xs hover:bg-gray-200"
+      }`}
   >
     {label} ({count})
   </button>
 );
 
-const FilterSection = ({ title, isOpen, onToggle, children, isLastSection  }) => (
+const FilterSection = ({ title, isOpen, onToggle, children, isLastSection }) => (
   <div className={`py-4 ${!isLastSection ? 'border-b border-gray border-opacity-20' : ''}`}>
     <button
       onClick={onToggle}
@@ -269,7 +276,7 @@ const PackageFilter = () => {
           isOpen={openSection === "review"}
           onToggle={() =>
             setOpenSection(openSection === "review" ? "" : "review")}
-            isLastSection={false}
+          isLastSection={false}
         >
           {option?.starRatings?.map((rating, index) => (
             <div
@@ -302,8 +309,34 @@ const PackageFilter = () => {
           ))}
         </FilterSection>
 
-         {/* Departure Time */}
-         <FilterSection
+        {/* DepartureAirport */}
+        <FilterSection
+          title="Departure Airport"
+          isOpen={openSection === "departureAirport"}
+          onToggle={() => setOpenSection(openSection === "departureAirport" ? "" : "departureAirport")}
+          isLastSection={false}
+        >
+          <div className="flex flex-col mt-4 gap-3">
+            <div className="flex items-center gap-4 bg-[#F5F5F6] p-3 rounded-3xl">
+              <MapPin className="text-smokyGray " />
+              <span className="text-sm text-[#5A5A5A]">Colombo</span>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {option?.departureAirport.map((option) => (
+              <FilterTag
+                key={option.label}
+                label={option.label}
+                count={option.count}
+                selected={selectedTags.includes(option.label)}
+                onClick={() => toggleTag(option.label)}
+              />
+            ))}
+          </div>
+        </FilterSection>
+
+        {/* Departure Time */}
+        <FilterSection
           title="Departure Time"
           isOpen={openSection === "departureTime"}
           onToggle={() => setOpenSection(openSection === "departureTime" ? "" : "departureTime")}
@@ -343,7 +376,7 @@ const PackageFilter = () => {
           onToggle={() => setOpenSection(openSection === "stopover" ? "" : "stopover")}
           isLastSection={false}
         >
-           <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2">
             {option?.stopover.map((option) => (
               <FilterTag
                 key={option.label}
