@@ -32,7 +32,7 @@ const Home = () => {
           <HillCamping />
           <TravelCategory />
           <Explore />
-          <Feedback />
+          <Feedback title='Feedback and Reviews'/>
         </div>
       </div>
     </>
