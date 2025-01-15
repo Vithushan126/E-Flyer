@@ -122,8 +122,8 @@ const SearchForm = () => {
               key={index}
               onClick={() => setSearchStatusVal(index)}
               className={`cursor-pointer hover:text-primaryColor hover:scale-105 ${searchStatusVal === index
-                  ? "p-2 lg:p-4 rounded-3xl bg-orange text-white"
-                  : ""
+                ? "p-2 lg:p-4 rounded-3xl bg-orange text-white"
+                : ""
                 }`}
             >
               {item.component}
@@ -133,125 +133,104 @@ const SearchForm = () => {
         <Formik
           initialValues={{
             destination: "",
-            dateRange: {
-              startDate: new Date(),
-              endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-            },
-            rooms: 2,
-            persons: 3,
+            rooms: 1,
+            persons: 2,
           }}
-          validationSchema={ValidationSchema}
+          validationSchema={ValidationSchema} // Use the correct variable name
           onSubmit={(values) => {
-            console.log(values);
+            console.log("Form Submitted:", values, dateRange);
           }}
         >
-          {({ values, setFieldValue }) => (
+          {({ values, setFieldValue, errors, touched }) => (
             <Form>
-              <div className="flex flex-col lg:flex-row gap-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-
-                  {/* Destination */}
-                  <div className="flex flex-row items-center p-[10px_20px] gap-[20px] lg:w-[225px] h-[57px] bg-backgroundColor rounded-[20px] w-full">
-                    {/* Location Marker Icon */}
-                    <div className="flex-none w-[24.24px] h-[28px] relative">
-                      <MapPin className="text-smokyGray" />
-                    </div>
-                    {/* Text Content */}
-                    <div className="flex flex-col items-start gap-[3px]">
-                      {/* Label */}
-                      <span className="text-smokyGray font-inter font-light text-xs leading-[15px]">
-                        Destination
+              <div className="flex flex-col lg:flex-row gap-4 w-full justify-between ">
+                {/* Destination */}
+                <div className="flex flex-row items-center p-[10px_20px] gap-[20px] sm:w-[250px] h-[57px] bg-backgroundColor rounded-[20px]">
+                  <MapPin className="text-smokyGray w-[24.24px] h-[28px]" />
+                  <div className="flex flex-col items-start gap-[3px]">
+                    <span className="text-smokyGray font-inter font-light text-xs leading-[15px]">
+                      Destination
+                    </span>
+                    <Field
+                      as="select"
+                      name="destination"
+                      className="text-smokyGray font-inter font-normal text-base leading-[19px] focus:outline-none focus:ring-2 focus:ring-primaryColor bg-transparent"
+                      value={values.destination} // Controlled component: bind value to Formik's field value
+                      onChange={(e) => setFieldValue('destination', e.target.value)} // Update Formik's value on change
+                    >
+                      <option value="">Select destination</option>
+                      {destinations.map((dest) => (
+                        <option key={dest} value={dest}>
+                          {dest}
+                        </option>
+                      ))}
+                    </Field>
+                    {errors.destination && touched.destination && (
+                      <span className="text-red-500 text-xs">
+                        {errors.destination}
                       </span>
-                      {/* Destination Dropdown */}
-                      <Field name="destination">
-                        {({ field }) => (
-                          <select
-                            {...field}
-                            className="w-[135px] h-[19px] text-smokyGray font-inter font-normal text-base leading-[19px] focus:outline-none focus:ring-2 focus:ring-primaryColor bg-transparent"
-                          >
-                            <option value="">Select destination</option>
-                            {destinations.map((dest) => (
-                              <option key={dest} value={dest}>
-                                {dest}
-                              </option>
-                            ))}
-                          </select>
-                        )}
-                      </Field>
-                    </div>
-                  </div>
-                  {/* Date Range */}
-                  <div className="flex flex-row items-center p-[10px_20px] gap-5 w-[270px] h-[57px] bg-backgroundColor rounded-[20px]">
-                    {/* Calendar Icon */}
-                    <div className="flex-none w-[28px] h-[28px] border-smokyGray rounded-lg flex items-center justify-center">
-                      <Calendar className="text-smokyGray" />
-                    </div>
-                    {/* Text Content */}
-                    <div className="flex flex-col items-start gap-[3px]">
-                      {/* Label */}
-                      <span className="text-smokyGray font-inter font-light text-xs leading-[15px]">
-                        Travel Period
-                      </span>
-                      {/* Selected Date Range */}
-                      <button
-                        type="button"
-                        onClick={() => setShowDatePicker(!showDatePicker)}
-                        className="text-smokyGray font-inter font-normal text-base leading-[19px] w-[249px] text-left"
-                      >
-                        {formatDate(values.dateRange.startDate)} - {formatDate(values.dateRange.endDate)}
-                      </button>
-                    </div>
-                    {/* Date Picker */}
-                    {showDatePicker && (
-                      <div className="absolute z-50 mt-2">
-                        <DateRange
-                          ranges={[dateRange]}
-                          onChange={(ranges) => {
-                            setDateRange(ranges.selection);
-                            setFieldValue("dateRange", ranges.selection);
-                          }}
-                          months={2}
-                          direction="horizontal"
-                          className="border rounded-lg shadow-lg"
-                        />
-                      </div>
                     )}
                   </div>
-                  {/* Rooms & Travelers */}
-                  <div className="flex flex-row items-center p-[10px_20px] gap-5 w-[262px] h-[57px] bg-backgroundColor rounded-[20px]">
-                    {/* Icon */}
-                    <div className="flex-none w-[36px] h-[36px] flex items-center justify-center">
-                      <BedDouble className="text-smokyGray" />
-                    </div>
-                    {/* Text Content */}
-                    <div className="flex flex-col items-start gap-[3px] w-[130px] h-[37px]">
-                      {/* Label */}
-                      <span className="text-smokyGray font-inter font-light text-xs leading-[15px]">
-                        Rooms & Travellers
-                      </span>
-                      {/* Data */}
-                      <span className="text-smokyGray font-inter font-normal text-base leading-[19px]">
-                        {values.rooms} Rooms, {values.persons} Person
-                      </span>
-                    </div>
-                  </div>
-                  {/* Search Button */}
-                  <div className="relative flex items-end">
-                    <button
-                      type="submit"
-                      className="flex items-center justify-center gap-4 px-5 py-[14px] w-[174px] h-[57px] bg-darkBlue text-white text-2xl font-inter font-medium rounded-[20px] hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-primaryColor"
-                    >
-                      {/* Search Icon */}
-                      <Search className="w-[28px] h-[28px] rounded-full p-[3px]" />
+                </div>
 
-                      {/* Text */}
-                      <span>Search</span>
+                {/* Date Range */}
+                <div
+                  className="relative flex flex-row items-center p-[10px_20px] gap-5 w-full sm:w-[280px] h-[57px] bg-backgroundColor rounded-[20px]"
+                  ref={calendarRef}
+                >
+                  <div className="flex-none w-[28px] h-[28px] border-smokyGray rounded-lg flex items-center justify-center">
+                    <Calendar className="text-smokyGray" />
+                  </div>
+                  <div className="flex flex-col items-start gap-[3px]">
+                    <span className="text-smokyGray font-inter font-light text-xs leading-[15px]">
+                      Travel Period
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setShowDatePicker(!showDatePicker)}
+                      className="text-smokyGray font-inter font-normal text-base leading-[19px]"
+                    >
+                      {dateRange.startDate.toLocaleDateString()} -{" "}
+                      {dateRange.endDate.toLocaleDateString()}
                     </button>
                   </div>
+                  {showDatePicker && (
+                    <div className="absolute z-50 mt-2">
+                      <DateRange
+                        ranges={[dateRange]}
+                        onChange={(item) => setDateRange(item.selection)}
+                        moveRangeOnFirstSelection={false}
+                        rangeColors={["#3b82f6"]}
+                      />
+                    </div>
+                  )}
+                </div>
+
+                {/* Rooms & Travelers */}
+                <div className="flex flex-row items-center p-[10px_20px] gap-5 w-full sm:w-[320px] h-[57px] bg-backgroundColor rounded-[20px]">
+                  <BedDouble className="text-smokyGray w-[36px] h-[36px]" />
+                  <div className="flex flex-col items-start gap-[3px]">
+                    <span className="text-smokyGray font-inter font-light text-xs leading-[15px]">
+                      Rooms & Travellers
+                    </span>
+                    <span className="text-[#5A5A5A] font-inter font-normal text-base leading-[19px]">
+                      {values.rooms} Rooms, {values.persons} Persons
+                    </span>
+                  </div>
+                </div>
+
+                {/* Search Button */}
+                <div className="relative flex items-end">
+                  <button
+                    type="submit"
+                    className="flex items-center justify-center gap-4 px-5 py-[14px] sm:w-[174px] w-full  h-[57px] bg-darkBlue text-white text-2xl font-inter font-medium rounded-[20px] hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-primaryColor"
+                  >
+                    <Search />
+                    <span>Search</span>
+                  </button>
                 </div>
               </div>
             </Form>
-
           )}
         </Formik>
       </div>

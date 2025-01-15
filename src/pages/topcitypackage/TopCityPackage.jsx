@@ -13,33 +13,32 @@ const TopCityPackage = () => {
     };
 
     return (
-        <div className="w-full flex justify-center">
-            <div className="w-full max-w-[1100px] mx-2 lg:mx-0 space-y-4 lg:space-y-10">
+        <div className="w-full flex justify-center bg-gray-50 py-6">
+            <div className="w-full max-w-[1100px] px-4 lg:px-0 space-y-6">
                 <SearchBar />
-                <div className="flex flex-col">
+                <div className="flex flex-col space-y-6">
                     {/* Title Section */}
-                    <div className="text-center sm:text-right mt-6 lg:text-left mb-4">
-                        <div className="text-xl md:text-2xl font-medium font-inter text-gray">
+                    <div className="text-left">
+                        <h1 className="text-xl md:text-2xl font-semibold text-gray-800">
                             Top city trips with Flight & Hotel
-                        </div>
-                        <div
-                            className="text-sm md:text-base font-normal font-inter text-darkBlue mt-4 cursor-pointer"
+                        </h1>
+                        <button
+                            className="text-sm md:text-base text-darkBlue mt-2 cursor-pointer underline"
                             onClick={toggleFilterSidebar}
                         >
                             Filter
-                        </div>
+                        </button>
                     </div>
 
                     {/* Main Content */}
-                    <div className="flex flex-col lg:flex-row w-full  lg:space-x-10 md:flex-row md:gap-12">
-                        {/* Sidebar for Desktop and Full-Screen for Mobile */}
-
+                    <div className="flex flex-col lg:flex-row lg:gap-10">
+                        {/* Sidebar */}
                         <div
-                            className={`fixed md:static top-0 left-0 bg-white h-full w-full md:w-auto md:h-auto p-4 md:p-0 z-50 shadow-lg md:shadow-none transform ${isFilterVisible ? "translate-x-0" : "-translate-x-full"
-                                } transition-transform duration-300 ease-in-out md:translate-x-0`}
+                            className={`fixed inset-0 md:static bg-white p-6 md:p-0 z-50 shadow-md md:shadow-none transform ${isFilterVisible ? "translate-x-0" : "-translate-x-full"
+                                } transition-transform duration-300 ease-in-out lg:translate-x-0`}
                         >
                             <button
-                                className="md:hidden absolute top-4 right-4 text-gray-600 text-lg"
+                                className="md:hidden absolute top-8 right-8 text-gray-600 text-xl"
                                 onClick={toggleFilterSidebar}
                             >
                                 ✕
@@ -48,7 +47,7 @@ const TopCityPackage = () => {
                         </div>
 
                         {/* Hotel List */}
-                        <div className="flex-1 flex justify-center">
+                        <div className="flex-1">
                             <HotelList />
                         </div>
                     </div>

@@ -207,7 +207,7 @@ const PackageFilter = () => {
 
   return (
     <div className="w-full rounded-3xl space-y-4 ">
-      <div className="w-[389px] border border-darkBlue rounded-xl p-4 shadow-md">
+      <div className="sm:w-[389px] border border-darkBlue rounded-xl p-4 shadow-md">
         {/* importan section */}
         <FilterSection
           title="What is Important to you?"

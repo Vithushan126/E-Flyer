@@ -21,7 +21,6 @@ const iconsList = [
 ];
 
 const HotelList = () => {
-  // Generate 15 hotel data objects
   const hotels = Array.from({ length: 15 }, (_, index) => {
     const imageSet = [HotelImage1, HotelImage2, HotelImage3];
     const icons = iconsList[index % 2]; // Alternate between two sets of icons
@@ -31,27 +30,27 @@ const HotelList = () => {
     return {
       id: index + 1,
       title: `Catalonia Riviera Maya ${index + 1}`,
-      location: ["France", "Italy", "Spain"][index % 3], // Rotate between locations
+      location: ["France", "Italy", "Spain"][index % 3],
       dates: "13 Feb 2025 - 15 Feb 2025",
       duration: "3 nights - 2 Adults",
       package: "All Inclusive | Including Transfer",
       originalPrice: discount ? `LKR 334567` : "",
       discountedPrice: `LKR ${234567 - index * 1000}`, // Decreasing price for variation
       discount: discount,
-      image: imageSet[index % 3], // Rotate between 3 images
+      image: imageSet[index % 3],
       rating: rating,
-      isTop: index % 2 === 0, // Mark every alternate hotel as "Top"
+      isTop: index % 2 === 0,
       icon: icons,
     };
   });
 
   return (
-    <div className="w-[701px]">
+    <div className="w-full space-y-6">
       {/* Header Section */}
       <Header totalHotels={hotels.length} startingPrice="LKR 45678" />
 
       {/* Hotel Cards */}
-      <div className="grid grid-cols-1 lg:grid-cols-1 gap-6 ">
+      <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-6">
         {hotels.map((hotel) => (
           <CommonCard adventure={hotel} key={hotel.id} />
         ))}
@@ -60,29 +59,29 @@ const HotelList = () => {
   );
 };
 
-// Header Component
 const Header = ({ totalHotels, startingPrice }) => (
-  <div className="flex justify-between items-center mb-8">
-    <p className="text-gray font-medium text-lg">
-      {totalHotels} Hotels From <span className="font-bold text-gray-800">{startingPrice}</span>
+  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4">
+    <p className="text-gray-700 font-medium text-lg">
+      {totalHotels} Hotels From <span className="font-bold text-gray-900">{startingPrice}</span>
     </p>
     <SortDropdown />
   </div>
 );
 
-// Sort Dropdown Component
 const SortDropdown = () => (
-  <div className="flex flex-col items-start gap-4 ">
-
-    {/* sorting section */}
-    <div className="flex justify-end items-center z-50">
-      <div className="flex flex-col space-y-2">
-        <label className="pl-4 text-darkBlue">Short By</label>
-        <select className="border border-darkBlue text-smokeygray rounded-full px-4 py-1">
-          <option>Most Popular</option>
-        </select>
-      </div>
-    </div>
+  <div className="flex flex-col items-start space-x-2 space-y-2 ">
+    <label htmlFor="sort" className="text-darkBlue text-sm">
+      Sort By
+    </label>
+    <select
+      id="sort"
+      className="border border-darkBlue rounded-full px-4 py-1 text-sm text-gray-700 focus:outline-none focus:ring"
+    >
+      <option>Most Popular</option>
+      <option>Price: Low to High</option>
+      <option>Price: High to Low</option>
+      <option>Top Rated</option>
+    </select>
   </div>
 );
 
