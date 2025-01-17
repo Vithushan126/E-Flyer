@@ -19,7 +19,7 @@ const Footer = () => {
     <footer className="w-full bg-footercolor text-smokyGray py-10 mt-10 relative">
       <div className="container mx-auto px-4">
         {/* Logo Section */}
-        <div className="flex justify-center items-center mb-8 gap-4">
+        <div className="flex justify-evenly items-center mb-8 gap-4">
           <div
             className="w-[120px] h-[35px] sm:w-[140px] sm:h-[40px] md:w-[160px] md:h-[50px] lg:w-[174px] lg:h-[55px] bg-center bg-cover"
             style={{ backgroundImage: `url(${Image2})` }}
@@ -35,7 +35,7 @@ const Footer = () => {
         </div>
 
         {/* Main Footer Content */}
-        <div className="grid grid-cols-2 mx-[60px] sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        <div className="sm:flex grid grid-cols-2  sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 justify-around">
           {/* Help Section */}
           <div>
             <h3 className="font-medium text-sm mb-4 text-smokyGray">Help</h3>
@@ -86,8 +86,8 @@ const Footer = () => {
           style={{ backgroundImage: `url(${WhiteLogo})` }}></div>
 
         {/* Footer Bottom Section */}
-        <div className="mt-4 border-t border-lightGray pt-8 max-w-[1137px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="relative mt-4 border-t border-lightGray pt-8 max-w-[1137px] mx-auto">
+          <div className="sm:flex grid grid-cols-1 md:grid-cols-3 justify-between">
             {/* Subscription */}
             <div>
               <h3 className="font-medium text-base mb-4 text-smokyGray">Subscribe to our special offer</h3>
