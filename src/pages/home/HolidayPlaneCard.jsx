@@ -1,8 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"; 
 import CityCard3 from "../../assets/adventure/HotelImage4.svg";
 import HolidayLogo from "../../assets/cityAndTrip/HolidayLogo.svg";
 
 const HolidayPlaneCard = () => {
+  const navigate = useNavigate(); 
+
+  const handleFindHereClick = () => {
+    navigate("holidayPlanner_1"); 
+  };
+
   return (
     <div className="w-full flex justify-center  ">
       <div className="max-w-[1100px] w-full lg:max-w-3xl flex flex-col md:flex-row rounded-3xl bg-darkBlue min-h-[400px] md:h-[329px]">
@@ -40,7 +47,10 @@ const HolidayPlaneCard = () => {
               inspired.
             </p>
           </div>
-          <button className="w-full md:w-auto bg-orange rounded-2xl text-white text-lg md:text-xl font-semibold py-3 md:py-4 px-4 md:mx-2 md:mb-8 hover:bg-[#FF9000] transition-colors">
+           <button
+            onClick={handleFindHereClick} // Attach the click handler
+            className="w-full md:w-auto bg-orange rounded-2xl text-white text-lg md:text-xl font-semibold py-3 md:py-4 px-4 md:mx-2 md:mb-8 hover:bg-[#FF9000] transition-colors"
+          >
             Find Here
           </button>
         </div>

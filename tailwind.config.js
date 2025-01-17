@@ -1,3 +1,5 @@
+import { button } from 'framer-motion/client';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -24,6 +26,7 @@ export default {
         footercolor: "#F5F5F6",
         darkcolor: "#484747",
         offWhite: "#F5F5F6",
+        buttoncolor:"#8B8B8B",
       },
 
       maxWidth: {
