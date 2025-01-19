@@ -1,15 +1,13 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Adventure from "../pages/adventure/Adventure";
-import CupleAdventure from "../pages/adventure/cupleAdventure/CupleAdventure";
-import FamilyAdventure from "../pages/adventure/familyAdventure/FamilyAdventure";
-import SeaniorAdventure from "../pages/adventure/seaniorAdventure/SeaniorAdventure";
-import SoloAdventure from "../pages/adventure/soloAdventure/SoloAdventure";
-import YungAdultAdventure from "../pages/adventure/youngAdultAdventure/YungAdultAdventure";
+
 const MainLayout = React.lazy(() => import("../layouts/mainLayout/MainLayout"));
 const NotFound = React.lazy(() =>
   import("../components/common/notFound/NotFound")
 );
+const Login = React.lazy(() => import("../pages/auth/login/Login"));
+const Register = React.lazy(() => import("../pages/auth/register/Register"));
+
 const Home = React.lazy(() => import("../pages/home/Home"));
 const Explore = React.lazy(() => import("../pages/explore/Explore"));
 const Book = React.lazy(() => import("../pages/book/Book"));
@@ -17,8 +15,26 @@ const Destinations = React.lazy(() =>
   import("../pages/destinations/Destinations")
 );
 const Packages = React.lazy(() => import("../pages/packages/Packages"));
-const Login = React.lazy(() => import("../pages/auth/login/Login"));
-const Register = React.lazy(() => import("../pages/auth/register/Register"));
+const Adventure = React.lazy(() => import("../pages/adventure/Adventure"));
+const CupleAdventure = React.lazy(() =>
+  import("../pages/adventure/cupleAdventure/CupleAdventure")
+);
+const FamilyAdventure = React.lazy(() =>
+  import("../pages/adventure/familyAdventure/FamilyAdventure")
+);
+const SeaniorAdventure = React.lazy(() =>
+  import("../pages/adventure/seaniorAdventure/SeaniorAdventure")
+);
+const SoloAdventure = React.lazy(() =>
+  import("../pages/adventure/soloAdventure/SoloAdventure")
+);
+const YungAdultAdventure = React.lazy(() =>
+  import("../pages/adventure/youngAdultAdventure/YungAdultAdventure")
+);
+
+const HotelAndFlightView = React.lazy(() =>
+  import("../pages/view/HotelAndFlightView")
+);
 
 export const router = createBrowserRouter([
   {
@@ -73,6 +89,10 @@ export const router = createBrowserRouter([
       {
         path: "youngAdultsAdventure",
         element: <YungAdultAdventure />,
+      },
+      {
+        path: "hotelAndFlightView",
+        element: <HotelAndFlightView />,
       },
       {
         path: "login",

@@ -24,6 +24,7 @@ export default {
         footercolor: "#F5F5F6",
         darkcolor: "#484747",
         offWhite: "#F5F5F6",
+        borderCol: "#D5D5D5",
       },
 
       maxWidth: {

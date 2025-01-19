@@ -49,7 +49,7 @@ const AdventureSearchForm = () => {
   }, []);
 
   return (
-    <div className="w-full flex  justify-center  mt-10">
+    <div className="w-full flex  justify-center  mt-10 ">
       <div className="w-full rounded-3xl shadow-lg p-2 lg:p-4 space-y-4 lg:space-y-8 ">
         <Formik
           initialValues={{
@@ -155,7 +155,7 @@ const AdventureSearchForm = () => {
                   </div>
 
                   {/* Search Button */}
-                  <div className="relative flex items-end">
+                  <div className="relative flex items-center">
                     <button
                       type="submit"
                       className="w-full bg-darkBlue text-white text-xl rounded-3xl py-2 flex items-center justify-center gap-4 hover:bg-blue-800"
