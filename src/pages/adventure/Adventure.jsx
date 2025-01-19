@@ -106,7 +106,7 @@ const Adventure = () => {
               </div>
 
               {/* card section */}
-              <div className="flex flex-col space-y-4 lg:space-y-10 flex-grow  ">
+              <div className="flex flex-col space-y-4 lg:space-y-10 flex-grow">
                 <h6 className="text-smokyGray mt-4 lg:mt-0 font-semibold text-xl">
                   45 Hotels From LKR 45678
                 </h6>
