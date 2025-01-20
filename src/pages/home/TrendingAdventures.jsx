@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CommonCard from "../../components/ui/commonCard/CommonCard";
 import HotelImage1 from "../../assets/adventure/HotelImage1.svg";
 import HotelImage2 from "../../assets/adventure/HotelImage2.svg";
@@ -84,7 +85,9 @@ const TrendingAdventures = ({ title, subtitle }) => {
     <div className="w-full flex justify-center">
       <div className="max-w-[1100px] w-full space-y-8">
         <div className="space-y-2">
+        <Link to="/TrendingPackage">
           <h2 className="text-4xl font-semibold text-gray">{title}</h2>
+          </Link>
           <p className="text-xl text-smokyGray">{subtitle}</p>
         </div>
 

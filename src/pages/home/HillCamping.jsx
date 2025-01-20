@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CityCard from "../../components/ui/cityCard/CityCard";
 import HillCamping9 from "../../assets/hillcamping/HillCamping9.png";
 import HillCamping10 from "../../assets/hillcamping/HillCamping10.png";
@@ -53,7 +54,9 @@ const HillCamping = () => {
     <div className="w-full flex justify-center">
       <div className="max-w-[1100px] w-full space-y-8">
         {/* Title Content */}
+        <Link to="/TopCityPackage">
         <h2 className="text-4xl font-semibold text-gray">Hill Country Camping</h2>
+        </Link>
 
         {/* Card Section */}
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">

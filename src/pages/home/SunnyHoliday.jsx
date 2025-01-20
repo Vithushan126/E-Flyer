@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CityCard from "../../components/ui/cityCard/CityCard";
 import Img1 from "../../assets/sunnyholiday/img_1.png";
 import Img2 from "../../assets/sunnyholiday/img_2.png";
@@ -53,7 +54,9 @@ const SunnyHoliday = () => {
     <div className="w-full flex justify-center">
       <div className="max-w-[1100px] w-full space-y-8">
         {/* title contant */}
+        <Link to="/TopCityPackage">
         <h2 className="text-4xl font-semibold text-gray">Yellow Sunny Holiday</h2>
+        </Link>
 
         {/* card section */}
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 ">

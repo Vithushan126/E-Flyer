@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import HotelList from "../TopCityPackage/HotelList";
 import TrendingFilter from "../trendingadventure/TrendingFilter";
 import SearchForm from "../home/SearchForm";
-import AdventureWorld from "../adventure/soloAdventure/AdventureWorld";
 
-const Destinations = () => {
+const Offers = () => {
     const [isFilterVisible, setFilterVisible] = useState(false);
 
     const toggleFilterSidebar = () => {
@@ -12,11 +11,9 @@ const Destinations = () => {
     };
 
     return (
-        <div className="w-full flex justify-center bg-gray-50 py-8">
+        <div className="w-full flex justify-center bg-gray-50 py-60">
             <div>
-               <AdventureWorld/>
-               <div className="mt-60"><SearchForm /></div>
-                
+                <SearchForm />
                 <div className="flex flex-col space-y-6">
                     {/* Title Section */}
                     <div className="text-left">
@@ -55,4 +52,4 @@ const Destinations = () => {
     );
 };
 
-export default Destinations;
+export default Offers;
