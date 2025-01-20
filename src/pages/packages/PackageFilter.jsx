@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronDown, ChevronUp, Star } from "lucide-react";
+import { ChevronDown, ChevronUp, Star, MapPin} from "lucide-react";
 import Slider from "rc-slider";
 import { Tooltip } from "react-tooltip";
 import { RxStarFilled } from "react-icons/rx";
@@ -36,6 +36,20 @@ const option = {
     { label: "Breakfast", count: 23 },
     { label: "Half Board", count: 27 },
     { label: "Full Board", count: 0 },
+  ],
+  departureAirport: [
+    { label: "Top ", count: 45 },
+    { label: "Beach Holiday ", count: 34 },
+    { label: "Luxury ", count: 45 },
+    { label: "Sustainable Accommodation ", count: 45 },
+    { label: "Family Vacation", count: 0 },
+    { label: " Winter Sports", count: 0 },
+  ],
+  stopover: [
+    { label: "Any", count: 45 },
+    { label: "Direct Flight", count: 34 },
+    { label: "Max . 1 Stop ", count: 45 },
+    { label: "Max . 2 Stop ", count: 34 },
   ],
   familyVacation: [
     { label: "Animation for young people", count: 32 },
@@ -113,15 +127,6 @@ const option = {
     { label: "Shopping", count: 28 },
     { label: "Tourist", count: 44 },
   ],
-  experienceRegion: [
-    { label: "Bars / Pubs", count: 32 },
-    { label: "Concerts / Festivals", count: 21 },
-    { label: "Art / Galleries / Museum", count: 23 },
-    { label: "Theater / Opera / Ballet / Musicals", count: 12 },
-    { label: "Clubs / Disco", count: 24 },
-    { label: "Restaurants", count: 43 },
-    { label: "Sightseeing features", count: 21 },
-  ],
   starRatings: [
     { stars: 5, count: 27 },
     { stars: 4, count: 14 },
@@ -142,26 +147,34 @@ const option = {
     { label: "Parking", count: 33 },
     { label: "Buffet", count: 22 },
   ],
+  experienceRegion: [
+    { label: "Bars / Pubs", count: 32 },
+    { label: "Concerts / Festivals", count: 21 },
+    { label: "Art / Galleries / Museum", count: 23 },
+    { label: "Theater / Opera / Ballet / Musicals", count: 12 },
+    { label: "Clubs / Disco", count: 24 },
+    { label: "Restaurants", count: 43 },
+    { label: "Sightseeing features", count: 21 },
+  ],
 };
 
 const FilterTag = ({ label, count, selected, onClick }) => (
   <button
     onClick={onClick}
-    className={`px-4 py-1 rounded-lg text-sm transition-colors border border-borderGray ${
-      selected ? "bg-darkBlue text-white" : " text-smokyGray hover:bg-gray-200"
-    }`}
+    className={`px-4 py-1 rounded-lg transition-colors border border-borderGray ${selected ? "bg-darkBlue text-white text-xs " : " text-smokyGray text-xs hover:bg-gray-200"
+      }`}
   >
     {label} ({count})
   </button>
 );
 
-const FilterSection = ({ title, isOpen, onToggle, children }) => (
-  <div className="border-b border-gray border-opacity-20 py-4">
+const FilterSection = ({ title, isOpen, onToggle, children, isLastSection }) => (
+  <div className={`py-4 ${!isLastSection ? 'border-b border-gray border-opacity-20' : ''}`}>
     <button
       onClick={onToggle}
       className="w-full flex justify-between items-center mb-2"
     >
-      <span className="text-smokyGray font-semibold text-xl">{title}</span>
+      <span className="text-smokyGray font-medium text-sm">{title}</span>
       {isOpen ? (
         <ChevronUp className="w-5 h-5 text-gray-400" />
       ) : (
@@ -194,9 +207,7 @@ const PackageFilter = () => {
 
   return (
     <div className="w-full rounded-3xl space-y-4 ">
-      <h6 className="text-darkBlue pl-4 font-semibold font">Filter</h6>
-
-      <div className="w-full border border-darkBlue rounded-xl p-4">
+      <div className="sm:w-[389px] border border-darkBlue rounded-xl p-4 shadow-md">
         {/* importan section */}
         <FilterSection
           title="What is Important to you?"
@@ -204,6 +215,7 @@ const PackageFilter = () => {
           onToggle={() =>
             setOpenSection(openSection === "important" ? "" : "important")
           }
+          isLastSection={false}
         >
           <div className="flex flex-wrap gap-2">
             {option?.importantOptions.map((option) => (
@@ -223,6 +235,7 @@ const PackageFilter = () => {
           title="Room Type"
           isOpen={openSection === "room"}
           onToggle={() => setOpenSection(openSection === "room" ? "" : "room")}
+          isLastSection={false}
         >
           <div className="flex flex-wrap gap-2">
             {option?.roomTypes.map((option) => (
@@ -242,6 +255,7 @@ const PackageFilter = () => {
           title="Food"
           isOpen={openSection === "food"}
           onToggle={() => setOpenSection(openSection === "food" ? "" : "food")}
+          isLastSection={false}
         >
           <div className="flex flex-wrap gap-2">
             {option?.food.map((option) => (
@@ -261,8 +275,8 @@ const PackageFilter = () => {
           title="Review"
           isOpen={openSection === "review"}
           onToggle={() =>
-            setOpenSection(openSection === "review" ? "" : "review")
-          }
+            setOpenSection(openSection === "review" ? "" : "review")}
+          isLastSection={false}
         >
           {option?.starRatings?.map((rating, index) => (
             <div
@@ -295,13 +309,92 @@ const PackageFilter = () => {
           ))}
         </FilterSection>
 
+        {/* DepartureAirport */}
+        <FilterSection
+          title="Departure Airport"
+          isOpen={openSection === "departureAirport"}
+          onToggle={() => setOpenSection(openSection === "departureAirport" ? "" : "departureAirport")}
+          isLastSection={false}
+        >
+          <div className="flex flex-col mt-4 gap-3">
+            <div className="flex items-center gap-4 bg-[#F5F5F6] p-3 rounded-3xl">
+              <MapPin className="text-smokyGray " />
+              <span className="text-sm text-[#5A5A5A]">Colombo</span>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {option?.departureAirport.map((option) => (
+              <FilterTag
+                key={option.label}
+                label={option.label}
+                count={option.count}
+                selected={selectedTags.includes(option.label)}
+                onClick={() => toggleTag(option.label)}
+              />
+            ))}
+          </div>
+        </FilterSection>
+
+        {/* Departure Time */}
+        <FilterSection
+          title="Departure Time"
+          isOpen={openSection === "departureTime"}
+          onToggle={() => setOpenSection(openSection === "departureTime" ? "" : "departureTime")}
+          isLastSection={false}
+        >
+          <div className="flex flex-col gap-4 mt-4">
+            <div className="text-sm text-[#5A5A5A]">Departure Time</div>
+            {/* Departure Time Range Filter Buttons */}
+            <div className="flex gap-3 flex-wrap mt-4">
+              {["Any", "18:00 - 00:00", "00:00 - 11:00", "11:00 - 18:00"].map((timeRange, i) => (
+                <div
+                  key={i}
+                  className="p-2 gap-2 bg-white border border-[#DDDDDD] rounded-[5px] text-xs text-[#5A5A5A]">
+                  {timeRange}
+                </div>
+              ))}
+            </div>
+
+            <div className="text-sm text-[#5A5A5A] mt-4">Return Time</div>
+            {/* Return Time Range Filter Buttons */}
+            <div className="flex gap-3 flex-wrap mt-4">
+              {["Any", "18:00 - 00:00", "00:00 - 11:00", "11:00 - 18:00"].map((timeRange, i) => (
+                <div
+                  key={i}
+                  className="p-2 gap-2 bg-white border border-[#DDDDDD] rounded-[5px] text-xs text-[#5A5A5A]">
+                  {timeRange}
+                </div>
+              ))}
+            </div>
+          </div>
+        </FilterSection>
+
+        {/* Stopover */}
+        <FilterSection
+          title="Stopover"
+          isOpen={openSection === "stopover"}
+          onToggle={() => setOpenSection(openSection === "stopover" ? "" : "stopover")}
+          isLastSection={false}
+        >
+          <div className="flex flex-wrap gap-2">
+            {option?.stopover.map((option) => (
+              <FilterTag
+                key={option.label}
+                label={option.label}
+                count={option.count}
+                selected={selectedTags.includes(option.label)}
+                onClick={() => toggleTag(option.label)}
+              />
+            ))}
+          </div>
+        </FilterSection>
+
         {/* price range */}
         <FilterSection
           title="Price Range Per Person"
           isOpen={openSection === "price"}
-          onToggle={() =>
-            setOpenSection(openSection === "price" ? "" : "price")
-          }
+          onToggle={() => setOpenSection(openSection === "price" ? "" : "price")}
+          isLastSection={false}
         >
           <div className="px-10 pb-2">
             <Slider
@@ -337,11 +430,8 @@ const PackageFilter = () => {
         <FilterSection
           title="Family Vacation "
           isOpen={openSection === "familyVacation"}
-          onToggle={() =>
-            setOpenSection(
-              openSection === "familyVacation" ? "" : "familyVacation"
-            )
-          }
+          onToggle={() => setOpenSection(openSection === "familyVacation" ? "" : "familyVacation")}
+          isLastSection={false}
         >
           <div className="flex flex-wrap gap-2">
             {option?.familyVacation.map((option) => (
@@ -360,11 +450,8 @@ const PackageFilter = () => {
         <FilterSection
           title="Beach"
           isOpen={openSection === "departureTime"}
-          onToggle={() =>
-            setOpenSection(
-              openSection === "departureTime" ? "" : "departureTime"
-            )
-          }
+          onToggle={() => setOpenSection(openSection === "departureTime" ? "" : "departureTime")}
+          isLastSection={false}
         >
           <div className="flex flex-wrap gap-2">
             {option?.beach.map((option) => (
@@ -383,9 +470,8 @@ const PackageFilter = () => {
         <FilterSection
           title="Position"
           isOpen={openSection === "position"}
-          onToggle={() =>
-            setOpenSection(openSection === "position" ? "" : "position")
-          }
+          onToggle={() => setOpenSection(openSection === "position" ? "" : "position")}
+          isLastSection={false}
         >
           <div className="flex flex-wrap gap-2">
             {option?.position.map((option) => (
@@ -404,9 +490,8 @@ const PackageFilter = () => {
         <FilterSection
           title="Sports"
           isOpen={openSection === "sports"}
-          onToggle={() =>
-            setOpenSection(openSection === "sports" ? "" : "sports")
-          }
+          onToggle={() => setOpenSection(openSection === "sports" ? "" : "sports")}
+          isLastSection={false}
         >
           <div className="flex flex-wrap gap-2">
             {option?.sports.map((option) => (
@@ -425,11 +510,8 @@ const PackageFilter = () => {
         <FilterSection
           title="Beauty & Wellness"
           isOpen={openSection === "beautyWellness"}
-          onToggle={() =>
-            setOpenSection(
-              openSection === "beautyWellness" ? "" : "beautyWellness"
-            )
-          }
+          onToggle={() => setOpenSection(openSection === "beautyWellness" ? "" : "beautyWellness")}
+          isLastSection={false}
         >
           <div className="flex flex-wrap gap-2">
             {option?.beautyWellness.map((option) => (
@@ -448,11 +530,8 @@ const PackageFilter = () => {
         <FilterSection
           title="Hotel Facilities "
           isOpen={openSection === "hotelFacilities"}
-          onToggle={() =>
-            setOpenSection(
-              openSection === "hotelFacilities" ? "" : "hotelFacilities"
-            )
-          }
+          onToggle={() => setOpenSection(openSection === "hotelFacilities" ? "" : "hotelFacilities")}
+          isLastSection={false}
         >
           <div className="flex flex-wrap gap-2">
             {option?.hotelFacilities.map((option) => (
@@ -471,9 +550,8 @@ const PackageFilter = () => {
         <FilterSection
           title="The Region "
           isOpen={openSection === "region"}
-          onToggle={() =>
-            setOpenSection(openSection === "region" ? "" : "region")
-          }
+          onToggle={() => setOpenSection(openSection === "region" ? "" : "region")}
+          isLastSection={false}
         >
           <div className="flex flex-wrap gap-2">
             {option?.region.map((option) => (
@@ -492,11 +570,8 @@ const PackageFilter = () => {
         <FilterSection
           title="Experience In the region "
           isOpen={openSection === "experienceRegion "}
-          onToggle={() =>
-            setOpenSection(
-              openSection === "experienceRegion " ? "" : "experienceRegion "
-            )
-          }
+          onToggle={() => setOpenSection(openSection === "experienceRegion " ? "" : "experienceRegion ")}
+          isLastSection={true}
         >
           <div className="flex flex-wrap gap-2">
             {option?.experienceRegion.map((option) => (

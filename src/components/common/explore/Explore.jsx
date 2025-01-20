@@ -93,7 +93,7 @@ const Explore = () => {
                   <h2 className="absolute text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium leading-tight top-4 sm:top-6 left-4 sm:left-8">
                     {currentCountry.title}
                   </h2>
-                  <p className="absolute top-[70px] sm:top-[87px] md:top-[100px] left-4 sm:left-8 w-[90%] sm:w-[80%] md:w-[400px] lg:w-[400px] text-justify text-xs xs:text-sm sm:text-base md:text-lg leading-relaxed">
+                  <p className="absolute top-[70px] sm:top-[87px] md:top-[130px] left-4 sm:left-8 w-[90%] sm:w-[80%] md:w-[350px] lg:w-[420px] text-justify text-xs xs:text-sm sm:text-base md:text-lg leading-relaxed">
                     {currentCountry.description}
                   </p>
                   <div className="absolute flex justify-center items-center bg-darkBlue rounded-[20px] p-3 xs:p-4 sm:p-5 w-[100px] sm:w-[150px] md:w-[200px] h-[40px] sm:h-[60px] md:h-[70px] left-[30px] sm:left-[50px] top-[200px] sm:top-[300px]">
