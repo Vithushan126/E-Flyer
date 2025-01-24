@@ -23,10 +23,10 @@ export default {
         smokyGray: "#5A5A5A",
         red: "#E30606",
         lightGray: "#9C9C9C",
-        footercolor: "#F5F5F6",
         darkcolor: "#484747",
         offWhite: "#F5F5F6",
         buttoncolor:"#8B8B8B",
+        border:"#D5D5D5"
       },
 
       maxWidth: {

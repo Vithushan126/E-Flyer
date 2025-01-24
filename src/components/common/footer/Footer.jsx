@@ -16,7 +16,7 @@ import { RiYoutubeLine } from "react-icons/ri";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-footercolor text-smokyGray py-10 mt-10 relative">
+    <footer className="w-full bg-offWhite text-smokyGray py-10 mt-10 relative">
       <div className="container mx-auto px-4">
         {/* Logo Section */}
         <div className="flex justify-evenly items-center mb-8 gap-4">
