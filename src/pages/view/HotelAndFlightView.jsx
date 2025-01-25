@@ -40,7 +40,7 @@ const HotelAndFlightView = () => {
             </div>
           </div>
 
-          <CardAndCity title="Recommendation For you" />
+          <CardAndCity title="Recommendation For you." />
 
           {/* <div className="flex justify-center"> */}
           <div className="flex justify-start items-center gap-2 text-xl text-smokyGray">
