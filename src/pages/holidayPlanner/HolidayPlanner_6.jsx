@@ -3,100 +3,156 @@ import { useNavigate } from "react-router-dom";
 import HolidayHeader from "./HolidayHeader";
 
 const HolidayPlanner_6 = () => {
-    const [currentMonth, setCurrentMonth] = useState(0); // Offset for the current month
-    const [selectedStartDate, setSelectedStartDate] = useState(null); // Start date
-    const [selectedEndDate, setSelectedEndDate] = useState(null); // End date
-    const today = new Date();
-
-    const navigate = useNavigate(); // Initialize the useNavigate hook
+    const navigate = useNavigate();
 
     const handleFindHereClick = () => {
-        if (selectedStartDate && selectedEndDate) {
-            navigate("/holidayPlanner_7", {
-                state: { startDate: selectedStartDate, endDate: selectedEndDate }
-            });
+        if (startDate && endDate) {
+            navigate("/holidayPlanner_7"); // Navigate to the next step
         } else {
-            alert("Please select a start date and an end date.");
+            alert("Please select a vacation period before proceeding.");
         }
     };
 
-    // Generate the first day of the current month
-    const getMonthDays = (monthOffset = 0) => {
-        const firstDay = new Date(today.getFullYear(), today.getMonth() + monthOffset, 1);
-        const days = [];
-        const dayCount = new Date(firstDay.getFullYear(), firstDay.getMonth() + 1, 0).getDate();
+    // Separate state for both calendars
+    const [calendar1, setCalendar1] = useState({
+        currentMonth: new Date().getMonth(),
+        currentYear: new Date().getFullYear(),
+    });
 
-        // Pad days for the previous month
-        const startPadding = firstDay.getDay();
-        for (let i = 0; i < startPadding; i++) {
-            days.push(null);
-        }
+    const [calendar2, setCalendar2] = useState({
+        currentMonth: new Date().getMonth() + 1, // Default to the next month
+        currentYear: new Date().getFullYear(),
+    });
 
-        // Add the current month's days
-        for (let i = 1; i <= dayCount; i++) {
-            days.push(i);
-        }
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
 
-        return days;
+    const months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+    ];
+
+    const daysInMonth = (month, year) => {
+        return new Date(year, month + 1, 0).getDate();
     };
 
-    const handleDateClick = (date, monthOffset) => {
-        const clickedDate = new Date(today.getFullYear(), today.getMonth() + monthOffset, date);
+    const handlePrevMonth = (calendar, setCalendar) => {
+        setCalendar((prev) => {
+            const newMonth = prev.currentMonth === 0 ? 11 : prev.currentMonth - 1;
+            const newYear = prev.currentMonth === 0 ? prev.currentYear - 1 : prev.currentYear;
+            return { currentMonth: newMonth, currentYear: newYear };
+        });
+    };
 
-        // Handle selection logic
-        if (!selectedStartDate || (selectedStartDate && selectedEndDate)) {
-            setSelectedStartDate(clickedDate);
-            setSelectedEndDate(null); // Reset end date
-        } else if (clickedDate > selectedStartDate) {
-            setSelectedEndDate(clickedDate);
+    const handleNextMonth = (calendar, setCalendar) => {
+        setCalendar((prev) => {
+            const newMonth = prev.currentMonth === 11 ? 0 : prev.currentMonth + 1;
+            const newYear = prev.currentMonth === 11 ? prev.currentYear + 1 : prev.currentYear;
+            return { currentMonth: newMonth, currentYear: newYear };
+        });
+    };
+
+    const generateCalendarDays = (month, year) => {
+        const firstDayOfMonth = new Date(year, month, 1).getDay();
+        const totalDays = daysInMonth(month, year);
+
+        const calendarDays = [];
+        for (let i = 0; i < firstDayOfMonth; i++) {
+            calendarDays.push(null);
+        }
+
+        for (let day = 1; day <= totalDays; day++) {
+            calendarDays.push(day);
+        }
+
+        return calendarDays;
+    };
+
+    const isDateInRange = (day, month, year) => {
+        if (!startDate || !endDate) return false;
+
+        const date = new Date(year, month, day).getTime();
+        const start = startDate.getTime();
+        const end = endDate.getTime();
+        return date >= start && date <= end;
+    };
+
+    const handleDateClick = (day, month, year) => {
+        const clickedDate = new Date(year, month, day);
+
+        if (!startDate || (startDate && endDate)) {
+            // Set start date if no start date is selected or both dates are selected
+            setStartDate(clickedDate);
+            setEndDate(null);
+        } else if (clickedDate.getTime() >= startDate.getTime()) {
+            // Set end date only if it's after the start date
+            setEndDate(clickedDate);
         } else {
-            setSelectedStartDate(clickedDate); // Reset if the date is before the start date
-            setSelectedEndDate(null);
+            // Reset and set the new start date
+            setStartDate(clickedDate);
+            setEndDate(null);
         }
     };
 
-    const isDateInRange = (date, monthOffset) => {
-        const currentDate = new Date(today.getFullYear(), today.getMonth() + monthOffset, date);
-        return selectedStartDate && selectedEndDate
-            ? currentDate >= selectedStartDate && currentDate <= selectedEndDate
-            : false;
-    };
-
-    const renderMonth = (monthOffset) => {
-        const days = getMonthDays(monthOffset);
-        const month = new Date(today.getFullYear(), today.getMonth() + monthOffset, 1).toLocaleString(
-            "default",
-            { month: "long", year: "numeric" }
-        );
+    const renderCalendar = (calendar, setCalendar) => {
+        const { currentMonth, currentYear } = calendar;
+        const calendarDays = generateCalendarDays(currentMonth, currentYear);
 
         return (
-            <div className="flex flex-col items-center">
-                <h2 className="text-white font-semibold text-lg mb-4">{month}</h2>
+            <div className="p-4 sm:p-6 rounded-3xl shadow-md text-white">
+                <div className="flex justify-end gap-5 mb-4">
+                    <button
+                        className="text-xs font-normal"
+                        onClick={() => handlePrevMonth(calendar, setCalendar)}
+                    >
+                        &lt;
+                    </button>
+                    <h2 className="text-xs font-normal">
+                        {months[currentMonth]} {currentYear}
+                    </h2>
+                    <button
+                        className="text-xs font-normal"
+                        onClick={() => handleNextMonth(calendar, setCalendar)}
+                    >
+                        &gt;
+                    </button>
+                </div>
                 <div className="grid grid-cols-7 gap-2">
-                    {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day, index) => (
-                        <div key={index} className="text-white text-sm font-medium text-center">
+                    {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
+                        <div key={day} className="text-xs font-normal text-center text-smokeGray ">
                             {day}
                         </div>
                     ))}
-                    {days.map((day, index) => (
+                    {calendarDays.map((day, index) => (
                         <div
                             key={index}
-                            className={`w-10 h-10 flex items-center justify-center rounded-lg ${
-                                day
-                                    ? isDateInRange(day, monthOffset)
-                                        ? "bg-orange text-white"
-                                        : selectedStartDate?.getDate() === day &&
-                                          selectedStartDate?.getMonth() ===
-                                              today.getMonth() + monthOffset
-                                        ? "bg-orange-500 text-white"
-                                        : selectedEndDate?.getDate() === day &&
-                                          selectedEndDate?.getMonth() ===
-                                              today.getMonth() + monthOffset
-                                        ? "bg-orange-500 text-white"
-                                        : "bg-[#2C668E] text-white hover:bg-blue-800 cursor-pointer"
-                                    : "bg-transparent"
-                            }`}
-                            onClick={() => day && handleDateClick(day, monthOffset)}
+                            onClick={() => day && handleDateClick(day, currentMonth, currentYear)}
+                            className={`text-center w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] p-2 sm:p-3 text-base font-medium rounded-xl cursor-pointer ${day
+                                    ? isDateInRange(day, currentMonth, currentYear)
+                                        ? "bg-orange"
+                                        : startDate &&
+                                            day === startDate.getDate() &&
+                                            currentMonth === startDate.getMonth() &&
+                                            currentYear === startDate.getFullYear()
+                                            ? "bg-darkBlue"
+                                            : endDate &&
+                                                day === endDate.getDate() &&
+                                                currentMonth === endDate.getMonth() &&
+                                                currentYear === endDate.getFullYear()
+                                                ? "bg-blue-500"
+                                                : "bg-[#2C668E]"
+                                    : ""
+                                }`}
                         >
                             {day || ""}
                         </div>
@@ -107,22 +163,28 @@ const HolidayPlanner_6 = () => {
     };
 
     return (
-        <div className="bg-darkBlue text-white h-[718px] w-full flex flex-col items-center justify-center px-4 sm:px-8 lg:px-16">
+        <div className="bg-darkBlue text-white  min-h-screen w-full flex flex-col items-center justify-center px-4 sm:px-8 lg:px-16">
             <HolidayHeader />
-            <div className="flex space-x-8">
-                {renderMonth(currentMonth)}
-                {renderMonth(currentMonth + 1)}
+            <div className="grid grid-cols-1 gap-10 pt-20 md:grid-cols-2 sm:gap-10">
+                {renderCalendar(calendar1, setCalendar1)}
+                {renderCalendar(calendar2, setCalendar2)}
+            </div>
+            {/* Display Selected Range */}
+            <div className="mt-4 text-white text-lg text-center">
+                {startDate && endDate
+                    ? `Selected Vacation: ${startDate.toDateString()} - ${endDate.toDateString()}`
+                    : startDate
+                        ? `Start Date: ${startDate.toDateString()}`
+                        : "Select your vacation period"}
             </div>
             {/* Next Button Section */}
-            <div className="mt-8">
-                <div className="flex items-center justify-center relative w-[312px] h-[72px] left-[420px] bg-buttoncolor hover:bg-orange transition rounded-[20px]">
-                    <button
-                        onClick={handleFindHereClick}
-                        className="text-white text-2xl font-semibold leading-[29px]"
-                    >
-                        Next
-                    </button>
-                </div>
+            <div className="mt-8 mb-4 flex justify-center relative lg:justify-end w-full max-w-6xl h-[72px] ">
+                <button
+                    onClick={handleFindHereClick}
+                    className="bg-buttoncolor hover:bg-orange text-white text-lg md:text-2xl font-semibold px-6 py-3 rounded-2xl transition w-[90%] sm:w-[312px]"
+                >
+                    Next
+                </button>
             </div>
         </div>
     );
