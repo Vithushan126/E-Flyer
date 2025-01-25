@@ -91,7 +91,7 @@ export const router = createBrowserRouter([
         element: <YungAdultAdventure />,
       },
       {
-        path: "hotelAndFlightView",
+        path: "hotelAndFlightViews",
         element: <HotelAndFlightView />,
       },
       {
