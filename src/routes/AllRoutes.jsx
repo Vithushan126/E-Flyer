@@ -160,6 +160,10 @@ export const router = createBrowserRouter([
         element: <YungAdultAdventure />,
       },
       {
+        path: "hotelAndFlightViews",
+        element: <HotelAndFlightView />,
+      },
+      {
         path: "login",
         element: <Login />,
       },
