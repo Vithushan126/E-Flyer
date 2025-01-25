@@ -1,3 +1,5 @@
+import { button } from 'framer-motion/client';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -21,10 +23,10 @@ export default {
         smokyGray: "#5A5A5A",
         red: "#E30606",
         lightGray: "#9C9C9C",
-        footercolor: "#F5F5F6",
         darkcolor: "#484747",
         offWhite: "#F5F5F6",
-        borderCol: "#D5D5D5",
+        buttoncolor:"#8B8B8B",
+        border:"#D5D5D5"
       },
 
       maxWidth: {
@@ -66,6 +68,15 @@ export default {
       lg: "1024px",
       xl: "1280px",
       "2xl": "1536px",
+    },
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: "1rem",
+        sm: "2rem",
+        lg: "4rem",
+        xl: "6rem",
+      },
     },
   },
   plugins: [],

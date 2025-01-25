@@ -37,20 +37,6 @@ const option = {
     { label: "Half Board", count: 27 },
     { label: "Full Board", count: 0 },
   ],
-  departureAirport: [
-    { label: "Top ", count: 45 },
-    { label: "Beach Holiday ", count: 34 },
-    { label: "Luxury ", count: 45 },
-    { label: "Sustainable Accommodation ", count: 45 },
-    { label: "Family Vacation", count: 0 },
-    { label: " Winter Sports", count: 0 },
-  ],
-  stopover: [
-    { label: "Any", count: 45 },
-    { label: "Direct Flight", count: 34 },
-    { label: "Max . 1 Stop ", count: 45 },
-    { label: "Max . 2 Stop ", count: 34 },
-  ],
   familyVacation: [
     { label: "Animation for young people", count: 32 },
     { label: "Babysitting service", count: 42 },
@@ -185,7 +171,7 @@ const FilterSection = ({ title, isOpen, onToggle, children, isLastSection }) => 
   </div>
 );
 
-const PackageFilter = () => {
+const TrendingFilter = () => {
   const [openSection, setOpenSection] = useState("important");
   const [selectedTags, setSelectedTags] = useState([]);
   const [values, setValues] = useState([1, 1000]);
@@ -307,86 +293,6 @@ const PackageFilter = () => {
               </label>
             </div>
           ))}
-        </FilterSection>
-
-        {/* DepartureAirport */}
-        <FilterSection
-          title="Departure Airport"
-          isOpen={openSection === "departureAirport"}
-          onToggle={() => setOpenSection(openSection === "departureAirport" ? "" : "departureAirport")}
-          isLastSection={false}
-        >
-          <div className="flex flex-col mt-4 gap-3">
-            <div className="flex items-center gap-4 bg-[#F5F5F6] p-3 rounded-3xl">
-              <MapPin className="text-smokyGray " />
-              <span className="text-sm text-[#5A5A5A]">Colombo</span>
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {option?.departureAirport.map((option) => (
-              <FilterTag
-                key={option.label}
-                label={option.label}
-                count={option.count}
-                selected={selectedTags.includes(option.label)}
-                onClick={() => toggleTag(option.label)}
-              />
-            ))}
-          </div>
-        </FilterSection>
-
-        {/* Departure Time */}
-        <FilterSection
-          title="Departure Time"
-          isOpen={openSection === "departureTime"}
-          onToggle={() => setOpenSection(openSection === "departureTime" ? "" : "departureTime")}
-          isLastSection={false}
-        >
-          <div className="flex flex-col gap-4 mt-4">
-            <div className="text-sm text-[#5A5A5A]">Departure Time</div>
-            {/* Departure Time Range Filter Buttons */}
-            <div className="flex gap-3 flex-wrap mt-4">
-              {["Any", "18:00 - 00:00", "00:00 - 11:00", "11:00 - 18:00"].map((timeRange, i) => (
-                <div
-                  key={i}
-                  className="p-2 gap-2 bg-white border border-[#DDDDDD] rounded-[5px] text-xs text-[#5A5A5A]">
-                  {timeRange}
-                </div>
-              ))}
-            </div>
-
-            <div className="text-sm text-[#5A5A5A] mt-4">Return Time</div>
-            {/* Return Time Range Filter Buttons */}
-            <div className="flex gap-3 flex-wrap mt-4">
-              {["Any", "18:00 - 00:00", "00:00 - 11:00", "11:00 - 18:00"].map((timeRange, i) => (
-                <div
-                  key={i}
-                  className="p-2 gap-2 bg-white border border-[#DDDDDD] rounded-[5px] text-xs text-[#5A5A5A]">
-                  {timeRange}
-                </div>
-              ))}
-            </div>
-          </div>
-        </FilterSection>
-
-        {/* Stopover */}
-        <FilterSection
-          title="Stopover"
-          isOpen={openSection === "stopover"}
-          onToggle={() => setOpenSection(openSection === "stopover" ? "" : "stopover")}
-          isLastSection={false}
-        >
-          <div className="flex flex-wrap gap-2">
-            {option?.stopover.map((option) => (
-              <FilterTag
-                key={option.label}
-                label={option.label}
-                count={option.count}
-                selected={selectedTags.includes(option.label)}
-                onClick={() => toggleTag(option.label)}
-              />
-            ))}
-          </div>
         </FilterSection>
 
         {/* price range */}
@@ -590,4 +496,4 @@ const PackageFilter = () => {
   );
 };
 
-export default PackageFilter;
+export default TrendingFilter;

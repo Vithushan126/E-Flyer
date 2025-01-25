@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CityCard from "../../components/ui/cityCard/CityCard";
 import BeachHoliday5 from "../../assets/beachHoliday/BeachHoliday5.jpg";
 import BeachHoliday6 from "../../assets/beachHoliday/BeachHoliday6.jpg";
@@ -53,11 +54,13 @@ const BeachHoliday = () => {
     <div className="w-full flex justify-center">
       <div className="max-w-[1100px] w-full space-y-8">
         {/* title contant */}
-        <h2 className="text-4xl font-semibold text-gray">beach holiday</h2>
+        <Link to="/TopCityPackage">
+        <h2 className="text-4xl font-semibold text-gray">Beach Holiday</h2>
+        </Link>
 
         {/* card section */}
         <div className="flex flex-row space-x-6 ">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
             {cardCitys?.map((cardCity) => {
               return <CityCard cardCity={cardCity} key={cardCity.id} />;
             })}

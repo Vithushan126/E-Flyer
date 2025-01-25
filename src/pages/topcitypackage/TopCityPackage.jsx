@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import HotelList from "../TopCityPackage/HotelList";
-import TrendingFilter from "../trendingadventure/TrendingFilter";
-import SearchForm from "../home/SearchForm";
-import AdventureWorld from "../adventure/soloAdventure/AdventureWorld";
+import React from "react";
+import SearchBar from "../../pages/searchbar/SearchBar";
 
-const Destinations = () => {
+import HotelList from "../../pages/TopCityPackage/HotelList";
+import { useState } from "react";
+import PackageFilter from "../packages/PackageFilter";
+
+const TopCityPackage = () => {
     const [isFilterVisible, setFilterVisible] = useState(false);
 
     const toggleFilterSidebar = () => {
@@ -12,14 +13,15 @@ const Destinations = () => {
     };
 
     return (
-        <div className="w-full flex justify-center bg-gray-50 py-8">
-            <div>
-               <AdventureWorld/>
-               <div className="mt-60"><SearchForm /></div>
-                
+        <div className="w-full flex justify-center bg-gray-50 py-6">
+            <div className="w-full max-w-[1100px] px-4 lg:px-0 space-y-6">
+                <SearchBar />
                 <div className="flex flex-col space-y-6">
                     {/* Title Section */}
                     <div className="text-left">
+                        <h1 className="text-xl md:text-2xl font-semibold text-gray-800">
+                            Top city trips with Flight & Hotel
+                        </h1>
                         <button
                             className="text-sm md:text-base text-darkBlue mt-2 cursor-pointer underline"
                             onClick={toggleFilterSidebar}
@@ -41,7 +43,7 @@ const Destinations = () => {
                             >
                                 ✕
                             </button>
-                            <TrendingFilter />
+                            <PackageFilter />
                         </div>
 
                         {/* Hotel List */}
@@ -55,4 +57,4 @@ const Destinations = () => {
     );
 };
 
-export default Destinations;
+export default TopCityPackage;
