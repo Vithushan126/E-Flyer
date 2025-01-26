@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { BedDouble, Heart, Star, ThumbsUp } from "lucide-react";
 import { Tooltip } from "react-tooltip";
 import CardIcon1 from "../../../assets/adventure/CardIcon1.svg";
@@ -109,9 +110,11 @@ const CommonCard = ({ adventure, small }) => {
                   Book Now
                 </button>
               </div>
+              <Link to="/HotelAndFlightView">
               <button className="w-full  text-center font-semibold text-white underline hover:scale-105">
                 Discover
               </button>
+              </Link>
             </div>
           </div>
         </div>

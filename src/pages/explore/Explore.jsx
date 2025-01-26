@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import HotelList from "../TopCityPackage/HotelList";
 import TrendingFilter from "../trendingadventure/TrendingFilter";
-import SearchForm from "../home/SearchForm";
+import SearchForm from "../home/searchform/SearchForm";
 
 const Explore = () => {
     const [isFilterVisible, setFilterVisible] = useState(false);
