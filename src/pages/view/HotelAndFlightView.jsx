@@ -1,10 +1,9 @@
 import React from "react";
-import CardAndCity from "../home/CardAndCity";
 import AdventureSearchForm from "../adventure/AdventureSearchForm";
 import ArrowRight from "../../assets/view/ArrowRight.svg";
 import ArrowLeft from "../../assets/view/ArrowLeft.svg";
-import Booking from "./bookingSection/Booking";
 import WellcomSection from "./WellcomSection";
+import Booking from "./bookingSection/Booking";
 
 const HotelAndFlightView = () => {
   return (
@@ -35,19 +34,19 @@ const HotelAndFlightView = () => {
 
           {/* booking section */}
           <div className="flex justify-center">
-            <div className="max-w-[1100px] w-full ">
+            <div className="max-w-[1100px] w-full">
               <Booking />
             </div>
           </div>
 
-          <CardAndCity title="Recommendation For you" />
+      
 
           {/* <div className="flex justify-center"> */}
-            <div className="flex justify-start items-center gap-2 text-xl text-smokyGray">
-              All Offers : City name
-              <img src={ArrowRight} alt="ArrowRight" className=" w-8 h-8" />
-            </div>
+          <div className="flex justify-start items-center gap-2 text-xl text-smokyGray">
+            All Offers : City name
+            <img src={ArrowRight} alt="ArrowRight" className=" w-8 h-8" />
           </div>
+        </div>
         {/* </div> */}
       </div>
     </>
