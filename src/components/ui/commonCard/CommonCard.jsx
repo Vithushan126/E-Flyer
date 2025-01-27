@@ -90,13 +90,14 @@ const CommonCard = ({ adventure, small }) => {
                     {adventure?.originalPrice}
                   </span>
                 </div>
-
                 {/* On Desktop, "Per person from" stays inline with discounted price */}
                 <div className="flex justify-end items-center space-x-4 ">
+                {[1, 2, 3].includes(adventure?.id) && (
                   <p className="text-sm hidden lg:block ">
                     Per person from
                   </p>
-                  <p className="text-xl font-semibold text-nowrap">
+                  )}
+                  <p className="text-xl font-semibold text-nowrap mt-2">
                     {adventure?.discountedPrice}
                   </p>
                 </div>

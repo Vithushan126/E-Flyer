@@ -68,8 +68,8 @@ const HeroSection = () => {
         </div> */}
 
         {/* Offer Card Section */}
-        <div className="w-full lg:w-2/3 pt-0 lg:pt-20 flex justify-center lg:justify-end">
-          <div className="bg-black bg-opacity-30 h-[240px] w-[281px] rounded-2xl p-4 text-white flex flex-col justify-center items-center">
+        <div className="w-full lg:w-3/3 pt-8 lg:pt-20 flex justify-center lg:justify-end">
+          <div className="bg-black bg-opacity-30 h-[280px] w-[281px] rounded-2xl p-4 text-white flex flex-col justify-center items-center">
             <div className=" text-2xl mb-4">OFFER ENDS SOON</div>
             {/* <div className="text-xl mb-2">
               {`- ${timeLeft.days} : ${timeLeft.hours} : ${timeLeft.minutes} : ${timeLeft.seconds}`}
