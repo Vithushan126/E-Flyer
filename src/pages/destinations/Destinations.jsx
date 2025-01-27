@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import HotelList from "../TopCityPackage/HotelList";
 import TrendingFilter from "../trendingadventure/TrendingFilter";
-import SearchForm from "../home/SearchForm";
+import SearchForm from "../home/searchform/SearchForm";
 import AdventureWorld from "../adventure/soloAdventure/AdventureWorld";
 
 const Destinations = () => {

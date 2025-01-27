@@ -88,6 +88,10 @@ export const router = createBrowserRouter([
         element: <TopCityPackage />,
       },
       {
+        path: "HotelAndFlightView",
+        element: <HotelAndFlightView />,
+      },
+      {
         path: "beachholiday",
         element: <BeachHoliday />,
       },
@@ -158,10 +162,6 @@ export const router = createBrowserRouter([
       {
         path: "youngAdultsAdventure",
         element: <YungAdultAdventure />,
-      },
-      {
-        path: "hotelAndFlightViews",
-        element: <HotelAndFlightView />,
       },
       {
         path: "login",

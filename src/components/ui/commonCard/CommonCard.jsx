@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { BedDouble, Heart, Star, ThumbsUp } from "lucide-react";
 import { Tooltip } from "react-tooltip";
 import CardIcon1 from "../../../assets/adventure/CardIcon1.svg";
@@ -89,13 +90,14 @@ const CommonCard = ({ adventure, small }) => {
                     {adventure?.originalPrice}
                   </span>
                 </div>
-
                 {/* On Desktop, "Per person from" stays inline with discounted price */}
                 <div className="flex justify-end items-center space-x-4 ">
+                {[1, 2, 3].includes(adventure?.id) && (
                   <p className="text-sm hidden lg:block ">
                     Per person from
                   </p>
-                  <p className="text-xl font-semibold text-nowrap">
+                  )}
+                  <p className="text-xl font-semibold text-nowrap mt-2">
                     {adventure?.discountedPrice}
                   </p>
                 </div>
@@ -109,9 +111,11 @@ const CommonCard = ({ adventure, small }) => {
                   Book Now
                 </button>
               </div>
+              <Link to="/HotelAndFlightView">
               <button className="w-full  text-center font-semibold text-white underline hover:scale-105">
                 Discover
               </button>
+              </Link>
             </div>
           </div>
         </div>

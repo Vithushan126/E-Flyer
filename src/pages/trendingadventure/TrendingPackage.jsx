@@ -1,8 +1,8 @@
 import React from "react";
 import SearchBar from "../searchbar/SearchBar";
-import HotelList from "../TopCityPackage/HotelList";
 import { useState } from "react";
 import TrendingFilter from "./TrendingFilter";
+import HotelView from "./HotelView";
 
 const TrendingPackage = () => {
     const [isFilterVisible, setFilterVisible] = useState(false);
@@ -44,7 +44,7 @@ const TrendingPackage = () => {
 
                         {/* Hotel List */}
                         <div className="flex-1">
-                            <HotelList />
+                            <HotelView />
                         </div>
                     </div>
                 </div>
