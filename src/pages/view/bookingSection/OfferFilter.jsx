@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { ChevronDown, ChevronUp, Star } from "lucide-react";
 import Slider from "rc-slider";
 import { Tooltip } from "react-tooltip";
-import { RxStarFilled } from "react-icons/rx";
 
 const option = {
   roomTypes: [
