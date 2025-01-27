@@ -67,7 +67,8 @@ const WellcomSection = () => {
       <div className="flex flex-col space-y-6 w-full">
         {/* slider and search */}
         <div className="flex flex-row space-x-10 w-full h-[329px]">
-          <div className="flex-grow ">
+          <div className="flex-grow h-full">
+            {/* <div className="flex-grow "> */}
             <SliderSection />
           </div>
           <div className="lg:w-2/5 h-full flex flex-col justify-between space-y-2">
