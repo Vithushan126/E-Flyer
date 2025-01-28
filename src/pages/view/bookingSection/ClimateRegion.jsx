@@ -2,6 +2,7 @@ import React from "react";
 import SliderSection from "../SliderSection";
 import DropDownSection from "./DropDownSection";
 import ClimateDropdown from "./ClimateDropdown";
+import TemperatureChart from "./TemperatureChart";
 
 const ClimateRegion = () => {
   return (
@@ -128,6 +129,10 @@ const ClimateRegion = () => {
         <div className="flex flex-col w-full lg:w-2/6 ">
           <ClimateDropdown />
         </div>
+      </div>
+      <div className="grid grid-cols-2 gap-10 ">
+        <TemperatureChart />
+        <TemperatureChart />
       </div>
     </div>
   );
