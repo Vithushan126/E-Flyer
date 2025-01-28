@@ -30,57 +30,53 @@ const SliderSection = () => {
   };
 
   return (
-    <div className="w-full">
-      <div className="relative">
-        {/* Left Arrow Navigation */}
-        <button
-          onClick={rotateLeft}
-          className="absolute top-1/2 left-1 sm:left-4 md:left-8 lg:left-10 transform -translate-y-1/2 bg-gradient-to-br from-gray to-gray-200 p-4 sm:p-6 rounded-full shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300 z-20"
+    <div className="w-full h-full relative">
+      {/* Left Arrow Navigation */}
+      <button
+        onClick={rotateLeft}
+        className="absolute top-1/2 left-1 sm:left-4 md:left-8 lg:left-10 transform -translate-y-1/2 bg-gradient-to-br from-gray to-gray-200 p-4 sm:p-6 rounded-full shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300 z-20"
+      >
+        <SlArrowLeft
+          size={40}
+          className="text-white transition-transform duration-300 hover:rotate-[-15deg]"
+        />
+      </button>
+
+      {/* Right Arrow Navigation */}
+      <button
+        onClick={rotateRight}
+        className="absolute top-1/2 right-2 sm:right-4 md:right-8 lg:right-10 transform -translate-y-1/2 bg-gradient-to-br from-gray to-gray-200 p-4 sm:p-6 rounded-full shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300 z-20"
+      >
+        <SlArrowRight
+          size={40}
+          className="text-white transition-transform duration-300 hover:rotate-[15deg]"
+        />
+      </button>
+
+      {/* Image Section */}
+      <div className="w-full h-full overflow-hidden rounded-3xl">
+        <div
+          className="flex h-full transition-transform duration-500 ease-out"
+          style={{
+            transform: `translateX(-${currentIndex * 100}%)`,
+          }}
         >
-          <SlArrowLeft
-            size={40}
-            className="text-white transition-transform duration-300 hover:rotate-[-15deg]"
-          />
-        </button>
+          {images.map((image, index) => (
+            <div
+              key={index}
+              className="w-full h-full flex-shrink-0 bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${image})`,
+              }}
+            />
+          ))}
+        </div>
 
-        {/* Right Arrow Navigation */}
-        <button
-          onClick={rotateRight}
-          className="absolute top-1/2 right-2 sm:right-4 md:right-8 lg:right-10 transform -translate-y-1/2 bg-gradient-to-br from-gray to-gray-200 p-4 sm:p-6 rounded-full shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300 z-20"
-        >
-          <SlArrowRight
-            size={40}
-            className="text-white transition-transform duration-300 hover:rotate-[15deg]"
-          />
-        </button>
-
-        {/* Image Section */}
-        <div className="relative w-full h-[329px] overflow-hidden rounded-3xl">
-          <div
-            className="flex transition-transform duration-500 ease-out h-full"
-            style={{
-              transform: `translateX(-${currentIndex * 100}%)`,
-            }}
-          >
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className="w-full h-full flex-shrink-0"
-                style={{
-                  backgroundImage: `url(${image})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Page Counter */}
-          <div className="absolute bottom-4 right-4 bg-black/10 backdrop-blur-sm px-6 py-1 rounded-lg">
-            <span className="text-white text-sm font-medium">
-              {currentIndex + 1} Page of {images.length}
-            </span>
-          </div>
+        {/* Page Counter */}
+        <div className="absolute bottom-4 right-4 bg-black/30 backdrop-blur-sm px-4 py-1 rounded-lg">
+          <span className="text-white text-sm font-medium">
+            {currentIndex + 1} Page of {images.length}
+          </span>
         </div>
       </div>
     </div>

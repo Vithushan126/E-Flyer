@@ -1,8 +1,6 @@
 import { ChevronRight, Heart } from "lucide-react";
 import React from "react";
 import { Tooltip } from "react-tooltip";
-import EmiratesLogo from "../../../assets/view/Emirates-Logo.svg";
-import QatarAirwaysLogo from "../../../assets/view/Qatar_Airways_Logo.svg";
 import Line from "../../../assets/view/Line.svg";
 
 const FlightAndHotelOffer = ({ flightDetails }) => {
