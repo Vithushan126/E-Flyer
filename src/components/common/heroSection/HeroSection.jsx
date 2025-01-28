@@ -7,7 +7,7 @@ const HeroSection = () => {
 
   // Function to calculate remaining time for the offer
   function calculateTimeLeft() {
-    const targetDate = new Date("March 1, 2025 12:00:00"); // Offer end time
+    const targetDate = new Date("March 1, 2025 12:00:00"); 
     const now = new Date();
     const difference = targetDate - now;
 
