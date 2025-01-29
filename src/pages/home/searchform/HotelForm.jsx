@@ -94,7 +94,7 @@ const HotelForm = ({
         <div className="flex p-4 gap-4 w-full sm:w-[280px] lg:w-[22%] h-[57px] md:w-[350px] bg-darkBlue rounded-2xl ">
           <button
             type="submit"
-            className="flex items-center px-3 py-3 gap-4  text-white font-medium text-xl  hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-primaryColor transition-all"
+            className="flex items-center px-3 py-3 gap-4  text-white font-medium text-xl focus:outline-none  transition-all"
           >
             <Search />
             <span>Search</span>

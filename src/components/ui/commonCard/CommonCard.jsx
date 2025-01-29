@@ -75,6 +75,11 @@ const CommonCard = ({ adventure, small }) => {
                   {adventure?.dates} <br /> {adventure?.duration}
                 </p>
                 <p className="text-xs">{adventure?.package}</p>
+                {[4,5].includes(adventure?.id) && (
+                <p className="text-xl font-semibold text-nowrap mt-2">
+                    {adventure?.discountedPrice}
+                  </p>
+                  )}
               </div>
 
               {/* Right Section */}
@@ -91,16 +96,17 @@ const CommonCard = ({ adventure, small }) => {
                   </span>
                 </div>
                 {/* On Desktop, "Per person from" stays inline with discounted price */}
-                <div className="flex justify-end items-center space-x-4 ">
                 {[1, 2, 3].includes(adventure?.id) && (
+                <div className="flex justify-end items-center space-x-4 ">
+                
                   <p className="text-sm hidden lg:block ">
                     Per person from
                   </p>
-                  )}
                   <p className="text-xl font-semibold text-nowrap mt-2">
                     {adventure?.discountedPrice}
                   </p>
                 </div>
+              )}
               </div>
             </div>
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import EflyLogo from "../../../assets/navbar/EflyLogo.svg";
-import SearchIcon from "../../../assets/navbar/SearchIcon.svg";
-import UserCircleIcon from "../../../assets/navbar/UserCircleIcon.svg";
+import SearchIcon from "../../../assets/navbar/SearchIcon_2.svg";
+import UserCircleIcon from "../../../assets/navbar/UserCircleIcon_2.svg";
 import EnglandFlag from "../../../assets/navbar/EnglandFlag.svg";
 import {
   BookOpen,
@@ -61,14 +61,16 @@ const Navbar = () => {
 
   return (
     <div className="w-full relative z-50 ">
-      <div className="h-[67px] flex justify-center items-center  bg-white  bg-opacity-30 shadow-lg">
+       <div className="h-[67px] flex justify-center items-center  bg-darkBlue bg-opacity-70 shadow-lg">
+     {/*  <div className="h-[67px] flex justify-center items-center  bg-white  bg-opacity-30 shadow-lg"> */}
         {/* header links */}
-        <div className="max-w-[1100px] w-full flex justify-between items-center h-full font-semibold text-lg text-darkBlue px-2 md:px-4">
+        {/* <div className="max-w-[1100px] w-full flex justify-between items-center h-full font-semibold text-lg text-darkBlue px-2 md:px-4"> */}
+        <div className="max-w-[1100px] w-full flex justify-between items-center h-full font-medium text-lg text-white px-2 md:px-4">
           <div className="flex flex-row items-center space-x-12">
             <img
               src={EflyLogo}
               alt="Efly Logo"
-              className="cursor-pointer"
+              className="cursor-pointer bg-opacity-100 "
               onClick={() => handleNavigation("/")}
             />
             <div className="hidden lg:flex space-x-8">
@@ -86,7 +88,8 @@ const Navbar = () => {
 
           <div className="hidden lg:flex space-x-8 items-center">
             <button className="focus:outline-none">
-              <img src={SearchIcon} alt="Search" className="h-6 w-6" />
+            <img src={SearchIcon} alt="Search" className="h-9 w-9" />
+              {/* <img src={SearchIcon} alt="Search" className="h-6 w-6" /> */}
             </button>
             <div className="flex flex-row space-x-2 items-center">
               <img

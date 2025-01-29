@@ -13,6 +13,8 @@ import BeachHoliday from "../pages/home/BeachHoliday";
 import HillCamping from "../pages/home/HillCamping";
 import SunnyHoliday from "../pages/home/SunnyHoliday";
 import TrendingPackage from "../pages/trendingadventure/TrendingPackage";
+import Tour from "../pages/tour/Tour";
+
 const MainLayout = React.lazy(() => import("../layouts/mainLayout/MainLayout"));
 const NotFound = React.lazy(() =>
   import("../components/common/notFound/NotFound")
@@ -78,6 +80,10 @@ export const router = createBrowserRouter([
       {
         path: "destinations",
         element: <Destinations />,
+      },
+      {
+        path: "Tour",
+        element: <Tour />,
       },
       {
         path: "trendingpackage",
