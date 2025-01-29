@@ -34,22 +34,22 @@ const HeroSection = () => {
       {/* Hero Section */}
       <div className="w-full h-screen flex justify-center">
         {/* Static overlay image */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0" >
           <img
             src={backgroundImage}
             alt="Mountains"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-fill"
           />
         </div>
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
       </div>
 
       {/* Desktop View */}
       <div className="hidden md:block">
         {/* Countdown and Offer Banner - Desktop */}
-        <div className="absolute w-full h-[48px] bg-orange -bottom-12 flex justify-center items-center">
-        <p className="text-white text-center text-base">EFLY | The Best Travel Guide</p>
-        </div>
+       {/*  <div className="absolute w-full h-[48px] bg-orange -bottom-12 flex justify-center items-center">
+          <p className="text-white text-center text-base">EFLY | The Best Travel Guide</p>
+        </div> */}
         {/* Offer Section Inside Hero */}
         <div className="absolute bottom-0 w-full bg-[rgba(0,70,121,0.85)] px-4 md:px-8 lg:px-16 flex flex-wrap items-center justify-between space-y-4 md:space-y-0 py-6">
           <OfferSectionContent timeLeft={timeLeft} />
@@ -72,9 +72,9 @@ const HeroSection = () => {
           <OfferSectionContent timeLeft={timeLeft} />
         </div>
         {/* Countdown and Offer Banner - Mobile */}
-        <div className="relative z-10 w-full h-[48px] bg-orange flex justify-center items-center">
-        <p className="text-white text-center text-base">EFLY | The Best Travel Guide</p>
-        </div>
+        {/* <div className="relative z-10 w-full h-[48px] bg-orange flex justify-center items-center">
+          <p className="text-white text-center text-base">EFLY | The Best Travel Guide</p>
+        </div> */}
       </div>
     </>
   );
