@@ -56,7 +56,7 @@ const HotelForm = ({
             <button
               type="button"
               onClick={() => setShowDatePicker(!showDatePicker)}
-              className="text-base font-normal text-smokyGray  focus:outline-none"
+              className="text-sm font-normal text-smokyGray  focus:outline-none"
             >
               {dateRange.startDate.toLocaleDateString()} -{" "}
               {dateRange.endDate.toLocaleDateString()}

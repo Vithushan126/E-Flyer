@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 import tourImage from "../../assets/heroSection/tour_bg.png";
 import SearchForm from '../home/searchform/SearchForm';
 import CommonCard from "../../components/ui/commonCard/CommonCard";
@@ -84,12 +85,12 @@ const Tour = () => {
       {/* Main Content */}
       <main className="flex-1">
         {/* Search Form Section */}
-        <section id="search-form" className="bg-gray-100 py-12">
+        <section id="search-form" className="bg-gray-100 mt-[300px] -mb-96">
           <SearchForm />
         </section>
 
         {/* Trips Section */}
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-center -mt-40">
           <div className="max-w-[1100px] w-full space-y-8">
             <div className="space-y-2 pl-40">
               <h2 className="text-3xl font-medium text-gray">Trips</h2>
@@ -99,7 +100,9 @@ const Tour = () => {
 
             {/* Offers for Round Trips */}
             <div className="space-y-2">
+            <Link to="/roundtrip">
               <h2 className="text-3xl font-medium text-gray">Offers for round trips</h2>
+              </Link>
               <p className="text-Base font-normal text-smokyGray">Discover fascinating tours through Albania, Greece, Spain, Portugal, Turkey and Egypt with Hotelplan! Immerse yourself in rich history,
                 breathtaking nature and fascinating cultures. Be it a rental car tour, a group tour or an individual tour.</p>
             </div>

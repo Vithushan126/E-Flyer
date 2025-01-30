@@ -147,19 +147,19 @@ const Footer = () => {
 
                   {/* Social Media Icons */}
                   <div className="flex justify-center space-x-6 md:justify-start">
-                    <a href="#" className="text-gray-500 hover:text-gray-800">
+                    <a href="#" className="text-socialmedia ">
                       <SlSocialFacebook size={20} />
                     </a>
-                    <a href="#" className="text-gray-500 hover:text-gray-800">
+                    <a href="#" className="text-socialmedia">
                       <FaXTwitter size={20} />
                     </a>
-                    <a href="#" className="text-gray-500 hover:text-gray-800">
+                    <a href="#" className="text-socialmedia">
                       <RiYoutubeLine size={26} />
                     </a>
-                    <a href="#" className="text-gray-500 hover:text-gray-800">
+                    <a href="#" className="text-socialmedia">
                       <SlSocialInstagram size={20} />
                     </a>
-                    <a href="#" className="text-gray-500 hover:text-gray-800">
+                    <a href="#" className="text-socialmedia">
                       <PiTiktokLogoBold size={20} />
                     </a>
                   </div>
