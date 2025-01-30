@@ -85,7 +85,7 @@ const Tour = () => {
       {/* Main Content */}
       <main className="flex-1">
         {/* Search Form Section */}
-        <section id="search-form" className="bg-gray-100 mt-[300px] -mb-96">
+        <section id="search-form" className="bg-gray-100 mt-[100px] -mb-96">
           <SearchForm />
         </section>
 

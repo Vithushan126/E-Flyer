@@ -14,6 +14,15 @@ const HotelForm = ({
   const calendarRef = useRef(null);
   const [showDatePicker, setShowDatePicker] = useState(false);
 
+  const handleDateChange = (item) => {
+    setDateRange(item.selection);
+    setShowDatePicker(false);
+  };
+
+  const toggleCalendar = () => {
+    setShowDatePicker((prev) => !prev); 
+  };
+
   return (
     <Form>
       <div className="flex flex-wrap gap-2 justify-start md:justify-between">
@@ -55,7 +64,7 @@ const HotelForm = ({
             </label>
             <button
               type="button"
-              onClick={() => setShowDatePicker(!showDatePicker)}
+              onClick={toggleCalendar}
               className="text-sm font-normal text-smokyGray  focus:outline-none"
             >
               {dateRange.startDate.toLocaleDateString()} -{" "}
@@ -66,7 +75,7 @@ const HotelForm = ({
             <div className="absolute z-50 mt-2 shadow-lg">
               <DateRange
                 ranges={[dateRange]}
-                onChange={(item) => setDateRange(item.selection)}
+                onChange={handleDateChange}
                 moveRangeOnFirstSelection={false}
                 rangeColors={["#3b82f6"]}
               />
