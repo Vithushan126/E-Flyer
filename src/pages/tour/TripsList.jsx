@@ -1,8 +1,8 @@
 import React from "react";
 import CommonCard from "../../components/ui/commonCard/CommonCard";
-import HotelImage1 from "../../assets/adventure/HotelImage1.svg";
-import HotelImage2 from "../../assets/adventure/HotelImage2.svg";
-import HotelImage3 from "../../assets/adventure/HotelImage3.svg";
+import Image2 from "../../assets/tour/img_2.png";
+import Image3 from "../../assets/tour/img_3.png";
+import Image1 from "../../assets/tour/img_4.png";
 import Icon1 from "../../assets/packages/icon_1.svg";
 import Icon2 from "../../assets/packages/icon_2.svg";
 import Icon3 from "../../assets/packages/icon_3.svg";
@@ -19,9 +19,9 @@ const iconsList = [
   [Icon6, Icon7, Icon8, Icon9, Icon10],
 ];
 
-const HotelList = () => {
+const TripList= () => {
   const hotels = Array.from({ length: 15 }, (_, index) => {
-    const imageSet = [HotelImage1, HotelImage2, HotelImage3];
+    const imageSet = [Image1, Image2, Image3];
     const icons = iconsList[index % 2]; 
     const rating = (index % 5) + 1; 
     const discount = index % 3 === 0 ? 30 : null; 
@@ -60,8 +60,8 @@ const HotelList = () => {
 
 const Header = ({ totalHotels, startingPrice }) => (
   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4">
-    <p className="text-gray-700 font-medium text-lg">
-      {totalHotels} Hotels From <span className="font-bold text-gray-900">{startingPrice}</span>
+    <p className="text-smokyGray font-semibold text-xl">
+    Your selection of tours: {totalHotels} Hotels From {startingPrice}
     </p>
     <SortDropdown />
   </div>
@@ -84,4 +84,4 @@ const SortDropdown = () => (
   </div>
 );
 
-export default HotelList;
+export default TripList;

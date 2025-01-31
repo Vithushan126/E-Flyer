@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import EflyLogo from "../../../assets/navbar/EflyLogo.svg";
 import SearchIcon from "../../../assets/navbar/SearchIcon_2.svg";
-import UserCircleIcon from "../../../assets/navbar/UserCircleIcon_2.svg";
 import EnglandFlag from "../../../assets/navbar/EnglandFlag.svg";
 import {
   BookOpen,
@@ -12,12 +11,14 @@ import {
   Package,
   Search,
   X,
+  CircleUserRound,
+  Heart
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const headerText = [
   { text: "Explore", icon: <Globe className="h-5 w-5" />, url: "/explore" },
-  { text: "Book", icon: <BookOpen className="h-5 w-5" />, url: "/book" },
+  { text: "Offers", icon: <BookOpen className="h-5 w-5" />, url: "/offers" },
   {
     text: "Destinations",
     icon: <MapPin className="h-5 w-5" />,
@@ -61,7 +62,7 @@ const Navbar = () => {
 
   return (
     <div className="w-full relative z-50 ">
-       <div className="h-[67px] flex justify-center items-center  bg-darkBlue bg-opacity-70 shadow-lg">
+       <div className="h-[67px] flex justify-center items-center  bg-darkBlue bg-opacity-80 shadow-lg">
      {/*  <div className="h-[67px] flex justify-center items-center  bg-white  bg-opacity-30 shadow-lg"> */}
         {/* header links */}
         {/* <div className="max-w-[1100px] w-full flex justify-between items-center h-full font-semibold text-lg text-darkBlue px-2 md:px-4"> */}
@@ -77,7 +78,7 @@ const Navbar = () => {
               {headerText.map((item, index) => (
                 <span
                   key={index}
-                  className=" cursor-pointer hover:text-primaryColor"
+                  className=" cursor-pointer hover:text-orange"
                   onClick={() => handleNavigation(item?.url)}
                 >
                   {item.text}
@@ -86,10 +87,14 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className="hidden lg:flex space-x-8 items-center">
+          <div className="hidden lg:flex space-x-8 items-center ml-8">
             <button className="focus:outline-none">
             <img src={SearchIcon} alt="Search" className="h-9 w-9" />
               {/* <img src={SearchIcon} alt="Search" className="h-6 w-6" /> */}
+            </button>
+            <button className="focus:outline-none"
+            onClick={() => handleNavigation("/watchlist")}>
+            <Heart className="h-6 w-6" />
             </button>
             <div className="flex flex-row space-x-2 items-center">
               <img
@@ -103,7 +108,8 @@ const Navbar = () => {
               className="flex flex-row space-x-2 items-center focus:outline-none"
               onClick={() => handleNavigation("/login")}
             >
-              <img src={UserCircleIcon} alt="User " className="h-6 w-6" />
+              {/* <img src={UserCircleIcon} alt="User " className="h-6 w-6" /> */}
+              <CircleUserRound className="h-6 w-6" />
               <span className="text-lg">Login</span>
             </button>
           </div>
@@ -123,7 +129,7 @@ const Navbar = () => {
                     <img
                       src={EnglandFlag}
                       alt="England Flag"
-                      className="w-5 h-5 rounded-full object-cover"
+                      className="w-5 h-5 rounded-full object-cover" 
                     />
                     <span className="">EN</span>
                   </div>
@@ -132,7 +138,7 @@ const Navbar = () => {
                     className="flex flex-row space-x-2 items-center focus:outline-none"
                     onClick={() => handleNavigation("/login")}
                   >
-                    <img src={UserCircleIcon} alt="User " className="h-6 w-6" />
+                    <CircleUserRound className="h-6 w-6" />
                     <span className="">Login</span>
                   </div>
                   <Menu className="h-6 w-6 hover:cursor-pointer" />
@@ -155,7 +161,7 @@ const Navbar = () => {
               <Search />
             </div>
           </div>
-          <div className="border-t border-gray-200 opacity-10"></div>
+          <div className="border-t border-gray opacity-10"></div>
           <div className="py-2 space-y-2">
             {headerText.map((item, index) => (
               <div

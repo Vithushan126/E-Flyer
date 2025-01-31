@@ -7,7 +7,7 @@ const HolidayPlanner_6 = () => {
 
     const handleFindHereClick = () => {
         if (startDate && endDate) {
-            navigate("/holidayPlanner_7"); // Navigate to the next step
+            navigate("/holidayPlanner_7"); 
         } else {
             alert("Please select a vacation period before proceeding.");
         }
@@ -20,7 +20,7 @@ const HolidayPlanner_6 = () => {
     });
 
     const [calendar2, setCalendar2] = useState({
-        currentMonth: new Date().getMonth() + 1, // Default to the next month
+        currentMonth: new Date().getMonth() + 1,
         currentYear: new Date().getFullYear(),
     });
 
@@ -91,14 +91,11 @@ const HolidayPlanner_6 = () => {
         const clickedDate = new Date(year, month, day);
 
         if (!startDate || (startDate && endDate)) {
-            // Set start date if no start date is selected or both dates are selected
             setStartDate(clickedDate);
             setEndDate(null);
         } else if (clickedDate.getTime() >= startDate.getTime()) {
-            // Set end date only if it's after the start date
             setEndDate(clickedDate);
         } else {
-            // Reset and set the new start date
             setStartDate(clickedDate);
             setEndDate(null);
         }

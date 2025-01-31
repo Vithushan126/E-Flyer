@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import HolidayHeader from "./HolidayHeader";
 
 const HolidayPlanner_5 = () => {
-  const navigate = useNavigate(); // Initialize the useNavigate hook
+  const navigate = useNavigate(); 
 
   const handleFindHereClick = () => {
     navigate("/holidayPlanner_6");

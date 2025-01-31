@@ -11,9 +11,11 @@ const Explore = () => {
     };
 
     return (
-        <div className="w-full flex justify-center bg-gray-50 py-60">
+        <div className="w-full flex justify-center bg-gray-50 py-8">
             <div>
-                <SearchForm />
+                <div
+                    className="mt-[600px] -mb-96"><SearchForm /></div>
+
                 <div className="flex flex-col space-y-6">
                     {/* Title Section */}
                     <div className="text-left">

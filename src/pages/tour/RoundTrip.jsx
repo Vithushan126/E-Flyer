@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import HotelList from "../TopCityPackage/HotelList";
+import React from "react";
+import SearchBar from "../searchbar/SearchBar";
+import { useState } from "react";
+import TripList from "./TripsList";
 import TrendingFilter from "../trendingadventure/TrendingFilter";
-import SearchForm from "../home/searchform/SearchForm";
-import AdventureWorld from "../adventure/soloAdventure/AdventureWorld";
 
-const Destinations = () => {
+const RoundTrip = () => {
     const [isFilterVisible, setFilterVisible] = useState(false);
 
     const toggleFilterSidebar = () => {
@@ -12,12 +12,9 @@ const Destinations = () => {
     };
 
     return (
-        <div className="w-full flex justify-center bg-gray-50 py-8">
-            <div>
-               <AdventureWorld/>
-               <div 
-               className="mt-[750px] -mb-96"><SearchForm /></div>
-                
+        <div className="w-full flex justify-center bg-gray-50 py-6">
+            <div className="w-full max-w-[1100px] px-4 lg:px-0 space-y-6">
+                <SearchBar />
                 <div className="flex flex-col space-y-6">
                     {/* Title Section */}
                     <div className="text-left">
@@ -47,7 +44,7 @@ const Destinations = () => {
 
                         {/* Hotel List */}
                         <div className="flex-1">
-                            <HotelList />
+                            <TripList />
                         </div>
                     </div>
                 </div>
@@ -56,4 +53,4 @@ const Destinations = () => {
     );
 };
 
-export default Destinations;
+export default RoundTrip;

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Form, Field } from "formik";
+import { DateRange } from "react-date-range";
 import {
     MapPin,
     Calendar,
@@ -19,6 +20,15 @@ const FlightForm = ({
 }) => {
     const calendarRef = useRef(null);
     const [showDatePicker, setShowDatePicker] = useState(false);
+
+    const handleDateChange = (item) => {
+        setDateRange(item.selection);
+        setShowDatePicker(false);
+      };
+    
+      const toggleCalendar = () => {
+        setShowDatePicker((prev) => !prev); 
+      };
 
     // State to track the selected trip type
     const [tripType, setTripType] = useState("Return");
@@ -102,7 +112,7 @@ const FlightForm = ({
                         </span>
                         <button
                             type="button"
-                            onClick={() => setShowDatePicker(!showDatePicker)}
+                            onClick={toggleCalendar}
                             className="text-smokyGray font-inter font-normal text-base leading-[19px]"
                         >
                             {dateRange.startDate.toLocaleDateString()} -{" "}
@@ -111,9 +121,9 @@ const FlightForm = ({
                     </div>
                     {showDatePicker && (
                         <div className="absolute z-50 mt-2">
-                            <dateRange
+                            <DateRange
                                 ranges={[dateRange]}
-                                onChange={(item) => setDateRange(item.selection)}
+                                onChange={handleDateChange}
                                 moveRangeOnFirstSelection={false}
                                 rangeColors={["#3b82f6"]}
                             />
@@ -183,7 +193,7 @@ const FlightForm = ({
                             </span>
                             <button
                                 type="button"
-                                onClick={() => setShowDatePicker(!showDatePicker)}
+                                onClick={toggleCalendar}
                                 className="text-smokyGray font-inter font-normal text-base leading-[19px]"
                             >
                                 {dateRange.startDate.toLocaleDateString()} -{" "}
@@ -192,9 +202,9 @@ const FlightForm = ({
                         </div>
                         {showDatePicker && (
                             <div className="absolute z-50 mt-2">
-                                <dateRange
+                                <DateRange
                                     ranges={[dateRange]}
-                                    onChange={(item) => setDateRange(item.selection)}
+                                    onChange={handleDateChange}
                                     moveRangeOnFirstSelection={false}
                                     rangeColors={["#3b82f6"]}
                                 />
