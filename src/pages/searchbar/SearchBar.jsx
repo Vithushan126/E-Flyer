@@ -113,7 +113,7 @@ const SearchBar = () => {
                     Rooms & Travellers
                   </span>
                   <span className="text-smokyGray font-inter font-normal text-sm leading-[19px]">
-                    Rooms & Travelers
+                  {values.rooms} Rooms, {values.persons} Persons
                   </span>
                 </div>
               </div>

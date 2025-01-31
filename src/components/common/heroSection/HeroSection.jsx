@@ -32,7 +32,7 @@ const HeroSection = () => {
   return (
     <>
       {/* Hero Section */}
-      <div className="w-full h-screen flex justify-center">
+      <div className="w-full  h-screen flex justify-center">
         {/* Static overlay image */}
         <div className="absolute inset-0 z-0" >
           <img
@@ -52,7 +52,7 @@ const HeroSection = () => {
         </div> */}
         {/* Offer Section Inside Hero */}
         <div className="absolute bottom-0 w-full bg-[rgba(0,70,121,0.85)] px-4 md:px-8 lg:px-16 flex flex-wrap items-center justify-between space-y-4 md:space-y-0 py-6">
-          <OfferSectionContent timeLeft={timeLeft} />
+          <OfferSectionContent timeLeft={timeLeft} className="max-w-[1100px] flex flex-row mx-auto space-x-44" />
         </div>
       </div>
 
@@ -81,7 +81,7 @@ const HeroSection = () => {
 };
 
 const OfferSectionContent = ({ timeLeft }) => (
-  <>
+  <div className="max-w-[1100px] lg:flex lg:flex-row mx-auto lg:space-x-44">
     {/* Logo Section */}
     <div
       className="hidden md:flex w-[80px] h-[40px] md:w-[120px] md:h-[71px] bg-no-repeat"
@@ -115,13 +115,13 @@ const OfferSectionContent = ({ timeLeft }) => (
 
     {/* CTA Button */}
     <div className="flex flex-col items-center w-full md:w-auto px-2 md:px-0 mt-4 md:mt-0">
-      <ButtonCom className="bg-orange px-4 md:px-8 py-2 md:h-[57px] text-white hover:bg-orange transition-colors rounded-xl text-lg md:text-2xl hover:scale-105">
+      <ButtonCom className="bg-orange px-4 md:px-8 py-2 md:h-[57px] text-white hover:bg-orange transition-colors rounded-xl text-base md:text-xl hover:scale-105">
         Claim Offer
       </ButtonCom>
       {/* T&C */}
       <p className="text-xs text-white mt-1">T&C Apply</p>
     </div>
-  </>
+  </div>
 );
 
 export default HeroSection;

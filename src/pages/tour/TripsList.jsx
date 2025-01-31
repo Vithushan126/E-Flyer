@@ -14,7 +14,6 @@ import Icon8 from "../../assets/packages/icon_8.svg";
 import Icon9 from "../../assets/packages/icon_9.svg";
 import Icon10 from "../../assets/packages/icon_10.svg";
 
-// Icon sets for hotel cards
 const iconsList = [
   [Icon1, Icon2, Icon3, Icon4, Icon5],
   [Icon6, Icon7, Icon8, Icon9, Icon10],
@@ -23,9 +22,9 @@ const iconsList = [
 const TripList= () => {
   const hotels = Array.from({ length: 15 }, (_, index) => {
     const imageSet = [Image1, Image2, Image3];
-    const icons = iconsList[index % 2]; // Alternate between two sets of icons
-    const rating = (index % 5) + 1; // Cycles ratings from 1 to 5
-    const discount = index % 3 === 0 ? 30 : null; // Every 3rd hotel gets a discount
+    const icons = iconsList[index % 2]; 
+    const rating = (index % 5) + 1; 
+    const discount = index % 3 === 0 ? 30 : null; 
 
     return {
       id: index + 1,
@@ -35,7 +34,7 @@ const TripList= () => {
       duration: "3 nights - 2 Adults",
       package: "All Inclusive | Including Transfer",
       originalPrice: discount ? `LKR 334567` : "",
-      discountedPrice: `LKR ${234567 - index * 1000}`, // Decreasing price for variation
+      discountedPrice: `LKR ${234567 - index * 1000}`, 
       discount: discount,
       image: imageSet[index % 3],
       rating: rating,
