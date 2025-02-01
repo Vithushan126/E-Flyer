@@ -47,6 +47,7 @@ const Login = React.lazy(() => import("../pages/auth/login/Login"));
 const Register = React.lazy(() => import("../pages/auth/register/Register"));
 const Home = React.lazy(() => import("../pages/home/Home"));
 const Tours = React.lazy(() => import("../pages/tours/Tours"));
+const TourPackage = React.lazy(() => import("../pages/tours/TourPackage"));
 const Explore = React.lazy(() => import("../pages/explore/Explore"));
 const Offers = React.lazy(() => import("../pages/offers/Offers"));
 const Destinations = React.lazy(() =>
@@ -90,6 +91,10 @@ export const router = createBrowserRouter([
       {
         path: "tours",
         element: <Tours />,
+      },
+      {
+        path: "tourPackage",
+        element: <TourPackage />,
       },
       {
         path: "explore",
