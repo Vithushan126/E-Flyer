@@ -1,5 +1,5 @@
 import React from "react";
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TopCityPackage from "../pages/TopCityPackage/TopCityPackage";
 import HolidayPlanner_1 from "../pages/holidayPlanner/HolidayPlanner_1";
 import HolidayPlanner_2 from "../pages/holidayPlanner/HolidayPlanner_2";
@@ -19,8 +19,8 @@ const NotFound = React.lazy(() =>
 );
 const Login = React.lazy(() => import("../pages/auth/login/Login"));
 const Register = React.lazy(() => import("../pages/auth/register/Register"));
-
 const Home = React.lazy(() => import("../pages/home/Home"));
+const Tours = React.lazy(() => import("../pages/tours/Tours"));
 const Explore = React.lazy(() => import("../pages/explore/Explore"));
 const Book = React.lazy(() => import("../pages/book/Book"));
 const Offers = React.lazy(() => import("../pages/offers/Offers"));
@@ -62,6 +62,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "tours",
+        element: <Tours />,
       },
       {
         path: "explore",
@@ -110,7 +114,7 @@ export const router = createBrowserRouter([
       {
         path: "holidayPlanner_2",
         element: <HolidayPlanner_2 />,
-      }, 
+      },
       {
         path: "holidayPlanner_3",
         element: <HolidayPlanner_3 />,
@@ -118,23 +122,23 @@ export const router = createBrowserRouter([
       {
         path: "holidayPlanner_4",
         element: <HolidayPlanner_4 />,
-      }, 
+      },
       {
         path: "holidayPlanner_5",
         element: <HolidayPlanner_5 />,
-      }, 
+      },
       {
         path: "holidayPlanner_6",
         element: <HolidayPlanner_6 />,
-      }, 
+      },
       {
         path: "holidayPlanner_7",
         element: <HolidayPlanner_7 />,
-      }, 
+      },
       {
         path: "holidayPlanner_8",
         element: <HolidayPlanner_8 />,
-      }, 
+      },
       {
         path: "adventure",
         element: <Adventure />,
