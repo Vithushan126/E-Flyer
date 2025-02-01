@@ -14,10 +14,10 @@ const images = [
 ];
 
 const HolidayPlanner_3 = () => {
-  const navigate = useNavigate(); // Initialize the useNavigate hook
+  const navigate = useNavigate(); 
 
   const handleFindHereClick = () => {
-    navigate("/holidayPlanner_4"); // Navigate to the desired route
+    navigate("/holidayPlanner_4"); 
   };
   return (
     <div className="bg-darkBlue text-white min-h-screen w-full flex flex-col items-center justify-center px-4 sm:px-8 lg:px-16">

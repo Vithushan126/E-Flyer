@@ -1,5 +1,5 @@
 import React from "react";
-import SearchForm from "./SearchForm";
+import SearchForm from "./searchform/SearchForm";
 import TrendingAdventures from "./TrendingAdventures";
 import CardAndCity from "./CardAndCity";
 import HolidayPlaneCard from "./HolidayPlaneCard";

@@ -1,10 +1,10 @@
 import React from "react";
 import SearchBar from "../searchbar/SearchBar";
 import { useState } from "react";
-import TrendingFilter from "./TrendingFilter";
-import HotelView from "./HotelView";
+import TripList from "./TripsList";
+import TrendingFilter from "../trendingadventure/TrendingFilter";
 
-const TrendingPackage = () => {
+const RoundTrip = () => {
     const [isFilterVisible, setFilterVisible] = useState(false);
 
     const toggleFilterSidebar = () => {
@@ -44,7 +44,7 @@ const TrendingPackage = () => {
 
                         {/* Hotel List */}
                         <div className="flex-1">
-                            <HotelView />
+                            <TripList />
                         </div>
                     </div>
                 </div>
@@ -53,4 +53,4 @@ const TrendingPackage = () => {
     );
 };
 
-export default TrendingPackage;
+export default RoundTrip;

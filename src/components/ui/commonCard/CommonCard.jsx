@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { BedDouble, Heart, Star, ThumbsUp } from "lucide-react";
 import { Tooltip } from "react-tooltip";
 import CardIcon1 from "../../../assets/adventure/CardIcon1.svg";
@@ -74,6 +75,11 @@ const CommonCard = ({ adventure, small }) => {
                   {adventure?.dates} <br /> {adventure?.duration}
                 </p>
                 <p className="text-xs">{adventure?.package}</p>
+                {[4,5].includes(adventure?.id) && (
+                <p className="text-xl font-semibold text-nowrap mt-2">
+                    {adventure?.discountedPrice}
+                  </p>
+                  )}
               </div>
 
               {/* Right Section */}
@@ -89,16 +95,18 @@ const CommonCard = ({ adventure, small }) => {
                     {adventure?.originalPrice}
                   </span>
                 </div>
-
                 {/* On Desktop, "Per person from" stays inline with discounted price */}
+                {[1, 2, 3].includes(adventure?.id) && (
                 <div className="flex justify-end items-center space-x-4 ">
+                
                   <p className="text-sm hidden lg:block ">
                     Per person from
                   </p>
-                  <p className="text-xl font-semibold text-nowrap">
+                  <p className="text-xl font-semibold text-nowrap mt-2">
                     {adventure?.discountedPrice}
                   </p>
                 </div>
+              )}
               </div>
             </div>
 
@@ -109,9 +117,11 @@ const CommonCard = ({ adventure, small }) => {
                   Book Now
                 </button>
               </div>
+              <Link to="/HotelAndFlightView">
               <button className="w-full  text-center font-semibold text-white underline hover:scale-105">
                 Discover
               </button>
+              </Link>
             </div>
           </div>
         </div>

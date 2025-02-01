@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 const reviews = [
   {
     name: "Aisha Kelly",
-    avatarUrl: "https://i.pravatar.cc/150?img=1", // Example avatar URL
+    avatarUrl: "https://i.pravatar.cc/150?img=1", 
     rating: 5,
     comment:
       "Good customer service. Wander through ancient temples, indulge in the local dishes, or explore the popular bazaars.",
@@ -14,7 +14,7 @@ const reviews = [
   },
   {
     name: "Brylee Singleton",
-    avatarUrl: "https://i.pravatar.cc/150?img=2", // Example avatar URL
+    avatarUrl: "https://i.pravatar.cc/150?img=2", 
     rating: 4,
     comment:
       "Good customer service. Wander through ancient temples, indulge in the local dishes, or explore the popular bazaars.",
@@ -22,7 +22,7 @@ const reviews = [
   },
   {
     name: "Ruby Miller",
-    avatarUrl: "https://i.pravatar.cc/150?img=3", // Example avatar URL
+    avatarUrl: "https://i.pravatar.cc/150?img=3", 
     rating: 4,
     comment:
       "Good customer service. Wander through ancient temples, indulge in the local dishes, or explore the popular bazaars.",
@@ -30,7 +30,7 @@ const reviews = [
   },
   {
     name: "John Doe",
-    avatarUrl: "https://i.pravatar.cc/150?img=4", // Example avatar URL
+    avatarUrl: "https://i.pravatar.cc/150?img=4", 
     rating: 5,
     comment:
       "Good customer service. Wander through ancient temples, indulge in the local dishes, or explore the popular bazaars.",

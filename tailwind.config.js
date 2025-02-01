@@ -26,7 +26,8 @@ export default {
         darkcolor: "#484747",
         offWhite: "#F5F5F6",
         buttoncolor:"#8B8B8B",
-        border:"#D5D5D5"
+        border:"#D5D5D5",
+        socialmedia:"#666666",
       },
 
       maxWidth: {

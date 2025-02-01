@@ -1,18 +1,44 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import TopCityPackage from "../pages/TopCityPackage/TopCityPackage";
-import HolidayPlanner_1 from "../pages/holidayPlanner/HolidayPlanner_1";
-import HolidayPlanner_2 from "../pages/holidayPlanner/HolidayPlanner_2";
-import HolidayPlanner_3 from "../pages/holidayPlanner/HolidayPlanner_3";
-import HolidayPlanner_4 from "../pages/holidayPlanner/HolidayPlanner_4";
-import HolidayPlanner_5 from "../pages/holidayPlanner/HolidayPlanner_5";
-import HolidayPlanner_6 from "../pages/holidayPlanner/HolidayPlanner_6";
-import HolidayPlanner_7 from "../pages/holidayPlanner/HolidayPlanner_7";
-import HolidayPlanner_8 from "../pages/holidayPlanner/HolidayPlanner_8";
-import BeachHoliday from "../pages/home/BeachHoliday";
-import HillCamping from "../pages/home/HillCamping";
-import SunnyHoliday from "../pages/home/SunnyHoliday";
-import TrendingPackage from "../pages/trendingadventure/TrendingPackage";
+
+import WatchList from "../pages/watchlist/Watchlist";
+import Contact from "../pages/contact/Contact";
+import RoundTrip from "../pages/tour/RoundTrip";
+const TopCityPackage = React.lazy(() =>
+  import("../pages/TopCityPackage/TopCityPackage")
+);
+const HolidayPlanner_1 = React.lazy(() =>
+  import("../pages/holidayPlanner/HolidayPlanner_1")
+);
+const HolidayPlanner_2 = React.lazy(() =>
+  import("../pages/holidayPlanner/HolidayPlanner_2")
+);
+const HolidayPlanner_3 = React.lazy(() =>
+  import("../pages/holidayPlanner/HolidayPlanner_3")
+);
+const HolidayPlanner_4 = React.lazy(() =>
+  import("../pages/holidayPlanner/HolidayPlanner_4")
+);
+const HolidayPlanner_5 = React.lazy(() =>
+  import("../pages/holidayPlanner/HolidayPlanner_5")
+);
+const HolidayPlanner_6 = React.lazy(() =>
+  import("../pages/holidayPlanner/HolidayPlanner_6")
+);
+const HolidayPlanner_7 = React.lazy(() =>
+  import("../pages/holidayPlanner/HolidayPlanner_7")
+);
+const HolidayPlanner_8 = React.lazy(() =>
+  import("../pages/holidayPlanner/HolidayPlanner_8")
+);
+const BeachHoliday = React.lazy(() => import("../pages/home/BeachHoliday"));
+const HillCamping = React.lazy(() => import("../pages/home/HillCamping"));
+const SunnyHoliday = React.lazy(() => import("../pages/home/SunnyHoliday"));
+const TrendingPackage = React.lazy(() =>
+  import("../pages/trendingadventure/TrendingPackage")
+);
+const Tour = React.lazy(() => import("../pages/tour/Tour"));
+
 const MainLayout = React.lazy(() => import("../layouts/mainLayout/MainLayout"));
 const NotFound = React.lazy(() =>
   import("../components/common/notFound/NotFound")
@@ -22,7 +48,6 @@ const Register = React.lazy(() => import("../pages/auth/register/Register"));
 const Home = React.lazy(() => import("../pages/home/Home"));
 const Tours = React.lazy(() => import("../pages/tours/Tours"));
 const Explore = React.lazy(() => import("../pages/explore/Explore"));
-const Book = React.lazy(() => import("../pages/book/Book"));
 const Offers = React.lazy(() => import("../pages/offers/Offers"));
 const Destinations = React.lazy(() =>
   import("../pages/destinations/Destinations")
@@ -44,7 +69,6 @@ const SoloAdventure = React.lazy(() =>
 const YungAdultAdventure = React.lazy(() =>
   import("../pages/adventure/youngAdultAdventure/YungAdultAdventure")
 );
-
 const HotelAndFlightView = React.lazy(() =>
   import("../pages/view/HotelAndFlightView")
 );
@@ -72,16 +96,28 @@ export const router = createBrowserRouter([
         element: <Explore />,
       },
       {
-        path: "book",
-        element: <Book />,
+        path: "offers",
+        element: <Offers />,
       },
       {
-        path: "offer",
-        element: <Offers />,
+        path: "watchlist",
+        element: <WatchList />,
       },
       {
         path: "destinations",
         element: <Destinations />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+      },
+      {
+        path: "Tour",
+        element: <Tour />,
+      },
+      {
+        path: "roundtrip",
+        element: <RoundTrip />,
       },
       {
         path: "trendingpackage",
@@ -90,6 +126,10 @@ export const router = createBrowserRouter([
       {
         path: "topcitypackage",
         element: <TopCityPackage />,
+      },
+      {
+        path: "HotelAndFlightView",
+        element: <HotelAndFlightView />,
       },
       {
         path: "beachholiday",
@@ -162,10 +202,6 @@ export const router = createBrowserRouter([
       {
         path: "youngAdultsAdventure",
         element: <YungAdultAdventure />,
-      },
-      {
-        path: "hotelAndFlightViews",
-        element: <HotelAndFlightView />,
       },
       {
         path: "login",

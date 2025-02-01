@@ -19,10 +19,10 @@ const iconsList = [
   [Icon6, Icon7, Icon8, Icon9, Icon10],
 ];
 
-const HotelList = () => {
+const HotelView = () => {
   const hotels = Array.from({ length: 15 }, (_, index) => {
     const imageSet = [HotelImage1, HotelImage2, HotelImage3];
-    const icons = iconsList[index % 2]; 
+    const icons = iconsList[index % 2];
     const rating = (index % 5) + 1; 
     const discount = index % 3 === 0 ? 30 : null; 
 
@@ -84,4 +84,4 @@ const SortDropdown = () => (
   </div>
 );
 
-export default HotelList;
+export default HotelView;

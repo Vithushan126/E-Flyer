@@ -86,8 +86,8 @@ const Footer = () => {
           style={{ backgroundImage: `url(${WhiteLogo})` }}></div>
 
         {/* Footer Bottom Section */}
-        <div className="relative mt-4 border-t border-lightGray pt-8 max-w-[1137px] mx-auto">
-          <div className="sm:flex grid grid-cols-1 md:grid-cols-3 justify-between">
+        <div className="relative mt-4 border-t border-lightGray pt-8 max-w-[1300px] mx-auto">
+          <div className="sm:flex grid grid-cols-1 md:grid-cols-3  justify-between">
             {/* Subscription */}
             <div>
               <h3 className="font-medium text-base mb-4 text-smokyGray">Subscribe to our special offer</h3>
@@ -147,19 +147,19 @@ const Footer = () => {
 
                   {/* Social Media Icons */}
                   <div className="flex justify-center space-x-6 md:justify-start">
-                    <a href="#" className="text-gray-500 hover:text-gray-800">
+                    <a href="#" className="text-socialmedia ">
                       <SlSocialFacebook size={20} />
                     </a>
-                    <a href="#" className="text-gray-500 hover:text-gray-800">
+                    <a href="#" className="text-socialmedia">
                       <FaXTwitter size={20} />
                     </a>
-                    <a href="#" className="text-gray-500 hover:text-gray-800">
+                    <a href="#" className="text-socialmedia">
                       <RiYoutubeLine size={26} />
                     </a>
-                    <a href="#" className="text-gray-500 hover:text-gray-800">
+                    <a href="#" className="text-socialmedia">
                       <SlSocialInstagram size={20} />
                     </a>
-                    <a href="#" className="text-gray-500 hover:text-gray-800">
+                    <a href="#" className="text-socialmedia">
                       <PiTiktokLogoBold size={20} />
                     </a>
                   </div>
@@ -170,7 +170,7 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom Links */}
-        <div className="mt-4 border-t border-lightGray pt-8 max-w-[1137px] mx-auto">
+        <div className="mt-4 border-t border-lightGray pt-8 max-w-[1300px] mx-auto">
           <div className="flex justify-center gap-4 font-medium text-sm space-x-2 mt-2 sm:flex-nowrap">
             <a href="#" className="text-lightGray hover:underline">Accessibility statement</a>
             <a href="#" className="text-lightGray hover:underline">Contact us</a>

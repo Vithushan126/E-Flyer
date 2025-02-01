@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import HotelList from "../TopCityPackage/HotelList";
 import TrendingFilter from "../trendingadventure/TrendingFilter";
-import SearchForm from "../home/SearchForm";
+import SearchForm from "../home/searchform/SearchForm";
 
 const Offers = () => {
     const [isFilterVisible, setFilterVisible] = useState(false);
@@ -11,9 +11,11 @@ const Offers = () => {
     };
 
     return (
-        <div className="w-full flex justify-center bg-gray-50 py-60">
+        <div className="w-full flex justify-center bg-gray-50 py-8">
             <div>
-                <SearchForm />
+               <div 
+               className="mt-[600px] -mb-96"><SearchForm /></div>
+                
                 <div className="flex flex-col space-y-6">
                     {/* Title Section */}
                     <div className="text-left">
