@@ -4,6 +4,67 @@ import DropDownSection from "./DropDownSection";
 import ClimateDropdown from "./ClimateDropdown";
 import TemperatureChart from "./TemperatureChart";
 
+
+const temperatureData = [
+  { month: "Jan", value: 28 },
+  { month: "Feb", value: 26 },
+  { month: "Mar", value: 26 },
+  { month: "Apr", value: 27 },
+  { month: "May", value: 26 },
+  { month: "Jun", value: 28 },
+  { month: "Jul", value: 27 },
+  { month: "Aug", value: 26 },
+  { month: "Sep", value: 25 },
+  { month: "Oct", value: 24 },
+  { month: "Nov", value: 23 },
+  { month: "Dec", value: 22 },
+];
+
+const sunshineData = [
+  { month: "Jan", value: 28 },
+  { month: "Feb", value: 26 },
+  { month: "Mar", value: 26 },
+  { month: "Apr", value: 27 },
+  { month: "May", value: 26 },
+  { month: "Jun", value: 28 },
+  { month: "Jul", value: 27 },
+  { month: "Aug", value: 26 },
+  { month: "Sep", value: 25 },
+  { month: "Oct", value: 24},
+  { month: "Nov", value: 23},
+  { month: "Dec", value: 22},
+];
+
+const waterTempData = [
+  { month: "Jan", value: 22 },
+  { month: "Feb", value: 23 },
+  { month: "Mar", value: 24 },
+  { month: "Apr", value: 25 },
+  { month: "May", value: 26 },
+  { month: "Jun", value: 27 },
+  { month: "Jul", value: 28 },
+  { month: "Aug", value: 28 },
+  { month: "Sep", value: 27 },
+  { month: "Oct", value: 26 },
+  { month: "Nov", value: 24 },
+  { month: "Dec", value: 23 },
+];
+
+const rainyDaysData = [
+  { month: "Jan", value: 10 },
+  { month: "Feb", value: 8 },
+  { month: "Mar", value: 9 },
+  { month: "Apr", value: 11 },
+  { month: "May", value: 12 },
+  { month: "Jun", value: 15 },
+  { month: "Jul", value: 17 },
+  { month: "Aug", value: 16 },
+  { month: "Sep", value: 14 },
+  { month: "Oct", value: 12 },
+  { month: "Nov", value: 10 },
+  { month: "Dec", value: 9 },
+];
+
 const ClimateRegion = () => {
   return (
     <div className="w-full border border-border p-10 flex flex-col rounded-xl space-y-16">
@@ -130,9 +191,14 @@ const ClimateRegion = () => {
           <ClimateDropdown />
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-10 ">
-        <TemperatureChart />
-        <TemperatureChart />
+      <div className="flex flex-col space-y-8 text-smokyGray">
+        <h6 className='font-medium'>Climate</h6>
+        <div className="grid grid-cols-2 gap-10 ">
+          <TemperatureChart title="Average daily maximum temperature" data={temperatureData} />
+          <TemperatureChart title="Average hour of sunshine per day" data={sunshineData} color="#FFF1AC" yDomain={[0, 32]} yTicks={[0, 4, 8, 12, 16]} />
+          <TemperatureChart title="Average water temperature" data={waterTempData} color="#ACDCFF" yTicks={[0,8, 16,24,32]}/>
+          <TemperatureChart title="Average rainy days per month" data={rainyDaysData} color="#B3ACFF" yDomain={[0, 16]} yTicks={[0, 4, 8, 12, 16]} />
+        </div>
       </div>
     </div>
   );

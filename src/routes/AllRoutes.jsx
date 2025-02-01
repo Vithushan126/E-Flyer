@@ -1,40 +1,78 @@
 import React from "react";
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import WatchList from "../pages/watchlist/Watchlist";
 import Contact from "../pages/contact/Contact";
 import RoundTrip from "../pages/tour/RoundTrip";
-const TopCityPackage = React.lazy(() => import( "../pages/TopCityPackage/TopCityPackage"));
-const HolidayPlanner_1 = React.lazy(() => import("../pages/holidayPlanner/HolidayPlanner_1"));
-const HolidayPlanner_2= React.lazy(() => import("../pages/holidayPlanner/HolidayPlanner_2"));
-const HolidayPlanner_3 = React.lazy(() => import("../pages/holidayPlanner/HolidayPlanner_3"));
-const HolidayPlanner_4 = React.lazy(() => import("../pages/holidayPlanner/HolidayPlanner_4"));
-const HolidayPlanner_5 = React.lazy(() => import("../pages/holidayPlanner/HolidayPlanner_5"));
-const HolidayPlanner_6 = React.lazy(() => import("../pages/holidayPlanner/HolidayPlanner_6"));
-const HolidayPlanner_7 = React.lazy(() => import("../pages/holidayPlanner/HolidayPlanner_7"));
-const HolidayPlanner_8 = React.lazy(() => import( "../pages/holidayPlanner/HolidayPlanner_8"));
+const TopCityPackage = React.lazy(() =>
+  import("../pages/TopCityPackage/TopCityPackage")
+);
+const HolidayPlanner_1 = React.lazy(() =>
+  import("../pages/holidayPlanner/HolidayPlanner_1")
+);
+const HolidayPlanner_2 = React.lazy(() =>
+  import("../pages/holidayPlanner/HolidayPlanner_2")
+);
+const HolidayPlanner_3 = React.lazy(() =>
+  import("../pages/holidayPlanner/HolidayPlanner_3")
+);
+const HolidayPlanner_4 = React.lazy(() =>
+  import("../pages/holidayPlanner/HolidayPlanner_4")
+);
+const HolidayPlanner_5 = React.lazy(() =>
+  import("../pages/holidayPlanner/HolidayPlanner_5")
+);
+const HolidayPlanner_6 = React.lazy(() =>
+  import("../pages/holidayPlanner/HolidayPlanner_6")
+);
+const HolidayPlanner_7 = React.lazy(() =>
+  import("../pages/holidayPlanner/HolidayPlanner_7")
+);
+const HolidayPlanner_8 = React.lazy(() =>
+  import("../pages/holidayPlanner/HolidayPlanner_8")
+);
 const BeachHoliday = React.lazy(() => import("../pages/home/BeachHoliday"));
 const HillCamping = React.lazy(() => import("../pages/home/HillCamping"));
-const SunnyHoliday= React.lazy(() => import("../pages/home/SunnyHoliday"));
-const TrendingPackage = React.lazy(() => import("../pages/trendingadventure/TrendingPackage"));
+const SunnyHoliday = React.lazy(() => import("../pages/home/SunnyHoliday"));
+const TrendingPackage = React.lazy(() =>
+  import("../pages/trendingadventure/TrendingPackage")
+);
 const Tour = React.lazy(() => import("../pages/tour/Tour"));
 
 const MainLayout = React.lazy(() => import("../layouts/mainLayout/MainLayout"));
-const NotFound = React.lazy(() =>import("../components/common/notFound/NotFound"));
+const NotFound = React.lazy(() =>
+  import("../components/common/notFound/NotFound")
+);
 const Login = React.lazy(() => import("../pages/auth/login/Login"));
 const Register = React.lazy(() => import("../pages/auth/register/Register"));
-
 const Home = React.lazy(() => import("../pages/home/Home"));
+const Tours = React.lazy(() => import("../pages/tours/Tours"));
+const TourPackage = React.lazy(() => import("../pages/tours/TourPackage"));
 const Explore = React.lazy(() => import("../pages/explore/Explore"));
 const Offers = React.lazy(() => import("../pages/offers/Offers"));
-const Destinations = React.lazy(() =>import("../pages/destinations/Destinations"));
+const Destinations = React.lazy(() =>
+  import("../pages/destinations/Destinations")
+);
 const Packages = React.lazy(() => import("../pages/packages/Packages"));
 const Adventure = React.lazy(() => import("../pages/adventure/Adventure"));
-const CupleAdventure = React.lazy(() =>import("../pages/adventure/cupleAdventure/CupleAdventure"));
-const FamilyAdventure = React.lazy(() =>import("../pages/adventure/familyAdventure/FamilyAdventure"));
-const SeaniorAdventure = React.lazy(() =>import("../pages/adventure/seaniorAdventure/SeaniorAdventure"));
-const SoloAdventure = React.lazy(() =>import("../pages/adventure/soloAdventure/SoloAdventure"));
-const YungAdultAdventure = React.lazy(() =>import("../pages/adventure/youngAdultAdventure/YungAdultAdventure"));
-const HotelAndFlightView = React.lazy(() =>import("../pages/view/HotelAndFlightView"));
+const CupleAdventure = React.lazy(() =>
+  import("../pages/adventure/cupleAdventure/CupleAdventure")
+);
+const FamilyAdventure = React.lazy(() =>
+  import("../pages/adventure/familyAdventure/FamilyAdventure")
+);
+const SeaniorAdventure = React.lazy(() =>
+  import("../pages/adventure/seaniorAdventure/SeaniorAdventure")
+);
+const SoloAdventure = React.lazy(() =>
+  import("../pages/adventure/soloAdventure/SoloAdventure")
+);
+const YungAdultAdventure = React.lazy(() =>
+  import("../pages/adventure/youngAdultAdventure/YungAdultAdventure")
+);
+const HotelAndFlightView = React.lazy(() =>
+  import("../pages/view/HotelAndFlightView")
+);
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +87,14 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "tours",
+        element: <Tours />,
+      },
+      {
+        path: "tourPackage",
+        element: <TourPackage />,
       },
       {
         path: "explore",
@@ -113,7 +159,7 @@ export const router = createBrowserRouter([
       {
         path: "holidayPlanner_2",
         element: <HolidayPlanner_2 />,
-      }, 
+      },
       {
         path: "holidayPlanner_3",
         element: <HolidayPlanner_3 />,
@@ -121,23 +167,23 @@ export const router = createBrowserRouter([
       {
         path: "holidayPlanner_4",
         element: <HolidayPlanner_4 />,
-      }, 
+      },
       {
         path: "holidayPlanner_5",
         element: <HolidayPlanner_5 />,
-      }, 
+      },
       {
         path: "holidayPlanner_6",
         element: <HolidayPlanner_6 />,
-      }, 
+      },
       {
         path: "holidayPlanner_7",
         element: <HolidayPlanner_7 />,
-      }, 
+      },
       {
         path: "holidayPlanner_8",
         element: <HolidayPlanner_8 />,
-      }, 
+      },
       {
         path: "adventure",
         element: <Adventure />,

@@ -29,10 +29,10 @@ const Home = () => {
           <HolidayPlaneCard />
           <BeachHoliday />
           <SunnyHoliday />
-          <HillCamping />
+          <HillCamping title="Hill Country Camping" />
           <TravelCategory />
           <Explore />
-          <Feedback title='Feedback and Reviews'/>
+          <Feedback title="Feedback and Reviews" />
         </div>
       </div>
     </>

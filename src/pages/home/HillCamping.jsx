@@ -6,7 +6,7 @@ import HillCamping10 from "../../assets/hillcamping/HillCamping10.png";
 import HillCamping11 from "../../assets/hillcamping/HillCamping11.png";
 import HillCamping12 from "../../assets/hillcamping/HillCamping12.png";
 
-const HillCamping = () => {
+const HillCamping = ({title}) => {
   const cardCitys = [
     {
       id: 1,
@@ -55,7 +55,7 @@ const HillCamping = () => {
       <div className="max-w-[1100px] w-full space-y-8">
         {/* Title Content */}
         <Link to="/TopCityPackage">
-        <h2 className="text-4xl font-semibold text-gray">Hill Country Camping</h2>
+        <h2 className="text-4xl font-semibold text-gray">{title}</h2>
         </Link>
 
         {/* Card Section */}
