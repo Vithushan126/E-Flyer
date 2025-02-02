@@ -68,12 +68,12 @@ const ReviewForm = () => {
   return (
     <div className="flex flex-col space-y-4 mt-10">
       <h2 className="text-lg ml-10">Share Your Experience</h2>
-      <div className="w-full p-8 rounded-lg border border-border">
+      <div className="w-full p-4 lg:p-8 rounded-lg border border-border">
         <form
           onSubmit={formik.handleSubmit}
-          className="flex flex-row w-full space-x-8"
+          className="flex flex-col lg:flex-row w-full space-y-8 lg:space-y-0 lg:space-x-8"
         >
-          <div className="w-1/3 flex flex-col space-y-4">
+          <div className="w-full lg:w-1/3 flex flex-col space-y-4">
             {ratingCategories.map((category) => (
               <div
                 key={category.id}
@@ -85,7 +85,7 @@ const ReviewForm = () => {
             ))}
           </div>
 
-          <div className="w-2/3 space-y-4">
+          <div className="w-full lg:w-2/3 space-y-4">
             <div className="flex flex-col">
               <textarea
                 id="review"
