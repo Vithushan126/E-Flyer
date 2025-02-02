@@ -2,8 +2,15 @@ import { ChevronRight, Heart } from "lucide-react";
 import React from "react";
 import { Tooltip } from "react-tooltip";
 import Line from "../../../assets/view/Line.svg";
+import { useNavigate } from "react-router-dom";
 
 const FlightAndHotelOffer = ({ flightDetails }) => {
+  const navigate = useNavigate();
+
+  const handleBooking = () => {
+    navigate("/bookingStepper");
+  };
+
   return (
     <div div className="flex flex-col space-y-10">
       {flightDetails?.map((flightDetail, index) => (
@@ -86,7 +93,10 @@ const FlightAndHotelOffer = ({ flightDetails }) => {
                 </span>
                 <span className="">Per person {flightDetail?.price}</span>
               </div>
-              <button className="bg-darkBlue text-2xl hover:bg-blue-600 text-white font-medium py-4 px-6 rounded-2xl">
+              <button
+                className="bg-darkBlue text-2xl hover:bg-blue-600 text-white font-medium py-4 px-6 rounded-2xl"
+                onClick={handleBooking}
+              >
                 Book
               </button>
             </div>

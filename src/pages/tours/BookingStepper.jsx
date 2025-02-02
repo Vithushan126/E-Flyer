@@ -6,7 +6,7 @@ import ConfirmationComponent from "./ConfirmationComponent";
 import { ArrowLeft, Check } from "lucide-react";
 
 const BookingStepper = () => {
-  const [currentStep, setCurrentStep] = useState(3);
+  const [currentStep, setCurrentStep] = useState(1);
 
   const steps = [
     { number: 1, title: "Booking Details", component: <BookingComponent /> },

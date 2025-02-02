@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import WatchList from "../pages/watchlist/Watchlist";
 import Contact from "../pages/contact/Contact";
 import RoundTrip from "../pages/tour/RoundTrip";
+import PageReview from "../pages/pageReview/PageReview";
 const TopCityPackage = React.lazy(() =>
   import("../pages/TopCityPackage/TopCityPackage")
 );
@@ -214,6 +215,10 @@ export const router = createBrowserRouter([
       {
         path: "youngAdultsAdventure",
         element: <YungAdultAdventure />,
+      },
+      {
+        path: "pageReview",
+        element: <PageReview />,
       },
       {
         path: "login",
