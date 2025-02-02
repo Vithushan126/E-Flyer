@@ -77,30 +77,10 @@ const WatchList = () => {
             return <CommonCard adventure={adventure} key={adventure.id} />;
           })}
         </div>
-        {/* </div> */}
-        {/* <section id="more package" className="flex py-32"> */}
         <CardAndCity title="Recommendation For you" />
-        {/* </section> */}
       </div>
     </div>
   );
-  //   return (
-  //     <div>
-  //       <main className="flex-1">
-  //         <div className="max-w-[1100px] lg:mx-64 p-6  bg-gray-100 min-h-screen">
-  //           <h1 className="text-2xl font-bold mb-6">My Watch List</h1>
-  //           <div className="space-y-4">
-  //             {destinations.slice(0, 4).map((adventure) => {
-  //               return <CommonCard adventure={adventure} key={adventure.id} />;
-  //             })}
-  //           </div>
-  //         </div>
-  //         <section id="more package" className="flex py-32">
-  //           <CardAndCity title="Recommendation For you" />
-  //         </section>
-  //       </main>
-  //     </div>
-  //   );
 };
 
 export default WatchList;
