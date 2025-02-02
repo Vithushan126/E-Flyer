@@ -5,6 +5,8 @@ import EmiratesLogo from "../../assets/view/Emirates-Logo.svg";
 import QatarAirwaysLogo from "../../assets/view/Qatar_Airways_Logo.svg";
 import Arrow from "../../assets/view/Arrow.svg";
 import FlightIcon from "../../assets/view/Flight.svg";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const flightDetail = [
   {
@@ -43,7 +45,63 @@ const flightDetail = [
   },
 ];
 
+// Define room options
+const roomOptions = [
+  {
+    id: "twine-adult",
+    name: "Twine room (adult section)",
+    type: "All inclusive Plus",
+    price: -1000,
+    description: "Additional meal available",
+  },
+  {
+    id: "standard-twin",
+    name: "Standard Twin room",
+    type: "All inclusive Plus",
+    price: 0,
+    description: "Additional meal available",
+  },
+  {
+    id: "twine-sharing",
+    name: "Twine Sharing Pool",
+    type: "All inclusive Plus",
+    price: 1000,
+    description: "Additional meal available",
+  },
+  {
+    id: "twine-sharing-adult",
+    name: "Twine Sharing Pool (adult section)",
+    type: "All inclusive Plus",
+    price: 2000,
+    description: "Additional meal available",
+  },
+];
+
 const BookingComponent = () => {
+  // Define validation schema
+  const validationSchema = Yup.object({
+    roomType: Yup.string().required("Please select a room type"),
+    additionalMeals: Yup.boolean(),
+    numberOfGuests: Yup.number()
+      .required("Number of guests is required")
+      .min(1, "Must have at least 1 guest")
+      .max(4, "Maximum 4 guests allowed"),
+  });
+
+  // Initialize formik
+  const formik = useFormik({
+    initialValues: {
+      roomType: "standard-twin",
+      additionalMeals: false,
+      numberOfGuests: 1,
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      console.log("Form submitted:", values);
+      // Handle form submission here
+    },
+  });
+
   return (
     <div className="border border-border rounded-xl p-4 w-full flex flex-col space-y-4  text-smokyGray">
       <div className=" text-3xl font-normal">Catalonia Riviera Maya</div>
@@ -171,6 +229,55 @@ const BookingComponent = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="border border-border rounded-xl p-4 w-full flex flex-col space-y-4  text-smokyGray">
+        <form onSubmit={formik.handleSubmit} className="space-y-6">
+          <div className=" text-3xl font-normal">Your Additional Option </div>
+          <div className="text-lg font-medium">Room and board </div>
+          <p className="">
+            Treat yourself to more comfort or additional meals
+            <br /> Surcharges and reductions for the entire stay in LKR per
+            person.
+          </p>
+          <div className="space-y-4">
+            {roomOptions.map((room) => (
+              <div className="">
+                <label
+                  key={room.id}
+                  className={`flex items-center justify-between p-4 rounded-3xl border border-border cursor-pointer ${
+                    formik.values.roomType === room.id
+                      ? "border-blue-500 bg-blue-50"
+                      : "border-gray-200"
+                  }`}
+                >
+                  <div className="flex flex-row space-x-4">
+                    <input
+                      type="radio"
+                      name="roomType"
+                      value={room.id}
+                      checked={formik.values.roomType === room.id}
+                      onChange={() => formik.setFieldValue("roomType", room.id)}
+                      className="w-5 h-5 accent-darkBlue"
+                    />
+                    <span className="font-medium">{room.name}</span>
+                  </div>
+                  <div className="">
+                    <p className="text-sm ">{room.type}</p>
+                    <p className="text-xs ">{room.description}</p>
+                  </div>
+                  <p className="font-medium">
+                    {room.price === 0
+                      ? "Base Price"
+                      : `${room.price > 0 ? "+" : ""}LKR ${Math.abs(
+                          room.price
+                        )} per person`}
+                  </p>
+                </label>
+              </div>
+            ))}
+          </div>
+        </form>
       </div>
     </div>
   );

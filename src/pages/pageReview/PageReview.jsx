@@ -1,5 +1,6 @@
 import React from "react";
-import PeopleReview from "./PeopleReview";
+import PeopleReview from "../view/bookingSection/PeopleReview";
+import ReviewForm from "./ReviewForm";
 
 const reviewData = [
   { label: "Price Performance", value: 4 },
@@ -92,44 +93,51 @@ const reviews = [
     ],
   },
 ];
-
-const Review = () => {
+const PageReview = () => {
   return (
-    <div className="w-full border border-border p-10 flex flex-col rounded-xl space-y-16">
-      <div className="grid grid-cols-3 gap-4 ">
-        {reviewData?.map((review, index) => (
-          <div
-            key={index}
-            className="px-4 py-1 rounded-lg text-sm  transition-colors border border-borderGray text-nowrap w-full flex flex-row justify-between items-center"
-          >
-            <span>{review.label}</span>
-            <div className="flex flex-row space-x-1">
-              {[...Array(5)].map((_, starIdx) => (
-                <svg
-                  key={starIdx}
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill={starIdx < review.value ? "orange" : "white"}
-                  stroke="orange"
-                  strokeWidth="1.5"
-                  className={`transition-all duration-300 transform ${
-                    starIdx < review.value ? "scale-110" : ""
-                  }`}
-                  viewBox="0 0 24 24"
+    <div className="flex justify-center">
+      <div className="max-w-[1100px] w-full space-y-10 mx-2 lg:mx-0 ">
+        <ReviewForm />
+        <div className="space-y-4">
+          <h2 className="text-lg ml-10">100 + Reviews</h2>
+          <div className="w-full border border-border p-10 flex flex-col rounded-xl space-y-16">
+            <div className="grid grid-cols-3 gap-4 ">
+              {reviewData?.map((review, index) => (
+                <div
+                  key={index}
+                  className="px-4 py-1 rounded-lg text-sm  transition-colors border border-borderGray text-nowrap w-full flex flex-row justify-between items-center"
                 >
-                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                </svg>
+                  <span>{review.label}</span>
+                  <div className="flex flex-row space-x-1">
+                    {[...Array(5)].map((_, starIdx) => (
+                      <svg
+                        key={starIdx}
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        fill={starIdx < review.value ? "orange" : "white"}
+                        stroke="orange"
+                        strokeWidth="1.5"
+                        className={`transition-all duration-300 transform ${
+                          starIdx < review.value ? "scale-110" : ""
+                        }`}
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                      </svg>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
+            <div className="grid grid-cols-2 gap-8 ">
+              <PeopleReview reviews={reviews} />
+            </div>
           </div>
-        ))}
-      </div>
-      <div className="grid grid-cols-2 gap-8 ">
-        <PeopleReview reviews={reviews} />
+        </div>
       </div>
     </div>
   );
 };
 
-export default Review;
+export default PageReview;
