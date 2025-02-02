@@ -100,8 +100,8 @@ const PageReview = () => {
         <ReviewForm />
         <div className="space-y-4">
           <h2 className="text-lg ml-10">100 + Reviews</h2>
-          <div className="w-full border border-border p-8 flex flex-col rounded-xl space-y-16">
-            <div className="grid grid-cols-3 gap-4 ">
+          <div className="w-full border border-border p-4 lg:p-8 flex flex-col rounded-xl space-y-16">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 ">
               {reviewData?.map((review, index) => (
                 <div
                   key={index}
@@ -130,7 +130,7 @@ const PageReview = () => {
                 </div>
               ))}
             </div>
-            <div className="grid grid-cols-2 gap-8 ">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 ">
               <PeopleReview reviews={reviews} />
             </div>
           </div>

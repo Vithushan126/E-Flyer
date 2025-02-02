@@ -59,7 +59,7 @@ const PeopleReview = ({ reviews }) => {
                     {review?.review}
                   </div>
                   {/* Review count section */}
-                  <div className="flex flex-col space-y-4 text-smokyGray w-2/3 mt-4">
+                  <div className="flex flex-col space-y-4 text-smokyGray md:w-2/3 mt-4">
                     {review?.reviewCount?.map((reviewItem, idx) => (
                       <div
                         key={idx}
