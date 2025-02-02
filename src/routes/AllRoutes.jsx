@@ -38,6 +38,9 @@ const TrendingPackage = React.lazy(() =>
   import("../pages/trendingadventure/TrendingPackage")
 );
 const Tour = React.lazy(() => import("../pages/tour/Tour"));
+const BookingStepper = React.lazy(() =>
+  import("../pages/tours/BookingStepper")
+);
 
 const MainLayout = React.lazy(() => import("../layouts/mainLayout/MainLayout"));
 const NotFound = React.lazy(() =>
@@ -95,6 +98,10 @@ export const router = createBrowserRouter([
       {
         path: "tourPackage",
         element: <TourPackage />,
+      },
+      {
+        path: "bookingStepper",
+        element: <BookingStepper />,
       },
       {
         path: "explore",

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { DateRange } from "react-date-range";
-import { Calendar, Users, Search, Plane, BedDouble } from "lucide-react";
+import { Calendar, Search, Plane, BedDouble, Compass } from "lucide-react";
 
 const searchStatus = [
   {
@@ -11,16 +11,16 @@ const searchStatus = [
         <Plane className="h-5 w-5" />
         <span>Flight</span>
         <span>+</span>
-        <BedDouble className="h-5 w-5" />
-        <span>Hotel</span>
+        <Compass className="h-5 w-5" />
+        <span>round trip</span>
       </div>
     ),
   },
   {
     component: (
       <div className="flex items-center space-x-1 lg:space-x-4">
-        <BedDouble className="h-5 w-5" />
-        <span>Hotel</span>
+        <Compass className="h-5 w-5" />
+        <span>round trip</span>
       </div>
     ),
   },
