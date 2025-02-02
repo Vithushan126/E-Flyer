@@ -56,7 +56,9 @@ const CardAndCity = ({ title }) => {
       <div className="max-w-[1100px] w-full space-y-8">
         {/* title contant */}
         <Link to="/TopCityPackage">
-        <h2 className="text-4xl font-semibold text-gray">{title}</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray">
+            {title}
+          </h2>
         </Link>
 
         {/* card section */}
@@ -70,11 +72,9 @@ const CardAndCity = ({ title }) => {
 
         {/* button contant */}
         <div className="flex justify-center">
-          
-            <button className="px-6 py-3 font-semibold text-darkBlue border border-darkBlue rounded-full hover:bg-blue-50 hover:scale-105 transition-colors">
-              View more Offers
-            </button>
-          
+          <button className="px-6 py-3 font-semibold text-darkBlue border border-darkBlue rounded-full hover:bg-blue-50 hover:scale-105 transition-colors">
+            View more Offers
+          </button>
         </div>
       </div>
     </div>
