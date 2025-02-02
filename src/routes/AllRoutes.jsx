@@ -5,6 +5,7 @@ import WatchList from "../pages/watchlist/Watchlist";
 import Contact from "../pages/contact/Contact";
 import RoundTrip from "../pages/tour/RoundTrip";
 import PageReview from "../pages/pageReview/PageReview";
+import FAQ from "../pages/faq/FAQ";
 const TopCityPackage = React.lazy(() =>
   import("../pages/TopCityPackage/TopCityPackage")
 );
@@ -219,6 +220,10 @@ export const router = createBrowserRouter([
       {
         path: "pageReview",
         element: <PageReview />,
+      },
+      {
+        path: "faq",
+        element: <FAQ />,
       },
       {
         path: "login",
