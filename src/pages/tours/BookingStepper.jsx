@@ -8,26 +8,27 @@ import { ArrowLeft, Check } from "lucide-react";
 const BookingStepper = () => {
   const [currentStep, setCurrentStep] = useState(1);
 
+  const goToNextStep = () => {
+    setCurrentStep((prev) => Math.min(prev + 1, steps.length));
+  };
+
   const steps = [
-    { number: 1, title: "Booking Details", component: <BookingComponent /> },
-    {
-      number: 2,
-      title: "Personal Data",
-      component: <PersonalDataComponent />,
-    },
-    { number: 3, title: "Payment", component: <PaymentComponent /> },
+    { number: 1, title: "Booking Details", component: <BookingComponent onNext={goToNextStep} /> },
+    { number: 2, title: "Personal Data", component: <PersonalDataComponent onNext={goToNextStep} /> },
+    { number: 3, title: "Payment", component: <PaymentComponent onNext={goToNextStep} /> },
     { number: 4, title: "Confirmation", component: <ConfirmationComponent /> },
   ];
+
   return (
-    <div className="w-full flex justify-center relative">
+    <div className="w-full flex justify-center relative mt-12">
       <div className="max-w-[1100px] w-full flex flex-col space-y-8">
         {/* Stepper */}
-        <div className="flex flex-col space-y-10 ">
+        <div className="flex flex-col space-y-10">
           <div className="flex items-center justify-between mt-10">
             {steps.map((step, index) => (
               <React.Fragment key={step.number}>
                 {/* Step Circle */}
-                <div className="flex flex-col items-center ">
+                <div className="flex flex-col items-center">
                   <div
                     className={`w-10 h-10 rounded-full border-2 border-darkBlue flex items-center justify-center
                   ${
@@ -53,12 +54,12 @@ const BookingStepper = () => {
 
                 {/* Connector Line */}
                 {index !== steps.length - 1 && (
-                  <div className="flex-grow h-[2px] bg-darkBlue "></div>
+                  <div className="flex-grow h-[2px] bg-darkBlue"></div>
                 )}
               </React.Fragment>
             ))}
           </div>
-          {/* back button */}
+          {/* Back Button */}
           {currentStep > 1 && (
             <div
               className="flex flex-row space-x-2 items-center text-smokyGray cursor-pointer"
@@ -70,7 +71,7 @@ const BookingStepper = () => {
           )}
         </div>
         {/* Content Area */}
-        <div className="">
+        <div>
           {steps.find((step) => step.number === currentStep)?.component}
         </div>
       </div>
