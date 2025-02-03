@@ -86,9 +86,9 @@ const TrendingAdventures = ({ title, subtitle }) => {
       <div className="max-w-[1100px] w-full space-y-8">
         <div className="space-y-2">
           <Link to="/TrendingPackage">
-            <h2 className="text-4xl font-semibold text-gray">{title}</h2>
+            <h2 className="text-3xl font-medium text-center text-gray">{title}</h2>
           </Link>
-          <p className="text-xl text-smokyGray">{subtitle}</p>
+          <p className="text-base font-extralight text-center text-smokyGray">{subtitle}</p>
         </div>
 
         <div className="flex flex-col space-y-6 ">
