@@ -17,7 +17,9 @@ const ValidationSchema = Yup.object().shape({
     endDate: Yup.date().required("End date is required"),
   }),
   rooms: Yup.number().min(1, "At least 1 room required").required("Required"),
-  persons: Yup.number().min(1, "At least 1 person required").required("Required"),
+  persons: Yup.number()
+    .min(1, "At least 1 person required")
+    .required("Required"),
 });
 
 const SearchForm = () => {
@@ -28,7 +30,7 @@ const SearchForm = () => {
   const [searchStatusVal, setSearchStatusVal] = useState(
     location.state?.selectedTab || 0
   );
-  
+
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [dateRange, setDateRange] = useState({
     startDate: new Date(),
@@ -120,8 +122,8 @@ const SearchForm = () => {
   ];
 
   return (
-    <div className="w-full flex justify-center -mt-[850px] lg:-mt-[600px] z-50 relative mb-[500px]">
-    {/* <div className="w-full flex justify-center -mt-24 lg:-mt-44 z-50 relative mb-20"> */}
+    <div className="w-full flex justify-center -mt-[850px] lg:-mt-[600px] z-40 relative mb-[500px]">
+      {/* <div className="w-full flex justify-center -mt-24 lg:-mt-44 z-50 relative mb-20"> */}
       {/* <div className="max-w-[1100px] w-full bg-white rounded-3xl shadow-lg p-2 lg:p-8 space-y-4 lg:space-y-8"> */}
       <div className="w-[95%] lg:max-w-[1100px] bg-white rounded-3xl shadow-lg p-2 md:p-6 lg:p-8 space-y-4 lg:space-y-8">
         <div className="flex flex-row w-full justify-between items-center gap-4 overflow-x-auto scrollbar-hide pt-4">
@@ -129,10 +131,11 @@ const SearchForm = () => {
             <div
               key={index}
               onClick={() => handleTabClick(index)}
-              className={`cursor-pointer hover:text-primaryColor hover:scale-105 ${searchStatusVal === index
+              className={`cursor-pointer hover:text-primaryColor hover:scale-105 ${
+                searchStatusVal === index
                   ? "p-2 lg:p-4 rounded-3xl bg-orange text-white"
                   : ""
-                }`}
+              }`}
             >
               {item.component}
             </div>

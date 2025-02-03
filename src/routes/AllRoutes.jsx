@@ -251,4 +251,3 @@ export const router = createBrowserRouter([
   //   ],
   // },
 ]);
-const App = () => <RouterProvider router={router} />;
