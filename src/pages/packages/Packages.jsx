@@ -90,7 +90,7 @@ const Packages = () => {
           <AdventureSearchForm />
           <div className="flex flex-col">
             {/* sorting section */}
-            <div className="flex justify-end items-center z-50">
+            <div className="flex justify-end items-center z-40">
               <div className="flex flex-col space-y-2">
                 <label className="pl-4 text-darkBlue">Short By</label>
                 <select className="border border-darkBlue text-darkBlue rounded-full px-4 py-1">
