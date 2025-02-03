@@ -44,7 +44,7 @@ const HotelForm = ({
               onChange={(e) => setFieldValue("destination", e.target.value)}
             />
             {errors.destination && touched.destination && (
-              <span className="text-red-500 text-xs mt-1">{errors.destination}</span>
+              <span className="text-red text-xs mt-1">{errors.destination}</span>
             )}
           </div>
         </div>

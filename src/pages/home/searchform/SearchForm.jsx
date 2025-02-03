@@ -27,7 +27,6 @@ const SearchForm = () => {
   const location = useLocation();
   const calendarRef = useRef(null);
 
-  // Set default tab based on location state or fallback to 0
   const [searchStatusVal, setSearchStatusVal] = useState(
     location.state?.selectedTab || 0
   );
@@ -54,7 +53,6 @@ const SearchForm = () => {
   const handleTabClick = (index) => {
     setSearchStatusVal(index);
 
-    // Redirect if "Tour" is selected (index for the tour form)
     if (index === 4) {
       navigate("/tour", { state: { selectedTab: 4 } });
     }

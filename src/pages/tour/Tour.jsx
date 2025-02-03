@@ -134,11 +134,17 @@ const Tour = () => {
             {/* Guided Tour Section */}
             <div className="w-full text-center text-sm md:text-base font-normal text-smokyGray leading-5 tracking-wide mt-8">
               <p>
-                Discover guided and individual tours with EFly! <br />
-                Enjoy an unforgettable travel experience with our carefully planned and professionally guided tours. <br />
-                Our experienced tour guides accompany you through exciting destinations and bring you closer to the culture, history, and scenic beauty of the places. <br />
-                Whether you want to explore historic cities, fascinating natural landscapes, or exotic destinations - we have the perfect tour for you. <br />
-                Trust Hotelplan to make your guided or individual tour unforgettable!
+              Discover guided and individual tours with EFly!<br />
+              Enjoy an unforgettable travel experience with our carefully planned and professionally guided tours. Our experienced tour guides<br />
+              accompany you through exciting destinations and bring you closer to the culture, history and scenic beauty of the places.<br />
+              Our guided tours offer you a comfortable and stress-free way of traveling. You don't have to worry about the organization and logistics, <br />
+              but can concentrate entirely on exploring and the experience. Our tour guides are at your disposal with their expertise and also organize <br />
+              accommodation and transport.<br />
+              For those who prefer more independence, we also offer individual tours. You will receive a tailor-made itinerary that suits your interests <br />
+              and preferences. You have the freedom to explore the sights at your own pace and to respond flexibly to your needs.<br />
+              Whether you want to explore historic cities, fascinating natural landscapes or exotic destinations - we have the perfect tour for you. <br />
+              From Europe to Africa, we offer destinations all over the world.<br />
+              Trust Hotelplan to make your guided or individual tour unforgettable!
               </p>
             </div>
           </div>

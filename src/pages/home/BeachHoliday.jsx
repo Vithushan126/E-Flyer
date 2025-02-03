@@ -55,7 +55,7 @@ const BeachHoliday = () => {
       <div className="max-w-[1100px] w-full space-y-8">
         {/* title contant */}
         <Link to="/TopCityPackage">
-        <h2 className="text-4xl font-semibold text-gray">Beach Holiday</h2>
+        <h2 className="text-3xl font-medium text-center text-gray">Beach Holiday</h2>
         </Link>
 
         {/* card section */}

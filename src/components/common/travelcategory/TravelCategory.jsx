@@ -24,14 +24,14 @@ function TravelCategory() {
   return (
     <div className="w-full flex justify-center py-6">
       <div className="max-w-[1100px] w-full flex flex-col space-y-6">
-        <h1 className="text-3xl font-medium text-left text-gray-800 mb-8">
+        <h1 className="text-3xl font-medium text-gray mb-8 text-center">
           The Best Tour and Adventure For Everyone
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 hover:cursor-pointer">
           {categories.map((category, index) => (
             <div
               key={category?.id}
-              className={`relative group rounded-lg overflow-hidden bg-gray-200 shadow-md ${
+              className={`relative group rounded-xl overflow-hidden shadow-md ${
                 index === 0
                   ? "col-span-1 sm:col-span-2 md:col-span-1 row-span-2"
                   : "col-span-1 sm:col-span-1 md:col-span-1"
