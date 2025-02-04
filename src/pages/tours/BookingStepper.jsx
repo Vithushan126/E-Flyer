@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import BookingComponent from "./BookingComponent";
-import PersonalDataComponent from "./PersonalDataComponent";
+import PersonalDataComponent from "./personaldatacomponent/PersonalDataComponent";
 import PaymentComponent from "./PaymentComponent";
 import ConfirmationComponent from "./ConfirmationComponent";
 import { ArrowLeft, Check } from "lucide-react";

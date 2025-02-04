@@ -24,7 +24,7 @@ export default {
         red: "#E30606",
         lightGray: "#9C9C9C",
         darkcolor: "#484747",
-        offWhite: "#F5F5F6",
+        offWhite: "#F5F5F5",
         buttoncolor:"#8B8B8B",
         border:"#D5D5D5",
         socialmedia:"#666666",
