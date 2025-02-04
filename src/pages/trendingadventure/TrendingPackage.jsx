@@ -30,7 +30,7 @@ const TrendingPackage = () => {
                     <div className="flex flex-col lg:flex-row lg:gap-10">
                         {/* Sidebar */}
                         <div
-                            className={`fixed inset-0 md:static bg-white p-6 md:p-0 z-50 shadow-md md:shadow-none transform ${isFilterVisible ? "translate-x-0" : "-translate-x-full"
+                            className={`fixed inset-0 md:static bg-white p-6 md:p-0 lg:z-auto z-50 shadow-md md:shadow-none transform ${isFilterVisible ? "translate-x-0" : "-translate-x-full"
                                 } transition-transform duration-300 ease-in-out lg:translate-x-0`}
                         >
                             <button

@@ -12,8 +12,9 @@ const Offers = () => {
 
   return (
     <div className="w-full flex justify-center bg-gray-50 py-8">
-      <div>
-        <div className="mt-[600px] -mb-96">
+      <div className="w-full max-w-[1100px] px-4 lg:px-0 space-y-8">
+        {/* Search Form */}
+        <div className="w-full max-w-[1100px] mx-auto lg:mt-[600px] mt-[900px] -mb-96 lg:-mb-96">
           <SearchForm />
         </div>
 

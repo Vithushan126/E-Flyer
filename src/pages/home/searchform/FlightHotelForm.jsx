@@ -44,7 +44,7 @@ const FlightHotelForm = ({
               onChange={(e) => setFieldValue("destination", e.target.value)}
             />
             {errors.destination && touched.destination && (
-              <span className="text-red-500 text-xs mt-1">{errors.destination}</span>
+              <span className="text-red text-xs mt-1">{errors.destination}</span>
             )}
           </div>
         </div>
@@ -65,7 +65,7 @@ const FlightHotelForm = ({
             <button
               type="button"
               onClick={toggleCalendar}
-              className="text-base font-normal text-smokyGray  focus:outline-none"
+              className="text-sm font-normal text-smokyGray  focus:outline-none"
             >
               {dateRange.startDate.toLocaleDateString()} -{" "}
               {dateRange.endDate.toLocaleDateString()}
@@ -103,7 +103,7 @@ const FlightHotelForm = ({
         <div className="flex p-4 gap-4 w-full sm:w-[280px] lg:w-[22%] h-[57px] md:w-[350px] bg-darkBlue rounded-2xl ">
           <button
             type="submit"
-             className="flex items-center px-3 py-3 gap-4  text-white font-medium text-xl focus:outline-none  transition-all"
+            className="flex items-center px-3 py-3 gap-4  text-white font-medium text-xl focus:outline-none  transition-all"
           >
             <Search />
             <span>Search</span>
