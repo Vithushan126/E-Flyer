@@ -116,30 +116,31 @@ const AllOffer = () => {
         return <FlightAndHotelOffer flightDetails={flightDetails} />;
     }
   };
+
   return (
-    <div className="">
-      <div className="flex flex-col space-y-10">
-        <div className="flex flex-col lg:flex-row w-full  lg:space-x-10 ">
-          {/* filter section */}
+    <div className="p-2 md:p-4">
+      <div className="flex flex-col space-y-6">
+        <div className="flex flex-col lg:flex-row w-full lg:space-x-6 space-y-6 lg:space-y-0">
+          {/* Filter Section */}
           <div className="flex flex-col w-full lg:w-96">
             {offerTab === 0 && <OfferFilter />}
             {offerTab === 1 && <HotelFilter />}
           </div>
 
-          {/* card section */}
-          <div className="flex flex-col space-y-4  flex-grow">
-            {/* sorting section */}
+          {/* Card Section */}
+          <div className="flex flex-col space-y-4 flex-grow">
+            {/* Sorting Section */}
             <div className="flex justify-end items-center z-50">
               <div className="flex flex-col space-y-2">
-                <label className="pl-4 text-darkBlue">Short By</label>
-                <select className="border border-darkBlue text-darkBlue rounded-full px-4 py-1">
+                <label className="text-sm text-darkBlue">Sort By</label>
+                <select className="border border-darkBlue text-darkBlue rounded-full px-4 py-1 text-sm">
                   <option>Departure Airport</option>
                 </select>
               </div>
             </div>
-            <div className="w-full space-y-10">
+            <div className="space-y-8">
               <AllOfferSearchForm setSearchStatus={setOfferTab} />
-              <div className="">
+              <div>
                 <OfferTabContent tabId={offerTab} />
               </div>
             </div>
@@ -150,5 +151,6 @@ const AllOffer = () => {
     </div>
   );
 };
+
 
 export default AllOffer;

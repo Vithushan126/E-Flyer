@@ -30,9 +30,9 @@ const sunshineData = [
   { month: "Jul", value: 27 },
   { month: "Aug", value: 26 },
   { month: "Sep", value: 25 },
-  { month: "Oct", value: 24},
-  { month: "Nov", value: 23},
-  { month: "Dec", value: 22},
+  { month: "Oct", value: 24 },
+  { month: "Nov", value: 23 },
+  { month: "Dec", value: 22 },
 ];
 
 const waterTempData = [
@@ -67,11 +67,12 @@ const rainyDaysData = [
 
 const ClimateRegion = () => {
   return (
-    <div className="w-full border border-border p-10 flex flex-col rounded-xl space-y-16">
-      <div className="w-full h-96">
+    <div className="w-full border border-border p-6 md:p-10 flex flex-col rounded-xl space-y-10 md:space-y-16">
+      {/* Slider Section */}
+      <div className="w-full h-64 md:h-96">
         <SliderSection />
       </div>
-      <div className="flex flex-row  lg:space-x-10 text-smokyGray">
+      <div className="flex flex-col lg:flex-row lg:space-x-10 text-smokyGray">
         {/* pharagraph section */}
         <div className="flex flex-col space-y-6  lg:w-4/6 text-left">
           {/* <div className="flex flex-col space-y-4">
@@ -170,14 +171,14 @@ const ClimateRegion = () => {
               holidays away from the hustle and bustle of everyday life.
             </p>
           </div>
-          <div className="flex flex-row space-x-10">
+          <div className="flex flex-col lg:flex-row space-x-10">
             <h6 className="font-medium">
               destinationInfo.travelPeriods.heading
             </h6>
             <p className="">November - April</p>
           </div>
-          <div className="flex flex-col space-y-4">
-            <div className="flex flex-row space-x-10">
+          <div className="flex flex-col space-y-2">
+            <div className="flex flex-col lg:flex-row space-x-10">
               <h6 className="font-medium">
                 destinationInfo.flightTime.heading
               </h6>
@@ -193,10 +194,10 @@ const ClimateRegion = () => {
       </div>
       <div className="flex flex-col space-y-8 text-smokyGray">
         <h6 className='font-medium'>Climate</h6>
-        <div className="grid grid-cols-2 gap-10 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 ">
           <TemperatureChart title="Average daily maximum temperature" data={temperatureData} />
           <TemperatureChart title="Average hour of sunshine per day" data={sunshineData} color="#FFF1AC" yDomain={[0, 32]} yTicks={[0, 4, 8, 12, 16]} />
-          <TemperatureChart title="Average water temperature" data={waterTempData} color="#ACDCFF" yTicks={[0,8, 16,24,32]}/>
+          <TemperatureChart title="Average water temperature" data={waterTempData} color="#ACDCFF" yTicks={[0, 8, 16, 24, 32]} />
           <TemperatureChart title="Average rainy days per month" data={rainyDaysData} color="#B3ACFF" yDomain={[0, 16]} yTicks={[0, 4, 8, 12, 16]} />
         </div>
       </div>

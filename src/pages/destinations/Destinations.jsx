@@ -15,9 +15,9 @@ const Destinations = () => {
     <div className="w-full flex justify-center bg-gray-50 py-8">
       <div>
         <AdventureWorld />
-        <div className="mt-[750px] -mb-96">
+        <section id="search-form" className="pt-6 flex ">
           <SearchForm />
-        </div>
+        </section>
 
         <div className="flex flex-col space-y-6">
           {/* Title Section */}

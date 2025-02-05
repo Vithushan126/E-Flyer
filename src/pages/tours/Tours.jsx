@@ -1,10 +1,11 @@
 import React from "react";
 import HeroSection from "../../components/common/heroSection/HeroSection";
-import SearchForm from "../home/SearchForm";
+/* import SearchForm from "../home/SearchForm"; */
 import HillCamping from "../home/HillCamping";
 import TrendingAdventures from "../home/TrendingAdventures";
 import TourPharagraph from "../tours/TourPharagraph";
 import Tips from "./Tips";
+import SearchForm from "../home/searchform/SearchForm";
 
 const Tours = () => {
   return (

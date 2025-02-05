@@ -12,7 +12,7 @@ const FlightAndHotelOffer = ({ flightDetails }) => {
   };
 
   return (
-    <div div className="flex flex-col space-y-10">
+    <div className="flex flex-col space-y-10">
       {flightDetails?.map((flightDetail, index) => (
         <div
           key={index}

@@ -72,23 +72,23 @@ const Tour = () => {
   return (
     <div>
       {/* Hero Section */}
-      <div className="w-full h-screen flex justify-center">
+      {/* <div className="w-full h-screen flex justify-center"> */}
         {/* Background Image */}
-        <div className="absolute inset-0 z-0">
+      {/*   <div className="absolute inset-0 z-0">
           <img
             src={tourImage}
             alt="background"
             className="w-full h-full object-cover md:h-[800px]"
           />
-        </div>
-        <div className="absolute inset-0 bg-black bg-opacity-40 md:h-[800px]"></div>
-      </div>
+        </div> */}
+        {/* <div className="absolute inset-0 bg-black bg-opacity-40 md:h-[800px]"></div> */}
+      {/* </div> */}
 
       {/* Main Content */}
       <main className="flex-1">
          {/* Search Form Section */}
          <div>
-        <section id="search-form" className="bg-smokygray lg:mt-[400px] md:mt-[100px] mt-[500px] -mb-96 ">
+        <section id="search-form" className="pt-6 flex ">
           <SearchForm />
         </section>
         </div>
@@ -96,18 +96,18 @@ const Tour = () => {
         <div className="w-full flex justify-center">
           <div className="max-w-[1100px] w-full px-4 md:px-0 space-y-8 md:max-w-[1100px] md:mx-auto">
             {/* Trips Heading */}
-            <div className="space-y-2 md:pl-40">
+           {/*  <div className="space-y-2 md:pl-40">
               <h2 className="text-2xl md:text-3xl font-medium text-gray">Trips</h2>
               <p className="text-sm md:text-base font-normal text-smokyGray">
                 Explore Asia, Europe, and America by bus, train, ship, plane, on foot, or by rental car.
               </p>
-            </div>
-            <div className="mt-8 border-t border-border mx-auto max-w-6xl"></div>
+            </div> */}
+            {/* <div className="mt-8 border-t border-border mx-auto max-w-6xl"></div> */}
 
             {/* Offers for Round Trips */}
             <div className="space-y-2">
               <Link to="/roundtrip">
-                <h2 className="text-2xl md:text-3xl font-medium text-gray">Offers for round trips</h2>
+                <h2 className="text-2xl md:text-3xl pt-20 font-medium text-gray">Offers for round trips</h2>
               </Link>
               <p className="text-sm md:text-base font-normal text-smokyGray">
                 Discover fascinating tours through Albania, Greece, Spain, Portugal, Turkey, and Egypt with Hotelplan!

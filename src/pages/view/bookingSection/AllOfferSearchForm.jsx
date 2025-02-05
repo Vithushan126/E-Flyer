@@ -50,13 +50,7 @@ const AllOfferSearchForm = ({ setSearchStatus }) => {
 
   const destinations = ["Colombo", "Bangkok", "Singapore", "Dubai", "Tokyo"];
 
-  const formatDate = (date) => {
-    return date.toLocaleDateString("en-US", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    });
-  };
+  const formatDate = (date) => date.toLocaleDateString("en-US", { day: "2-digit", month: "short", year: "numeric" });
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -66,15 +60,14 @@ const AllOfferSearchForm = ({ setSearchStatus }) => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
-    <div className="w-full flex  justify-center  mt-10 ">
-      <div className="w-full rounded-3xl shadow-lg p-2 lg:p-4 space-y-4 lg:space-y-8 ">
-        <div className="flex flex-row w-full justify-start items-center gap-10 overflow-x-auto scrollbar-hide  pt-4 px-4">
+    <div className="w-full flex justify-between mt-6">
+      <div className="w-full rounded-3xl shadow-lg p-4 space-y-6">
+        {/* Tabs for Flight/Hotel Options */}
+        <div className="flex gap-4 justify-evenly overflow-x-auto scrollbar-hide py-2 px-2">
           {searchStatus.map((item, index) => (
             <div
               key={index}
@@ -82,16 +75,16 @@ const AllOfferSearchForm = ({ setSearchStatus }) => {
                 setSearchStatusVal(index);
                 setSearchStatus(index);
               }}
-              className={`cursor-pointer hover:text-primaryColor hover:scale-105 ${
-                searchStatusVal === index
-                  ? "py-2 px-4  rounded-3xl bg-orange text-white"
-                  : ""
+              className={`cursor-pointer hover:text-primaryColor hover:scale-105 px-4 py-2 ${
+                searchStatusVal === index ? "rounded-3xl bg-orange text-white" : ""
               }`}
             >
               {item.component}
             </div>
           ))}
         </div>
+
+        {/* Form */}
         <Formik
           initialValues={{
             destination: "",
@@ -103,77 +96,57 @@ const AllOfferSearchForm = ({ setSearchStatus }) => {
             persons: 3,
           }}
           validationSchema={ValidationSchema}
-          onSubmit={(values) => {
-            console.log(values);
-          }}
+          onSubmit={(values) => console.log(values)}
         >
           {({ values, setFieldValue }) => (
             <Form>
-              <div className="flex flex-col lg:flex-row gap-4">
-                <div className="flex flex-row justify-between gap-4 w-full ">
-                  <div className="p-2  flex flex-row items-center space-x-2">
-                    <div className="flex justify-center items-center">
-                      <Calendar className=" w-10 h-10 text-smokyGray opacity-50 " />
-                    </div>
-                    <div className="flex flex-col ">
-                      <label className="text-sm text-gray-600 block opacity-50">
-                        Travel Period
-                      </label>
-
-                      <div className="">
-                        <div className="relative" ref={calendarRef}>
-                          <button
-                            type="button"
-                            onClick={() => setShowDatePicker(!showDatePicker)}
-                            className="w-full p-1  rounded-lg text-left focus:outline-none focus:ring-2 focus:ring-blue-500 text-nowrap"
-                          >
-                            {formatDate(values.dateRange.startDate)} -{" "}
-                            {formatDate(values.dateRange.endDate)}
-                          </button>
-                          {showDatePicker && (
-                            <div className="absolute z-50 mt-2">
-                              <DateRange
-                                ranges={[dateRange]}
-                                onChange={(ranges) => {
-                                  setDateRange(ranges.selection);
-                                  setFieldValue("dateRange", ranges.selection);
-                                }}
-                                months={2}
-                                direction="horizontal"
-                                className="border rounded-lg shadow-lg"
-                              />
-                            </div>
-                          )}
+              <div className="flex flex-col justify-between lg:flex-row gap-4">
+                {/* Travel Period */}
+                <div className="flex flex-row items-center gap-2">
+                  <Calendar className="h-6 w-6 text-gray-400" />
+                  <div>
+                    <label className="text-sm text-gray-600">Travel Period</label>
+                    <div className="relative" ref={calendarRef}>
+                      <button
+                        type="button"
+                        onClick={() => setShowDatePicker(!showDatePicker)}
+                        className="text-sm focus:outline-none"
+                      >
+                        {formatDate(values.dateRange.startDate)} - {formatDate(values.dateRange.endDate)}
+                      </button>
+                      {showDatePicker && (
+                        <div className="absolute z-50 mt-2">
+                          <DateRange
+                            ranges={[dateRange]}
+                            onChange={(ranges) => {
+                              setDateRange(ranges.selection);
+                              setFieldValue("dateRange", ranges.selection);
+                            }}
+                            className="border rounded-lg shadow-lg"
+                          />
                         </div>
-                      </div>
+                      )}
                     </div>
-                  </div>
-
-                  <div className="p-2  flex flex-row items-center space-x-2">
-                    <div className="flex justify-center items-center">
-                      <BedDouble className=" w-10 h-10 text-smokyGray opacity-50 " />
-                    </div>
-                    <div className="flex flex-col ">
-                      <label className="text-sm text-gray-600 block opacity-50">
-                        Rooms & Travellers
-                      </label>
-                      <div className="w-full  border-slate-400 rounded-lg bg-offWhite flex  justify-start focus:ring-0 ">
-                        {values.rooms} Rooms, {values.persons} Persons
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Search Button */}
-                  <div className="relative flex items-center">
-                    <button
-                      type="submit"
-                      className="w-fit px-4 bg-darkBlue text-white text-xl rounded-2xl py-2 flex items-center justify-center gap-4 hover:bg-blue-800"
-                    >
-                      <Search className="w-8 h-8" />
-                      Search
-                    </button>
                   </div>
                 </div>
+
+                {/* Rooms & Travelers */}
+                <div className="flex flex-row items-center gap-2">
+                  <BedDouble className="h-6 w-6 text-gray-400" />
+                  <div>
+                    <label className="text-sm text-gray-600">Rooms & Travelers</label>
+                    <div className="text-sm">{values.rooms} Rooms, {values.persons} Persons</div>
+                  </div>
+                </div>
+
+                {/* Search Button */}
+                <button
+                  type="submit"
+                  className="flex items-center justify-center gap-2 bg-darkBlue text-white rounded-2xl px-4 py-2 text-sm hover:bg-blue-800"
+                >
+                  <Search className="h-4 w-4" />
+                  Search
+                </button>
               </div>
             </Form>
           )}
@@ -182,5 +155,6 @@ const AllOfferSearchForm = ({ setSearchStatus }) => {
     </div>
   );
 };
+
 
 export default AllOfferSearchForm;
