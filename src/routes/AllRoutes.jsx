@@ -5,7 +5,7 @@ const WatchList = React.lazy(() => import("../pages/watchlist/Watchlist"));
 const Contact = React.lazy(() => import("../pages/contact/Contact"));
 const RoundTrip = React.lazy(() => import("../pages/tour/RoundTrip"));
 const TopCityPackage = React.lazy(() =>
-  import("../pages/TopCityPackage/TopCityPackage")
+  import("../pages/topcitypackage/TopCityPackage")
 );
 const HolidayPlanner_1 = React.lazy(() =>
   import("../pages/holidayPlanner/HolidayPlanner_1")
