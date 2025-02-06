@@ -52,7 +52,7 @@ const cardCitys = [
 
 const HolidayPlanner_7 = () => {
   const navigate = useNavigate();
-  const [selectedImages, setSelectedImages] = useState([]); // Consistent variable naming
+  const [selectedImages, setSelectedImages] = useState([]); 
 
   const handleFindHereClick = () => {
     if (selectedImages.length > 0) {

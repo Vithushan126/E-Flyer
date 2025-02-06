@@ -12,18 +12,21 @@ const Destinations = () => {
   };
 
   return (
-    <div className="w-full flex justify-center bg-gray-50 py-8">
-      <div>
+    <div className="w-full bg-gray-50 py-8 px-4 md:px-8">
+      <div className="max-w-screen-xl mx-auto">
         <AdventureWorld />
-        <section id="search-form" className="pt-6 flex ">
+
+        {/* Search Form */}
+        <section id="search-form" className="pt-6">
           <SearchForm />
         </section>
 
-        <div className="flex flex-col space-y-6">
-          {/* Title Section */}
+        {/* Filter and Hotel List Section */}
+        <div className="flex flex-col space-y-6 mt-6">
+          {/* Filter Button for Mobile */}
           <div className="text-left">
             <button
-              className="text-sm md:text-base text-darkBlue mt-2 cursor-pointer underline"
+              className="text-sm md:text-base text-darkBlue underline"
               onClick={toggleFilterSidebar}
             >
               Filter
@@ -34,12 +37,12 @@ const Destinations = () => {
           <div className="flex flex-col lg:flex-row lg:gap-10">
             {/* Sidebar */}
             <div
-              className={`fixed inset-0 md:static bg-white p-6 md:p-0 z-40 shadow-md md:shadow-none transform ${
+              className={`fixed inset-0 bg-white p-6 z-50 shadow-md transform ${
                 isFilterVisible ? "translate-x-0" : "-translate-x-full"
-              } transition-transform duration-300 ease-in-out lg:translate-x-0`}
+              } transition-transform duration-300 ease-in-out lg:static lg:shadow-none lg:translate-x-0 lg:w-1/3`}
             >
               <button
-                className="md:hidden absolute top-8 right-8 text-gray-600 text-xl"
+                className="md:hidden absolute top-4 right-5 text-gray-600 text-xl"
                 onClick={toggleFilterSidebar}
               >
                 ✕
