@@ -2,17 +2,17 @@ import React from 'react';
 
 const TravelSummary = () => {
     return (
-        <div className="w-full mx-auto p-6 bg-white rounded-3xl border border-gray-300">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6">Your Summary</h2>
+        <div className="w-full max-w-[498px] mx-auto p-6 bg-white rounded-3xl border border-border">
+            <h2 className="text-xl font-normal text-smokyGray mb-6">Your Summary</h2>
 
             {/* Total Price */}
-            <div className="relative  bg-offWhite p-3 rounded-lg w-full lg:min-w-[498px] mb-4 ">
+            <div className="flex bg-offWhite p-3 w-full -mx-6 lg:min-w-[496px] min-w-[341px] md:min-w-[360px] mb-8 ">
                 {/* Total Price Container */}
-                <div className="flex justify-between items-center">
-                    <span className="text-base text-gray-600 font-normal" style={{ fontFamily: 'Inter' }}>
+                <div className="flex justify-evenly w-full  items-center">
+                    <span className="text-base text-smokyGray font-normal" style={{ fontFamily: 'Inter' }}>
                         Total Price
                     </span>
-                    <span className="text-xl text-gray-800 font-medium" style={{ fontFamily: 'Inter' }}>
+                    <span className="text-xl text-smokyGray font-medium" style={{ fontFamily: 'Inter' }}>
                         LKR 345,667
                     </span>
                 </div>
@@ -41,10 +41,10 @@ const TravelSummary = () => {
                 <DetailItem label="Return Journey" value="24 Oct 2025 08:23 from KGS" />
                 {/* Travel Insurance */}
                 <div className="flex items-center justify-between">
-                    <span className="block text-sm w-full font-medium text-gray-500 mb-1">Travel Insurance</span>
-                    <div className="bg-white border border-gray rounded-lg w-full px-4 py-2 text-gray text-sm">
-                        <p className="text-sm text-gray-700">Combined insurance package 1st adult + LKR 2500</p>
-                        <p className="text-sm text-gray-700 mt-1">Combined insurance package 2nd adult + LKR 2500</p>
+                    <span className="block text-sm w-full font-medium text-smokyGray mb-1">Travel Insurance</span>
+                    <div className="bg-white border border-lightGray rounded-lg w-full px-4 py-2 text-smokyGray text-sm">
+                        <p className="text-sm text-smokyGray">Combined insurance package 1st adult + LKR 2500</p>
+                        <p className="text-sm text-smokyGray mt-1">Combined insurance package 2nd adult + LKR 2500</p>
                     </div>
                 </div>
                 {/* Travel Participants */}
@@ -56,8 +56,8 @@ const TravelSummary = () => {
 
 const DetailItem = ({ label, value }) => (
     <div className="flex items-center justify-between">
-        <span className="text-sm text-gray-500 font-medium w-full">{label}</span>
-        <div className="bg-white border border-gray rounded-lg w-full px-4 py-2 text-gray text-sm">
+        <span className="text-sm text-smokyGray font-medium w-full">{label}</span>
+        <div className="bg-white border border-lightGray rounded-lg w-full px-4 py-2 text-smokyGray text-sm">
             {value}
         </div>
     </div>

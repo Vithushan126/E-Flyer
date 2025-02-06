@@ -58,19 +58,19 @@ const PersonalDataComponent = ({ onNext }) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="relative">
           <div
-            className="border border-gray-300 rounded-2xl p-4 cursor-pointer"
+            className="border border-border rounded-2xl p-4 cursor-pointer"
             onClick={() => toggleDropdown(traveler.id, 'gender')}
           >
-            <p className="text-xs text-gray-500">Gender</p>
+            <p className="text-xs text-smokyGray font-light">Gender</p>
             <div className="flex justify-between items-center">
-              <p className="text-gray-500">{traveler.gender}</p>
-              <ChevronDown className="w-4 h-4 text-gray-500" />
+              <p className="text-smokyGray text-base">{traveler.gender}</p>
+              <ChevronDown className="w-4 h-4 text-smokyGray" />
             </div>
           </div>
           {genderDropdown[traveler.id] && (
-            <div className="absolute w-full bg-white border border-gray-200 rounded-lg mt-1 shadow-lg z-10">
+            <div className="absolute w-full bg-white border border-border rounded-lg mt-1 shadow-lg z-10">
               <div
-                className="p-2 hover:bg-gray-100 cursor-pointer"
+                className="p-2 cursor-pointer"
                 onClick={() => {
                   handleInputChange(traveler.id, 'gender', 'Male');
                   toggleDropdown(traveler.id, 'gender');
@@ -79,7 +79,7 @@ const PersonalDataComponent = ({ onNext }) => {
                 Male
               </div>
               <div
-                className="p-2 hover:bg-gray-100 cursor-pointer"
+                className="p-2 cursor-pointer"
                 onClick={() => {
                   handleInputChange(traveler.id, 'gender', 'Female');
                   toggleDropdown(traveler.id, 'gender');
@@ -94,23 +94,23 @@ const PersonalDataComponent = ({ onNext }) => {
 
       {/* Name Fields */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
-        <div className="border border-gray-300 rounded-2xl p-4">
-          <p className="text-xs text-gray-500">First Name</p>
+        <div className="border border-border rounded-2xl p-4">
+          <p className="text-xs text-smokyGray font-light">First Name</p>
           <input
             type="text"
             value={traveler.firstName}
             onChange={(e) => handleInputChange(traveler.id, 'firstName', e.target.value)}
-            className="w-full text-gray-500 focus:outline-none"
+            className="w-full text-smokyGray text-base focus:outline-none"
             placeholder="First name"
           />
         </div>
-        <div className="border border-gray-300 rounded-2xl p-4">
-          <p className="text-xs text-gray-500">Last Name</p>
+        <div className="border border-border rounded-2xl p-4">
+          <p className="text-xs text-smokyGray font-light">Last Name</p>
           <input
             type="text"
             value={traveler.lastName}
             onChange={(e) => handleInputChange(traveler.id, 'lastName', e.target.value)}
-            className="w-full text-gray-500 focus:outline-none"
+            className="w-full text-smokyGray text-base focus:outline-none"
             placeholder="Last name"
           />
         </div>
@@ -118,17 +118,17 @@ const PersonalDataComponent = ({ onNext }) => {
 
       {/* Date of Birth and Nationality */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
-        <div className="border border-gray-300 rounded-2xl p-4">
+        <div className="border border-border rounded-2xl p-4">
           <div className="flex items-center gap-4">
-            <Calendar className="w-5 h-5 text-gray-500" />
+            <Calendar className="w-5 h-5 text-smokyGray" />
             <div className="flex-1">
-              <p className="text-xs text-gray-500">Date of Birth</p>
+              <p className="text-xs text-smokyGray font-light">Date of Birth</p>
               <input
                 type="text"
                 placeholder="DD/MM/YYY"
                 value={traveler.dateOfBirth}
                 onChange={(e) => handleInputChange(traveler.id, 'dateOfBirth', e.target.value)}
-                className="w-full text-gray-500 focus:outline-none"
+                className="w-full text-smokyGray text-base focus:outline-none"
               />
             </div>
           </div>
@@ -136,19 +136,19 @@ const PersonalDataComponent = ({ onNext }) => {
 
         <div className="relative">
           <div
-            className="border border-gray-300 rounded-2xl p-4 cursor-pointer"
+            className="border border-border rounded-2xl p-4 cursor-pointer"
             onClick={() => toggleDropdown(traveler.id, 'nationality')}
           >
-            <p className="text-xs text-gray-500">Nationality</p>
+            <p className="text-xs text-smokyGray font-light">Nationality</p>
             <div className="flex justify-between items-center">
-              <p className="text-gray-500">{traveler.nationality || 'Select here'}</p>
-              <ChevronDown className="w-4 h-4 text-gray-500" />
+              <p className="text-smokyGray text-base">{traveler.nationality || 'Select here'}</p>
+              <ChevronDown className="w-4 h-4 text-smokyGray" />
             </div>
           </div>
           {nationalityDropdown[traveler.id] && (
-            <div className="absolute w-full bg-white border border-gray-200 rounded-lg mt-1 shadow-lg z-10">
+            <div className="absolute w-full bg-white border border-border rounded-lg mt-1 shadow-lg z-10">
               <div
-                className="p-2 hover:bg-gray-100 cursor-pointer"
+                className="p-2  cursor-pointer"
                 onClick={() => {
                   handleInputChange(traveler.id, 'nationality', 'SL');
                   toggleDropdown(traveler.id, 'nationality');
@@ -157,7 +157,7 @@ const PersonalDataComponent = ({ onNext }) => {
                 SL
               </div>
               <div
-                className="p-2 hover:bg-gray-100 cursor-pointer"
+                className="p-2 cursor-pointer"
                 onClick={() => {
                   handleInputChange(traveler.id, 'nationality', 'Other');
                   toggleDropdown(traveler.id, 'nationality');
@@ -173,20 +173,20 @@ const PersonalDataComponent = ({ onNext }) => {
   );
 
   return (
-    <div className="flex flex-col md:flex-row w-full p-4 space-y-4 md:space-y-0 md:space-x-4">
+    <div className="flex flex-col md:flex-row w-full max-w-[1100px] p-4 space-y-4 md:space-y-0 md:space-x-4 font-inter">
       {/* Left side */}
-      <div className="flex flex-col space-y-4 w-full md:w-2/3">
-        <div className="w-full mx-auto mb-4 p-6 border border-gray-300 rounded-2xl">
-          <p className="text-sm font-normal text-black mb-2">
+      <div className="flex flex-col space-y-4 w-full max-w-[615px] md:w-2/3">
+        <div className="w-full mx-auto mb-4 p-6 border border-border rounded-3xl">
+          <p className="text-sm font-normal text-black ml-6 mb-2">
             The names of the participants must match the information in the passport/ID!
           </p>
-          <p className="text-xs font-light text-black">
+          <p className="text-xs font-light ml-6 text-black">
             Please ensure that the spelling is correct - subsequent corrections will incur costs
           </p>
         </div>
         {/* traveler */}
-        <div className="w-full mx-auto p-6 bg-white rounded-3xl border border-gray-300">
-          <h2 className="text-base">Travel Participants</h2>
+        <div className="w-full mx-auto p-6 bg-white rounded-3xl border border-border">
+          <h2 className="text-base font-normal">Travel Participants</h2>
           {travelers.map(renderTraveler)}
         </div>
         <div >
@@ -199,40 +199,40 @@ const PersonalDataComponent = ({ onNext }) => {
           <TravelAgencyForm />
         </div>
         <div>
-          <div className="w-full mx-auto p-6 bg-white rounded-3xl border border-gray-300">
-            <h2 className="text-xl font-medium mb-6">Check List</h2>
-            <div className="flex items-center gap-3 mb-4">
+          <div className="w-full mx-auto p-6 bg-white rounded-3xl border border-border">
+            <h2 className="text-base font-normal text-black mb-6">Check List</h2>
+            <div className="flex ml-6 items-start gap-4 mb-4">
               <input
                 type="checkbox"
                 checked={termsChecked}
                 onChange={() => setTermsChecked(!termsChecked)}
-                className="w-11 h-11 text-blue-500 border-gray rounded"
+                className="w-11 h-11 text-darkBlue border-border rounded"
               />
-              <div>
-                <p>I have read MTCH AG's General Terms and Conditions and Privacy Policy as well as the important information! I have read and accept them for all participants. In particular, I agree to the processing of data that is particularly worthy of protection.</p>
+              <div  className='text-sm font-light text-smokyGray'>
+                <p>I have read <a href="#" className="underline"> MTCH AG's General Terms and Conditions</a> and <a href="#" className="underline"> Privacy Policy </a> as well as the important information! I have read and accept them for all participants. In particular, I agree to the processing of data that is particularly worthy of protection.</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex ml-6 items-start gap-3 mb-4">
               <input
                 type="checkbox"
                 checked={documentsChecked}
                 onChange={() => setDocumentsChecked(!documentsChecked)}
-                className="w-7 h-7 text-blue-500 border-gray rounded"
+                className="w-7 h-7 text-darkBlue border-border rounded"
               />
-              <div>
-                <p>I confirm that all participants will be in possession of the necessary travel documents (ID / passport / possibly visa) for the chosen destination at the time of departure.</p>
+              <div  className='text-sm font-light text-smokyGray'>
+                <p>I confirm that all participants will be in possession of the <a href="#" className="underline"> necessary travel documents (ID / passport / possibly visa) </a> for the chosen destination at the time of departure.</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 mb-8">
+            <div className="flex ml-6 items-start gap-3 mb-8">
               <input
                 type="checkbox"
                 checked={newsletterChecked}
                 onChange={() => setNewsletterChecked(!newsletterChecked)}
-                className="w-4 h-4 text-blue-500 border-gray rounded"
+                className="w-4 h-4 text-darkBlue border-border rounded "
               />
-              <div>
+              <div  className='text-sm font-light text-smokyGray'>
                 <p>I want to be informed about the latest holiday offers and subscribe to the free newsletter.</p>
               </div>
             </div>

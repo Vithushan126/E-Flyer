@@ -24,21 +24,21 @@ const ContactDetailsComponent = () => {
   };
 
   return (
-    <div className="w-full mx-auto p-6 bg-white rounded-3xl border border-gray-300">
-      <h2 className="text-xl font-medium mb-8">Contact Details</h2>
+    <div className="w-full mx-auto p-6 bg-white rounded-3xl border border-border font-inter">
+      <h2 className="text-base font-normal mb-8">Contact Details</h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-1 gap-4">
         {/* Gender */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
           <div className="relative">
             <div
-              className="border border-gray-300 rounded-2xl p-4 cursor-pointer"
+              className="border border-border rounded-2xl p-4 cursor-pointer"
               onClick={() => setGender(gender === 'Male' ? 'Female' : 'Male')}
             >
-              <p className="text-xs text-gray-500">Gender</p>
+              <p className="text-xs text-smokyGray font-light">Gender</p>
               <div className="flex justify-between items-center">
-                <p className="text-gray-500">{gender}</p>
-                <ChevronDown className="w-4 h-4 text-gray-500" />
+                <p className="text-smokyGray text-base">{gender}</p>
+                <ChevronDown className="w-4 h-4 text-smokyGray" />
               </div>
             </div>
           </div>
@@ -46,23 +46,23 @@ const ContactDetailsComponent = () => {
 
         {/* First Name & Last Name */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
-          <div className="border border-gray-300 rounded-2xl p-4">
-            <p className="text-xs text-gray-500">First Name</p>
+          <div className="border border-border rounded-2xl p-4">
+            <p className="text-xs text-smokyGray font-light">First Name</p>
             <input
               type="text"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              className="w-full text-gray-500 focus:outline-none"
+              className="w-full text-smokyGray text-base focus:outline-none"
               placeholder="First name"
             />
           </div>
-          <div className="border border-gray-300 rounded-2xl p-4">
-            <p className="text-xs text-gray-500">Last Name</p>
+          <div className="border border-border rounded-2xl p-4">
+            <p className="text-xs text-smokyGray font-light">Last Name</p>
             <input
               type="text"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              className="w-full text-gray-500 focus:outline-none"
+              className="w-full text-smokyGray text-base focus:outline-none"
               placeholder="Last name"
             />
           </div>
@@ -70,33 +70,33 @@ const ContactDetailsComponent = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
           {/* Street Number */}
-          <div className="border border-gray-300 rounded-2xl p-4">
-            <label className="text-xs text-gray-500 mb-1">Street Number</label>
+          <div className="border border-border rounded-2xl p-4">
+            <label className="text-xs text-smokyGray mb-1 font-light">Street Number</label>
             <input
               type="text"
               value={streetNumber}
               onChange={(e) => setStreetNumber(e.target.value)}
-              className="w-full text-gray-500 focus:outline-none"
+              className="w-full text-smokyGray text-base focus:outline-none"
               placeholder="Street number"
             />
           </div>
 
           {/* Country */}
-          <div className="relative border border-gray-300 rounded-2xl p-4">
-            <label className="text-xs text-gray-500 mb-1">Country</label>
+          <div className="relative border border-border rounded-2xl p-4">
+            <label className="text-xs text-smokyGray mb-1 font-light">Country</label>
             <div
               className="flex justify-between items-center cursor-pointer"
               onClick={toggleCountryDropdown}
             >
-              <span className="text-gray-500">{country}</span>
-              <ChevronDown className="w-4 h-4 text-gray-500" />
+              <span className="text-smokyGray text-base">{country}</span>
+              <ChevronDown className="w-4 h-4 text-smokyGray" />
             </div>
             {showCountryDropdown && (
-              <div className="absolute bg-white border border-gray-300 rounded-2xl shadow-lg z-10 w-full mt-1">
+              <div className="absolute bg-white border border-border rounded-2xl shadow-lg z-10 w-full mt-1">
                 {['USA', 'SriLanka', 'UK'].map((countryName) => (
                   <div
                     key={countryName}
-                    className="p-3 hover:bg-gray-100 cursor-pointer"
+                    className="p-3 cursor-pointer"
                     onClick={() => handleCountrySelect(countryName)}
                     placeholder="Country"
                   >
@@ -110,27 +110,27 @@ const ContactDetailsComponent = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
           {/* Postal Code */}
-          <div className="border border-gray-300 rounded-2xl p-4">
-            <label className="text-xs text-gray-500 mb-1">Postal Code</label>
+          <div className="border border-border rounded-2xl p-4">
+            <label className="text-xs text-smokyGray mb-1 font-light">Postal Code</label>
             <input
               type="text"
               value={postalCode}
               onChange={(e) => setPostalCode(e.target.value)}
-              className="w-full text-gray-500 focus:outline-none"
+              className="w-full text-smokyGray text-base focus:outline-none"
               placeholder="Postal code"
             />
           </div>
 
           {/* location */}
-          <div className="relative border border-gray-300 rounded-2xl p-4">
-            <label className="text-xs text-gray-500 mb-1">Location</label>
+          <div className="relative border border-border rounded-2xl p-4">
+            <label className="text-xs text-smokyGray mb-1 font-light">Location</label>
             <div className="flex items-center">
-              <MapPin className="w-6 h-6 text-gray-500 mr-2" />
+              <MapPin className="w-6 h-6 text-smokyGray mr-2" />
               <input
                 type="text"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
-                className="w-full text-gray-500 focus:outline-none"
+                className="w-full text-smokyGray text-base focus:outline-none"
                 placeholder="Location"
               />
             </div>
@@ -139,25 +139,25 @@ const ContactDetailsComponent = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
           {/* Email */}
-          <div className="border border-gray-300 rounded-2xl p-4">
-            <label className="text-xs text-gray-500 mb-1">Email Address</label>
+          <div className="border border-border rounded-2xl p-4">
+            <label className="text-xs text-smokyGray mb-1 font-light">Email Address</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full text-gray-500 focus:outline-none"
+              className="w-full text-smokyGray text-base focus:outline-none"
               placeholder="Email"
             />
           </div>
 
           {/* Phone Number */}
-          <div className="relative border border-gray-300 rounded-2xl p-4">
-            <label className="text-xs text-gray-500 mb-1">Phone Number</label>
+          <div className="relative border border-border rounded-2xl p-4">
+            <label className="text-xs text-smokyGray mb-1 font-light">Phone Number</label>
             <input
               type="tel"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              className="w-full text-gray-500 focus:outline-none"
+              className="w-full text-smokyGray text-base focus:outline-none"
               placeholder="Phone number"
             />
           </div>
@@ -165,20 +165,20 @@ const ContactDetailsComponent = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
           {/* Emergency Phone Number */}
-          <div className="border border-gray-300 rounded-2xl p-4">
-            <label className="text-xs text-gray-500 mb-1">Phone Number (For emergency)</label>
+          <div className="border border-border rounded-2xl p-4">
+            <label className="text-xs text-smokyGray mb-1 font-light">Phone Number (For emergency)</label>
             <input
               type="tel"
               value={emergencyPhoneNumber}
               onChange={(e) => setEmergencyPhoneNumber(e.target.value)}
-              className="w-full text-gray-500 focus:outline-none"
+              className="w-full text-smokyGray text-base focus:outline-none"
               placeholder="Phone number"
             />
           </div>
         </div>
       </div>
 
-      <div className="mt-8 text-gray-500 text-sm">
+      <div className="mt-8 text-smokyGray text-sm font-light">
         After booking you will immediately receive an email confirmation.
       </div>
     </div>
