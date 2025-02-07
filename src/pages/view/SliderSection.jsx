@@ -33,14 +33,11 @@ const SliderSection = () => {
     <div className="w-full h-full relative">
       {/* Left Arrow Navigation */}
       <button
-        onClick={rotateLeft}
-        className="absolute top-1/2 left-1 sm:left-4 md:left-8 lg:left-10 transform -translate-y-1/2 bg-gradient-to-br from-gray to-gray-200 p-4 sm:p-6 rounded-full shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300 z-20"
-      >
-        <SlArrowLeft
-          size={40}
-          className="text-white transition-transform duration-300 hover:rotate-[-15deg]"
-        />
-      </button>
+  onClick={rotateLeft}
+  className="absolute top-1/2 left-1 sm:left-4 md:left-8 lg:left-10 transform -translate-y-1/2 bg-gradient-to-br from-gray to-gray-200 p-4 sm:p-6 rounded-full shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300 z-20"
+>
+  <SlArrowLeft size={30} className="text-white" />
+</button>
 
       {/* Right Arrow Navigation */}
       <button
@@ -48,8 +45,8 @@ const SliderSection = () => {
         className="absolute top-1/2 right-2 sm:right-4 md:right-8 lg:right-10 transform -translate-y-1/2 bg-gradient-to-br from-gray to-gray-200 p-4 sm:p-6 rounded-full shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300 z-20"
       >
         <SlArrowRight
-          size={40}
-          className="text-white transition-transform duration-300 hover:rotate-[15deg]"
+          size={30}
+          className="text-white"
         />
       </button>
 
@@ -57,18 +54,14 @@ const SliderSection = () => {
       <div className="w-full h-full overflow-hidden rounded-3xl">
         <div
           className="flex h-full transition-transform duration-500 ease-out"
-          style={{
-            transform: `translateX(-${currentIndex * 100}%)`,
-          }}
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {images.map((image, index) => (
             <div
-              key={index}
-              className="w-full h-full flex-shrink-0 bg-cover bg-center"
-              style={{
-                backgroundImage: `url(${image})`,
-              }}
-            />
+            key={index}
+            className="w-full bg-cover bg-center h-64 sm:h-96 lg:h-[329px] flex-shrink-0 "
+            style={{ backgroundImage: `url(${image})` }}
+          />
           ))}
         </div>
 

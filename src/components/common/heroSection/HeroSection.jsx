@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import backgroundImage from "../../../assets/heroSection/background_2.png";
 import WhiteLogo from "../../../assets/footer/whitelogo.png";
 import ButtonCom from "../../ui/button/ButtonCom";
+import SearchForm from "../../../pages/home/searchform/SearchForm";
 
 const HeroSection = () => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
@@ -42,6 +43,9 @@ const HeroSection = () => {
           />
         </div>
         <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div className="px-2 w-full items-center flex justify-center pb-16">
+                  <SearchForm />
+                </div>
       </div>
 
       {/* Desktop View */}

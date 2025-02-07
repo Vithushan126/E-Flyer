@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { useState } from "react";
+
 const option = {
   familyVacation: [
     { label: "Junior Suite / Suite" },
@@ -80,7 +80,7 @@ const option = {
 const FilterTag = ({ label, count, selected, onClick }) => (
   <button
     onClick={onClick}
-    className={`px-4 py-1 rounded-lg text-sm transition-colors border border-borderGray ${
+    className={`px-3 py-1 rounded-lg text-sm transition-colors border border-borderGray ${
       selected ? "bg-darkBlue text-white" : " text-smokyGray hover:bg-gray-200"
     }`}
   >
@@ -108,8 +108,9 @@ const FilterSection = ({ title, isOpen, onToggle, children }) => (
 const DropDownSection = () => {
   const [openSection, setOpenSection] = useState("familyVacation");
   const [selectedTags, setSelectedTags] = useState([]);
+  
   return (
-    <div className="w-full  rounded-xl p-4">
+    <div className="w-full  rounded-xl p-4 bg-white">
       {/* Family Vacation */}
       <FilterSection
         title="Family Vacation "

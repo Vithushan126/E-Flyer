@@ -24,7 +24,7 @@ const headerText = [
     icon: <MapPin className="h-5 w-5" />,
     url: "/destinations",
   },
-  { text: "Packages", icon: <Package className="h-5 w-5" />, url: "/packages" },
+  { text: "Contacct", icon: <Package className="h-5 w-5" />, url: "/contact" },
 ];
 
 const Navbar = () => {
@@ -32,7 +32,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [navState, setNavState] = useState(false);
   const menuRef = useRef(null); // Ref for the dropdown menu
-  const buttonRef = useRef(null); // Ref for the menu toggle button
+  const buttonRef = useRef(null); 
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -42,7 +42,7 @@ const Navbar = () => {
     navigate(url);
     setIsOpen(false);
   };
-  // Close dropdown if clicked outside
+ 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -51,7 +51,7 @@ const Navbar = () => {
         buttonRef.current &&
         !buttonRef.current.contains(event.target)
       ) {
-        setIsOpen(false); // Close the dropdown
+        setIsOpen(false); 
       }
     };
 

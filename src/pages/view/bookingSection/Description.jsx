@@ -3,9 +3,9 @@ import DropDownSection from "./DropDownSection";
 
 const Description = () => {
   return (
-    <div className="w-full border border-border p-4 flex flex-row lg:space-x-10 rounded-xl text-smokyGray">
+    <div className="w-full border border-border p-2 md:p-4 flex flex-col lg:flex-row lg:space-x-10 rounded-xl text-smokyGray">
       {/* pharagraph section */}
-      <div className="flex flex-col space-y-6  lg:w-4/6 text-left">
+      <div className="flex flex-col space-y-4 md:space-y-6 lg:w-4/6 text-left">
         <div className="flex flex-col space-y-4">
           <p className="font-medium">
             Kuredu Island is one of the largest islands and offers a generous
@@ -138,7 +138,7 @@ const Description = () => {
       </div>
 
       {/* dropdown section */}
-      <div className="flex flex-col w-full lg:w-2/6 ">
+      <div className="flex flex-col w-full lg:w-2/6 mt-4 lg:mt-0">
         <DropDownSection />
       </div>
     </div>

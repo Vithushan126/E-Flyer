@@ -55,7 +55,7 @@ const CardAndCity = ({ title }) => {
     <div className="w-full flex justify-center">
       <div className="max-w-[1100px] w-full space-y-8">
         {/* title contant */}
-        <Link to="/TopCityPackage">
+        <Link to="/topcitypackage">
           <h2 className="text-3xl font-medium text-center text-gray">
             {title}
           </h2>

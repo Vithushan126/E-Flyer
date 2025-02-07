@@ -95,12 +95,12 @@ const reviews = [
 
 const Review = () => {
   return (
-    <div className="w-full border border-border p-10 flex flex-col rounded-xl space-y-16">
-      <div className="grid grid-cols-3 gap-4 ">
+    <div className="w-full p-6 md:p-10 border border-border rounded-xl flex flex-col space-y-10 md:space-y-16">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {reviewData?.map((review, index) => (
           <div
             key={index}
-            className="px-4 py-1 rounded-lg text-sm  transition-colors border border-borderGray text-nowrap w-full flex flex-row justify-between items-center"
+            className="px-4 py-2 rounded-lg text-sm transition-colors border border-borderGray w-full flex justify-between items-center"
           >
             <span>{review.label}</span>
             <div className="flex flex-row space-x-1">
@@ -125,7 +125,9 @@ const Review = () => {
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-2 gap-8 ">
+
+      {/* Reviews Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <PeopleReview reviews={reviews} />
       </div>
     </div>

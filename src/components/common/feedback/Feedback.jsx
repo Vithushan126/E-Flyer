@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -80,9 +81,11 @@ const Feedback = ({title}) => {
   return (
     <div className="w-full flex justify-center  ">
       <div className="max-w-[1100px] w-full mb-20">
+      <Link to="/PageReview">
         <h2 className="text-4xl font-semibold text-[#004679] mb-8 text-left">
           {title}
         </h2>
+        </Link>
         <div className="px-0 lg:px-4 ">
           <Slider {...settings}>
             {reviews.map((review, index) => (

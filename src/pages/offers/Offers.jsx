@@ -12,10 +12,11 @@ const Offers = () => {
 
   return (
     <div className="w-full flex justify-center bg-gray-50 py-8">
-      <div>
-        <div className="mt-[600px] -mb-96">
+      <div className="w-full max-w-[1100px] px-4 lg:px-0 space-y-8">
+        {/* Search Form */}
+        <section id="search-form" className="pt-6 flex ">
           <SearchForm />
-        </div>
+        </section>
 
         <div className="flex flex-col space-y-6">
           {/* Title Section */}

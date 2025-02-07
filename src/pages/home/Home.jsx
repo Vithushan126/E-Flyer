@@ -16,10 +16,10 @@ const Home = () => {
     <>
       <div className="">
         <HeroSection />
-        <div className="px-2 w-full">
+        {/* <div className="px-2 w-full">
           <SearchForm />
-        </div>
-        <div className="space-y-20 mx-2">
+        </div> */}
+        <div className="space-y-20 pt-16 mx-2">
           <TrendingAdventures
             title=" Trending Adventures"
             subtitle=" Thinking of travelling somewhere soon? Here are some options to help

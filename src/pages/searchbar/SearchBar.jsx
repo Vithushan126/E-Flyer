@@ -14,7 +14,6 @@ const SearchBar = () => {
     key: "selection",
   });
 
-  const destinations = ["New York", "Los Angeles", "San Francisco", "Chicago"];
   const dropdownRef = useRef(null);
 
   const handleClickOutside = (event) => {
@@ -51,35 +50,31 @@ const SearchBar = () => {
           <div className="w-full max-w-6xl rounded-3xl shadow-lg p-4 space-y-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
               {/* Destination */}
-              <div className="flex flex-row items-center p-[10px_20px] gap-[20px] bg-backgroundColor rounded-[20px]">
-                <MapPin className="text-smokyGray w-[24.24px] h-[28px]" />
-                <div className="flex flex-col items-start gap-[3px]">
-                  <span className="text-smokyGray font-inter font-light text-xs leading-[15px]">
-                    Destination
-                  </span>
-                  <Field
-                    as="select"
-                    name="destination"
-                    className="text-smokyGray font-inter font-normal text-base leading-[19px] focus:outline-none focus:ring-2 focus:ring-primaryColor bg-transparent"
-                    value={values.destination}
-                    onChange={(e) => setFieldValue("destination", e.target.value)}
-                  >
-                    <option value="">Select destination</option>
-                    {destinations.map((dest) => (
-                      <option key={dest} value={dest}>
-                        {dest}
-                      </option>
-                    ))}
-                  </Field>
-                  {errors.destination && touched.destination && (
-                    <span className="text-red text-xs">{errors.destination}</span>
-                  )}
-                </div>
-              </div>
+              <div className="relative flex flex-row items-center p-[10px_20px] gap-5 -space-x-6 bg-backgroundColor rounded-[20px]">
+                        <MapPin className="text-smokyGray w-[36px] h-[36px]"/>
+                        <div className="flex flex-col items-start ">
+                          <label
+                            className="text-smokyGray font-inter font-light text-xs leading-[15px]"
+                            htmlFor="destination"
+                          >
+                            Destination
+                          </label>
+                          <Field
+                            name="destination"
+                            placeholder="Enter destination"
+                            className="text-base font-normal bg-transparent text-smokyGray "
+                            value={values.destination}
+                            onChange={(e) => setFieldValue("destination", e.target.value)}
+                          />
+                          {errors.destination && touched.destination && (
+                            <span className="text-red text-xs mt-1">{errors.destination}</span>
+                          )}
+                        </div>
+                      </div>
 
               {/* Date Range */}
               <div className="relative flex flex-row items-center p-[10px_20px] gap-5 bg-backgroundColor rounded-[20px]" ref={dropdownRef}>
-                <Calendar className="text-smokyGray" />
+                <Calendar className="text-smokyGray w-[36px] h-[36px]" />
                 <div className="flex flex-col items-start gap-[3px]">
                   <span className="text-smokyGray font-inter font-light text-xs leading-[15px]">
                     Travel Period
