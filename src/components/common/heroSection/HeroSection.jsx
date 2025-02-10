@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import backgroundImage from "../../../assets/heroSection/background_2.png";
+import backgroundImage from "../../../assets/heroSection/EFly-web-cover.jpeg";
 import WhiteLogo from "../../../assets/footer/whitelogo.png";
 import ButtonCom from "../../ui/button/ButtonCom";
 import SearchForm from "../../../pages/home/searchform/SearchForm";

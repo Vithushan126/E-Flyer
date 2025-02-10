@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import CityCard from "../../components/ui/cityCard/CityCard";
-import BeachHoliday1 from "../../assets/beachHoliday/BeachHoliday1.svg";
-import BeachHoliday2 from "../../assets/beachHoliday/BeachHoliday2.svg";
-import BeachHoliday3 from "../../assets/beachHoliday/BeachHoliday3.svg";
-import BeachHoliday4 from "../../assets/beachHoliday/BeachHoliday4.svg";
+import HillCamping9 from "../../assets/hillcamping/HillCamping9.png";
+import HillCamping10 from "../../assets/hillcamping/HillCamping10.png";
+import HillCamping11 from "../../assets/hillcamping/HillCamping11.png";
+import HillCamping12 from "../../assets/hillcamping/HillCamping12.png";
 import HolidayHeader from './HolidayHeader';
 
 const cardCitys = [
@@ -16,7 +16,7 @@ const cardCitys = [
     duration: "3 nights - 2 Adults",
     country: "Indonesia",
     offers: 109,
-    image: BeachHoliday1,
+    image: HillCamping9,
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ const cardCitys = [
     duration: "3 nights - 2 Adults",
     country: "Indonesia",
     offers: 109,
-    image: BeachHoliday2,
+    image: HillCamping10,
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ const cardCitys = [
     duration: "3 nights - 2 Adults",
     country: "Indonesia",
     offers: 109,
-    image: BeachHoliday3,
+    image: HillCamping11,
   },
   {
     id: 4,
@@ -46,7 +46,7 @@ const cardCitys = [
     duration: "3 nights - 2 Adults",
     country: "Indonesia",
     offers: 109,
-    image: BeachHoliday4,
+    image: HillCamping12,
   },
 ];
 

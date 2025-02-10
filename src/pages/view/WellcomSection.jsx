@@ -46,14 +46,14 @@ const WellcomSection = () => {
 
         <div className="flex space-x-1">
           {[...Array(7)].map((_, index) => (
-            <Star key={index} className="h-5 md:h-8 w-5 md:w-8 fill-darkBlue" />
+            <Star key={index} className="h-5 md:h-8 w-5 md:w-8 fill-darkBlue text-darkBlue" />
           ))}
         </div>
         <div className="text-lg font-medium">France | City name</div>
         <div className="flex justify-end">
           <div className="flex">
             {[...Array(5)].map((_, index) => (
-              <Star key={index} className="h-5 md:h-8 w-5 md:w-8 fill-orange" />
+              <Star key={index} className="h-5 md:h-8 w-5 md:w-8 fill-orange text-orange" />
             ))}
           </div>
         </div>
