@@ -28,7 +28,8 @@ export default {
         buttoncolor:"#8B8B8B",
         border:"#D5D5D5",
         socialmedia:"#666666",
-        green:"#1CAC03"
+        green:"#1CAC03",
+        day:"#EAEAEA",
       },
 
       maxWidth: {
