@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import backgroundImage from "../../../assets/heroSection/EFly-web-cover.jpeg";
+import backgroundImage from "../../../assets/heroSection/web-cover.jpeg";
 import WhiteLogo from "../../../assets/footer/whitelogo.png";
 import ButtonCom from "../../ui/button/ButtonCom";
 import SearchForm from "../../../pages/home/searchform/SearchForm";
@@ -44,14 +44,14 @@ const HeroSection = () => {
         </div>
         <div className="absolute inset-0 bg-black bg-opacity-60"></div>
         <div className="px-2 w-full items-center flex justify-center pb-16">
-                  <SearchForm />
-                </div>
+          <SearchForm />
+        </div>
       </div>
 
       {/* Desktop View */}
       <div className="hidden md:block">
         {/* Countdown and Offer Banner - Desktop */}
-       {/*  <div className="absolute w-full h-[48px] bg-orange -bottom-12 flex justify-center items-center">
+        {/*  <div className="absolute w-full h-[48px] bg-orange -bottom-12 flex justify-center items-center">
           <p className="text-white text-center text-base">EFLY | The Best Travel Guide</p>
         </div> */}
         {/* Offer Section Inside Hero */}

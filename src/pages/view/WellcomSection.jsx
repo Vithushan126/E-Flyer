@@ -1,7 +1,6 @@
 import { BedDouble, Heart, MapPin, Plane, Star, ThumbsUp } from "lucide-react";
 import React from "react";
 import SliderSection from "./SliderSection";
-
 import Drings from "../../assets/view/Drings.svg";
 import Hotel from "../../assets/view/Hotel.svg";
 import Ring from "../../assets/view/Ring.svg";

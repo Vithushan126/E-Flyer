@@ -33,7 +33,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [navState, setNavState] = useState(false);
   const menuRef = useRef(null); // Ref for the dropdown menu
-  const buttonRef = useRef(null); 
+  const buttonRef = useRef(null);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -43,7 +43,7 @@ const Navbar = () => {
     navigate(url);
     setIsOpen(false);
   };
- 
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -52,7 +52,7 @@ const Navbar = () => {
         buttonRef.current &&
         !buttonRef.current.contains(event.target)
       ) {
-        setIsOpen(false); 
+        setIsOpen(false);
       }
     };
 
@@ -75,9 +75,8 @@ const Navbar = () => {
   }, []);
   return (
     <div
-      className={`w-full z-50 bg-darkBlue shadow-lg  top-0 left-0 transition-all duration-300 ${
-        navState ? "fixed " : "relative"
-      }`}
+      className={`w-full z-50 bg-darkBlue shadow-lg  top-0 left-0 transition-all duration-300 ${navState ? "fixed " : "relative"
+        }`}
     >
       <div className="h-[57px] flex justify-center items-center bg-opacity-80 ">
         {/*  <div className="h-[67px] flex justify-center items-center  bg-white  bg-opacity-30 shadow-lg"> */}

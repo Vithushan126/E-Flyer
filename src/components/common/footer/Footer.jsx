@@ -296,6 +296,7 @@ const Footer = () => {
                 </div>
               </div>
             </div>
+            
             {/* Contact Info */}
             <div className="flex flex-col space-y-4 text-center md:text-start">
               <div>
