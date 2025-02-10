@@ -42,8 +42,8 @@ const HeroSection = () => {
             className="w-full h-full object-fill"
           />
         </div>
-        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-        <div className="px-2 w-full items-center flex justify-center pb-16">
+        <div className="absolute inset-0 bg-[#222222] bg-opacity-40"></div>
+        <div className="px-2 w-full items-center flex justify-center pb-36">
           <SearchForm />
         </div>
       </div>
@@ -55,7 +55,7 @@ const HeroSection = () => {
           <p className="text-white text-center text-base">EFLY | The Best Travel Guide</p>
         </div> */}
         {/* Offer Section Inside Hero */}
-        <div className="absolute bottom-0 w-full bg-[rgba(0,70,121,0.85)] px-4 md:px-8 lg:px-16 flex flex-wrap items-center justify-between space-y-4 md:space-y-0 py-6">
+        <div className="absolute bottom-0 w-full h-32 bg-darkBlue bg-opacity-85 px-4 md:px-8 lg:px-16 flex flex-wrap items-center justify-between space-y-4 md:space-y-0 py-6">
           <OfferSectionContent timeLeft={timeLeft} className="max-w-[1100px] flex flex-row mx-auto space-x-44" />
         </div>
       </div>
