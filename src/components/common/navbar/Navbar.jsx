@@ -75,7 +75,7 @@ const Navbar = () => {
   }, []);
   return (
     <div
-      className={`w-full z-50 bg-darkBlue shadow-lg  top-0 left-0 transition-all duration-300 ${navState ? "fixed " : "relative"
+      className={`w-full z-50 bg-darkBlue shadow-lg bg-opacity-70 top-0 left-0 transition-all duration-300 ${navState ? "fixed " : "relative"
         }`}
     >
       <div className="h-[57px] flex justify-center items-center bg-opacity-80 ">
