@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import EflyLogo from "../../../assets/navbar/EflyLogo.svg";
 import SearchIcon from "../../../assets/navbar/SearchIcon_2.svg";
 import EnglandFlag from "../../../assets/navbar/EnglandFlag.svg";
+import WhiteLogo from "../../../assets/footer/whitelogo.png";
 import {
   BookOpen,
   ChevronRight,
@@ -24,7 +25,7 @@ const headerText = [
     icon: <MapPin className="h-5 w-5" />,
     url: "/destinations",
   },
-  { text: "Contacct", icon: <Package className="h-5 w-5" />, url: "/contact" },
+  { text: "Contact", icon: <Package className="h-5 w-5" />, url: "/contact" },
 ];
 
 const Navbar = () => {
@@ -32,7 +33,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [navState, setNavState] = useState(false);
   const menuRef = useRef(null); // Ref for the dropdown menu
-  const buttonRef = useRef(null); 
+  const buttonRef = useRef(null);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -42,7 +43,7 @@ const Navbar = () => {
     navigate(url);
     setIsOpen(false);
   };
- 
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -51,7 +52,7 @@ const Navbar = () => {
         buttonRef.current &&
         !buttonRef.current.contains(event.target)
       ) {
-        setIsOpen(false); 
+        setIsOpen(false);
       }
     };
 
@@ -74,27 +75,26 @@ const Navbar = () => {
   }, []);
   return (
     <div
-      className={`w-full  z-50  bg-darkBlue shadow-lg  top-0 left-0 transition-all duration-300 ${
-        navState ? "fixed " : "relative"
-      }`}
+      className={`w-full z-50 bg-darkBlue shadow-lg bg-opacity-70 top-0 left-0 transition-all duration-300 ${navState ? "fixed " : "relative"
+        }`}
     >
-      <div className="h-[67px] flex justify-center items-center bg-opacity-80 ">
+      <div className="h-[57px] flex justify-center items-center bg-opacity-80 ">
         {/*  <div className="h-[67px] flex justify-center items-center  bg-white  bg-opacity-30 shadow-lg"> */}
         {/* header links */}
         {/* <div className="max-w-[1100px] w-full flex justify-between items-center h-full font-semibold text-lg text-darkBlue px-2 md:px-4"> */}
         <div className="max-w-[1100px] w-full flex justify-between items-center h-full font-medium text-lg text-white px-2 md:px-4">
           <div className="flex flex-row items-center space-x-12">
             <img
-              src={EflyLogo}
+              src={WhiteLogo}
               alt="Efly Logo"
-              className="cursor-pointer bg-opacity-100 "
+              className="w-24 h-14 cursor-pointer bg-opacity-100 "
               onClick={() => handleNavigation("/")}
             />
             <div className="hidden lg:flex space-x-8">
               {headerText.map((item, index) => (
                 <span
                   key={index}
-                  className=" cursor-pointer hover:text-orange"
+                  className=" cursor-pointer hover:text-orange font-normal"
                   onClick={() => handleNavigation(item?.url)}
                 >
                   {item.text}
@@ -120,15 +120,15 @@ const Navbar = () => {
                 alt="England Flag"
                 className="w-5 h-5 rounded-full object-cover"
               />
-              <span className="text-lg">EN</span>
+              <span className="text-lg font-normal">EN</span>
             </div>
             <button
               className="flex flex-row space-x-2 items-center focus:outline-none"
               onClick={() => handleNavigation("/login")}
             >
               {/* <img src={UserCircleIcon} alt="User " className="h-6 w-6" /> */}
-              <CircleUserRound className="h-6 w-6" />
-              <span className="text-lg">Login</span>
+              <CircleUserRound className="h-6 w-6 font-normal" />
+              <span className="text-lg font-normal">Login</span>
             </button>
           </div>
 
@@ -142,24 +142,30 @@ const Navbar = () => {
               {isOpen ? (
                 <X className="h-6 w-6 hover:cursor-pointer" />
               ) : (
-                <div className="flex flex-row space-x-4 items-center  ">
+                <div className="flex flex-row space-x-4 items-center text-sm ">
+                  <button
+                    className="focus:outline-none items-center"
+                    onClick={() => handleNavigation("/watchlist")}
+                  >
+                    <Heart className="h-4 w-4" />
+                  </button>
                   <div className="flex flex-row space-x-2 items-center">
                     <img
                       src={EnglandFlag}
                       alt="England Flag"
-                      className="w-5 h-5 rounded-full object-cover"
+                      className="w-4 h-4 rounded-full object-cover"
                     />
-                    <span className="">EN</span>
+                    <span className="font-normal">EN</span>
                   </div>
                   {/* Replace the inner button with a div */}
                   <div
-                    className="flex flex-row space-x-2 items-center focus:outline-none"
+                    className="flex flex-row space-x-2 items-center focus:outline-none font-normal"
                     onClick={() => handleNavigation("/login")}
                   >
-                    <CircleUserRound className="h-6 w-6" />
-                    <span className="">Login</span>
+                    <CircleUserRound className="h-4 w-4" />
+                    <span className="font-normal">Login</span>
                   </div>
-                  <Menu className="h-6 w-6 hover:cursor-pointer" />
+                  <Menu className="h-4 w-4 hover:cursor-pointer" />
                 </div>
               )}
             </button>
@@ -174,8 +180,8 @@ const Navbar = () => {
           className="lg:hidden bg-white bg-opacity-95 shadow-lg p-1 md:px-4 "
         >
           <div className="flex flex-row justify-between py-2">
-            <div className="">Search</div>
-            <div className="opacity-50">
+            <div className="font-normal">Search</div>
+            <div className="opacity-50 font-normal">
               <Search />
             </div>
           </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import SRVLogo from "../../../assets/footer/logo-4.png";
 import Image2 from "../../../assets/footer/logo-2.png";
 import Image4 from "../../../assets/footer/logo-3.png";
@@ -14,7 +14,22 @@ import { PiTiktokLogoBold } from "react-icons/pi";
 import { FaXTwitter } from "react-icons/fa6";
 import { RiYoutubeLine } from "react-icons/ri";
 
+
 const Footer = () => {
+  const [selectedPayment, setSelectedPayment] = useState(null);
+  const [selectedLanguage, setSelectedLanguage] = useState("EN");
+
+  const paymentMethods = [
+    { src: Visa, alt: "Visa" },
+    { src: Master, alt: "MasterCard" },
+    { src: Amex, alt: "Amex" },
+    { src: Paypal, alt: "PayPal" },
+    { src: Googlepay, alt: "Google Pay" },
+    { src: Applepay, alt: "Apple Pay" },
+  ];
+
+  const languages = ["EN", "FR", "GR", "IT"];
+
   return (
     <footer className="w-full bg-offWhite text-smokyGray py-10 mt-10 relative">
       <div className="container mx-auto px-4">
@@ -243,64 +258,45 @@ const Footer = () => {
 
             {/* Payment & Language */}
             <div className="flex flex-col space-y-4 text-center md:text-start">
+              {/* Payment Section */}
               <div>
                 <h3 className="font-medium text-base mb-4 text-smokyGray">
                   Payment Method
                 </h3>
                 <div className="flex justify-center flex-wrap gap-3 md:justify-start">
-                  <img
-                    src={Visa}
-                    alt="Visa"
-                    className="h-6 w-8 md:h-8 md:w-11 object-contain"
-                  />
-                  <img
-                    src={Master}
-                    alt="MasterCard"
-                    className="h-6 w-8 md:h-8 md:w-11 object-contain"
-                  />
-                  <img
-                    src={Amex}
-                    alt="PayPal"
-                    className="h-6 w-8 md:h-8 md:w-11 object-contain"
-                  />
-                  <img
-                    src={Paypal}
-                    alt="Apple Pay"
-                    className="h-6 w-8 md:h-8 md:w-11 object-contain"
-                  />
-                  <img
-                    src={Googlepay}
-                    alt="PayPal"
-                    className="h-6 w-8 md:h-8 md:w-11 object-contain"
-                  />
-                  <img
-                    src={Applepay}
-                    alt="Apple Pay"
-                    className="h-6 w-8 md:h-8 md:w-11 object-contain"
-                  />
+                  {paymentMethods.map((method, index) => (
+                    <img
+                      key={index}
+                      src={method.src}
+                      alt={method.alt}
+                      className={`h-6 w-8 md:h-8 md:w-11 object-contain cursor-pointer ${selectedPayment === index ? "ring-2 ring-darkBlue rounded" : ""
+                        }`}
+                      onClick={() => setSelectedPayment(index)}
+                    />
+                  ))}
                 </div>
               </div>
+
+              {/* Language Section */}
               <div>
                 <h3 className="font-medium text-base mb-4 mt-8 text-smokyGray">
                   Select Language
                 </h3>
                 <div className="flex flex-wrap justify-center gap-4 md:justify-start">
-                  <button className="px-2 py-1 h-9 w-12 border rounded-xl hover:bg-darkBlue hover:text-white">
-                    EN
-                  </button>
-                  <button className="px-2 py-1 h-9 w-12 border rounded-xl hover:bg-darkBlue hover:text-white">
-                    FR
-                  </button>
-                  <button className="px-2 py-1 h-9 w-12 border rounded-xl hover:bg-darkBlue hover:text-white">
-                    GR
-                  </button>
-                  <button className="px-2 py-1 h-9 w-12 border rounded-xl hover:bg-darkBlue hover:text-white">
-                    IT
-                  </button>
+                  {languages.map((lang) => (
+                    <button
+                      key={lang}
+                      className={`px-2 py-1 h-9 w-12 border rounded-xl ${selectedLanguage === lang ? "bg-darkBlue text-white" : ""
+                        } hover:bg-darkBlue hover:text-white`}
+                      onClick={() => setSelectedLanguage(lang)}
+                    >
+                      {lang}
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>
-
+            
             {/* Contact Info */}
             <div className="flex flex-col space-y-4 text-center md:text-start">
               <div>
