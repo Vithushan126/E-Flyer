@@ -142,12 +142,18 @@ const Navbar = () => {
               {isOpen ? (
                 <X className="h-6 w-6 hover:cursor-pointer" />
               ) : (
-                <div className="flex flex-row space-x-4 items-center  ">
+                <div className="flex flex-row space-x-4 items-center text-sm ">
+                  <button
+                    className="focus:outline-none items-center"
+                    onClick={() => handleNavigation("/watchlist")}
+                  >
+                    <Heart className="h-4 w-4" />
+                  </button>
                   <div className="flex flex-row space-x-2 items-center">
                     <img
                       src={EnglandFlag}
                       alt="England Flag"
-                      className="w-5 h-5 rounded-full object-cover"
+                      className="w-4 h-4 rounded-full object-cover"
                     />
                     <span className="font-normal">EN</span>
                   </div>
@@ -156,10 +162,10 @@ const Navbar = () => {
                     className="flex flex-row space-x-2 items-center focus:outline-none font-normal"
                     onClick={() => handleNavigation("/login")}
                   >
-                    <CircleUserRound className="h-6 w-6" />
+                    <CircleUserRound className="h-4 w-4" />
                     <span className="font-normal">Login</span>
                   </div>
-                  <Menu className="h-6 w-6 hover:cursor-pointer" />
+                  <Menu className="h-4 w-4 hover:cursor-pointer" />
                 </div>
               )}
             </button>
