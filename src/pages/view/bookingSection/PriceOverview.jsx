@@ -1,67 +1,59 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import "./PriceOverview.css";
 
 const PriceOverview = () => {
-  const [date, setDate] = useState(new Date());
+  const [dateRange, setDateRange] = useState([]);
+  console.log(dateRange);
 
-  const onChange = (date) => {
-    setDate(date);
+  const onChange = (range) => {
+    setDateRange(range);
+  };
+
+  const prices = {
+    "2025-02-01": 2345676,
+    "2025-02-05": 1500000,
+    "2025-02-10": 1800000,
+    "2025-02-11": 180000,
+  };
+
+  const formatDate = (date) => {
+    return date.toISOString().split("T")[0];
   };
 
   return (
-    <div className=" rounded-lg border border-darkBlue w-full h-screen">
+    <div className="rounded-3xl border border-darkBlue w-full p-8">
       <Calendar
         className="w-full"
         onChange={onChange}
-        value={date}
-        tileClassName={({ date, view }) =>
-          view === "month" && date.getDay() === 0 ? "sunday" : null
-        }
-        navigationLabel={({ date, label, locale, view }) => (
-          <div className="flex justify-between items-center mb-4">
-            <span className="text-gray-700 font-medium">{label}</span>
-            <div className="flex items-center">
-              <button
-                className="bg-gray-200 hover:bg-gray-300 rounded-full p-2 mr-2"
-                onClick={() =>
-                  onChange(new Date(date.getFullYear(), date.getMonth() - 1))
-                }
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-gray-500"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-              <button
-                className="bg-gray-200 hover:bg-gray-300 rounded-full p-2"
-                onClick={() =>
-                  onChange(new Date(date.getFullYear(), date.getMonth() + 1))
-                }
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-gray-500"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
+        value={dateRange}
+        selectRange={true}
+        next2Label={null}
+        prev2Label={null}
+        tileContent={({ date, view }) => {
+          if (view === "month") {
+            const formattedDate = formatDate(date);
+            const price = prices[formattedDate];
+            return (
+              <div className="h-full w-full relative ">
+                <div className="date-circle">{date.getDate()}</div>
+                {price && (
+                  <div className="price-container">
+                    <div className="price-text text-nowrap">
+                      LHR {price.toLocaleString()}
+                    </div>
+                    <div className="per-person">Per Person</div>
+                  </div>
+                )}
+              </div>
+            );
+          }
+        }}
+        navigationLabel={({ date }) => (
+          <span className="text-gray-800">
+            {date.toLocaleString("default", { month: "long", year: "numeric" })}
+          </span>
         )}
       />
     </div>
