@@ -39,7 +39,7 @@ const FlightAndHotelOffer = ({ flightDetails }) => {
                   className="w-[70px] h-[70px] border border-border rounded-full p-2"
                 />
                 <div className="flex flex-col items-center">
-                  <span className=" ">
+                  <span className="ml-4 ">
                     {detail?.dat} | {detail?.flightStartDate}
                   </span>
                   <span className=" font-medium">{detail?.startTime}</span>

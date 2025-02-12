@@ -6,7 +6,7 @@ const TravelSummary = () => {
             <h2 className="text-xl font-normal text-smokyGray mb-6">Your Summary</h2>
 
             {/* Total Price */}
-            <div className="flex bg-offWhite p-3 w-full -mx-6 lg:min-w-[496px] min-w-[341px] md:min-w-[360px] mb-8 ">
+            <div className="flex bg-offWhite p-3 w-full -mx-6 lg:min-w-[496px] min-w-[311px] md:min-w-[360px] mb-8 ">
                 {/* Total Price Container */}
                 <div className="flex justify-evenly w-full  items-center">
                     <span className="text-base text-smokyGray font-normal" style={{ fontFamily: 'Inter' }}>

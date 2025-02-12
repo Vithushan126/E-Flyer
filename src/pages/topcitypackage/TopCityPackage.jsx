@@ -1,9 +1,8 @@
 import React from "react";
-import SearchBar from "../../pages/searchbar/SearchBar";
-
 import HotelList from "../../pages/TopCityPackage/HotelList";
 import { useState } from "react";
 import PackageFilter from "../packages/PackageFilter";
+import AdventureSearchForm from "../adventure/AdventureSearchForm";
 
 const TopCityPackage = () => {
     const [isFilterVisible, setFilterVisible] = useState(false);
@@ -15,7 +14,7 @@ const TopCityPackage = () => {
     return (
         <div className="w-full flex justify-center bg-gray-50 py-6">
             <div className="w-full max-w-[1100px] px-4 lg:px-0 space-y-6">
-                <SearchBar />
+                <AdventureSearchForm />
                 <div className="flex flex-col space-y-6">
                     {/* Title Section */}
                     <div className="text-left">

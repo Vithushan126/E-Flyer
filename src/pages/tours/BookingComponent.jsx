@@ -278,15 +278,16 @@ const BookingComponent = ({ onNext }) => {
                 </div>
             </div>
             <div className="border border-border rounded-xl p-4 w-full flex flex-col space-y-4 text-smokyGray">
-                <form onSubmit={formik.handleSubmit} className="space-y-6">
-                    <div className="text-3xl font-normal">Your Additional Option </div>
-                    <div className="text-lg font-medium">Room and board </div>
-                    <p className="">
+                <form onSubmit={formik.handleSubmit} className="space-y-0">
+                    <div className="p-8 text-2xl font-medium ">Your Additional Option </div>
+                    <div className="p-8 w-full flex flex-col font-inter">
+                    <h2 className="text-xl font-normal text-smokyGray mb-4">Room and board </h2>
+                    <p className="text-sm font-light text-smokyGray mb-6">
                         Treat yourself to more comfort or additional meals
                         <br /> Surcharges and reductions for the entire stay in LKR per
                         person.
                     </p>
-                    <div className="space-y-4">
+                    <div className="space-y-4 lg:ml-16">
                         {roomOptions.map((room) => (
                             <div key={room.id} className="">
                                 <label
@@ -320,6 +321,7 @@ const BookingComponent = ({ onNext }) => {
                                 </label>
                             </div>
                         ))}
+                    </div>
                     </div>
                 </form>
                 <div className="p-8 w-full flex flex-col font-inter">

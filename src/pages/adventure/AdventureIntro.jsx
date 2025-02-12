@@ -13,8 +13,6 @@ const ValidationSchema = Yup.object().shape({
   }),
 });
 
-const destinations = ["Colombo", "Bangkok", "Singapore", "Dubai", "Tokyo"];
-
 const AdventureIntro = ({ image, title, paragraph }) => {
   const calendarRef = useRef(null);
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -46,7 +44,7 @@ const AdventureIntro = ({ image, title, paragraph }) => {
   }, []);
 
   return (
-    <div className="w-full flex justify-center mt-10 lg:mt-20">
+    <div className="w-full flex justify-center mt-10 lg:mt-20 font-inter">
       <div className="max-w-[1100px] w-full flex flex-col  lg:flex-row space-x-0 lg:space-x-10 space-y-4 lg:space-y-0 ">
         <img
           src={image}
@@ -55,9 +53,9 @@ const AdventureIntro = ({ image, title, paragraph }) => {
         />
 
         <div className="flex flex-col  flex-grow justify-between space-y-4 lg:space-y-0">
-          <div className="flex flex-col space-y-0">
-            <h2 className="text-3xl font-semibold text-gray">{title}</h2>
-            <p className="text-xl text-smokyGray">{paragraph}</p>
+          <div className="flex flex-col space-y-6">
+            <h2 className="text-3xl font-medium text-gray">{title}</h2>
+            <p className="text-base font-light text-gray">{paragraph}</p>
           </div>
 
           <div className="w-full rounded-3xl shadow-lg p-2 lg:p-4  ">
@@ -79,8 +77,8 @@ const AdventureIntro = ({ image, title, paragraph }) => {
                   <div className="flex flex-col lg:flex-row gap-4 ">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full ">
                       {/* Destination */}
-                      <div className="p-2 rounded-3xl bg-offWhite flex flex-row items-center space-x-2 w-full">
-                        <div className="flex justify-center items-center">
+                      <div className="p-2 rounded-2xl bg-offWhite flex flex-row items-center space-x-2 w-full">
+                        <div className="flex justify-center items-center ml-2">
                           <img
                             src={FamilyIcon}
                             alt="FamilyIcon"
@@ -88,38 +86,28 @@ const AdventureIntro = ({ image, title, paragraph }) => {
                           />
                         </div>
                         <div className="flex flex-col space-y-0">
-                          <label className="text-sm text-gray-600 block opacity-50">
+                          <label className="text-sm text-smokyGray block opacity-50">
                             Adventure Style
                           </label>
 
                           <div className="">
-                            <Field name="destination">
-                              {({ field }) => (
-                                <div className="relative">
-                                  <select
-                                    {...field}
-                                    className="w-full border border-none rounded-lg bg-offWhite flex  justify-start "
-                                  >
-                                    <option value="">Select destination</option>
-                                    {destinations.map((dest) => (
-                                      <option key={dest} value={dest}>
-                                        {dest}
-                                      </option>
-                                    ))}
-                                  </select>
-                                </div>
-                              )}
-                            </Field>
+                          <Field
+                           name="adventure style"
+                            placeholder="Enter Style"
+                            className="text-sm font-normal bg-transparent text-smokyGray "
+                            value={values.destination}
+                            onChange={(e) => setFieldValue("destination", e.target.value)}
+                          />
                           </div>
                         </div>
                       </div>
 
-                      <div className="p-2 rounded-3xl bg-offWhite flex flex-row items-center space-x-2">
-                        <div className="flex justify-center items-center">
+                      <div className="p-2 rounded-2xl bg-offWhite flex flex-row items-center space-x-2">
+                        <div className="flex justify-center items-center ml-2">
                           <Calendar className="w-8 h-8 text-smokyGray" />
                         </div>
                         <div className="flex flex-col justify-center">
-                          <label className="text-sm text-gray-600 block opacity-50 ">
+                          <label className="text-sm text-smokyGray block opacity-50 ">
                             Travel Period
                           </label>
 
@@ -130,7 +118,7 @@ const AdventureIntro = ({ image, title, paragraph }) => {
                                 onClick={() =>
                                   setShowDatePicker(!showDatePicker)
                                 }
-                                className="w-full p-1  rounded-lg text-left focus:outline-none focus:ring-2 focus:ring-blue-500 text-nowrap"
+                                className="w-full p-1 rounded-lg text-left text-nowrap text-smokyGray text-sm leading-[19px]"
                               >
                                 {formatDate(values.dateRange.startDate)} -{" "}
                                 {formatDate(values.dateRange.endDate)}
@@ -161,8 +149,8 @@ const AdventureIntro = ({ image, title, paragraph }) => {
                       <div className="relative flex items-center">
                         <button
                           type="submit"
-                          className="w-full bg-darkBlue text-white text-xl rounded-3xl py-2 flex items-center justify-center gap-4 hover:bg-blue-800"
-                        >
+                          className="flex w-full items-center justify-center gap-4 px-5 py-[14px] bg-darkBlue text-white text-2xl font-inter font-medium rounded-[20px] hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-primaryColor"
+                      >
                           <Search className="w-8 h-8" />
                           Search
                         </button>

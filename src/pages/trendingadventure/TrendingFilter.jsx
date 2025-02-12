@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronDown, ChevronUp, Star, MapPin} from "lucide-react";
+import { ChevronDown, ChevronUp} from "lucide-react";
 import Slider from "rc-slider";
 import { Tooltip } from "react-tooltip";
 import { RxStarFilled } from "react-icons/rx";
@@ -147,7 +147,7 @@ const option = {
 const FilterTag = ({ label, count, selected, onClick }) => (
   <button
     onClick={onClick}
-    className={`px-4 py-1 rounded-lg transition-colors border border-borderGray ${selected ? "bg-darkBlue text-white text-xs " : " text-smokyGray text-xs hover:bg-gray-200"
+    className={`px-4 py-1 rounded-lg transition-colors border border-borderGray ${selected ? "bg-darkBlue text-white text-xs " : " text-smokyGray text-xs hover:bg-darkBlue"
       }`}
   >
     {label} ({count})

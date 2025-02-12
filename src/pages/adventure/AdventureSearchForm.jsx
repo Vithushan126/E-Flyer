@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { DateRange } from "react-date-range";
-import { MapPin, Calendar, Users, Search } from "lucide-react";
+import { MapPin, Calendar, BedDouble, Search } from "lucide-react";
 
 const ValidationSchema = Yup.object().shape({
   destination: Yup.string().required("Destination is required"),
@@ -25,8 +25,6 @@ const AdventureSearchForm = () => {
     key: "selection",
   });
 
-  const destinations = ["Colombo", "Bangkok", "Singapore", "Dubai", "Tokyo"];
-
   const formatDate = (date) => {
     return date.toLocaleDateString("en-US", {
       day: "2-digit",
@@ -48,8 +46,12 @@ const AdventureSearchForm = () => {
     };
   }, []);
 
+  const validationSchema = Yup.object().shape({
+    destination: Yup.string().required("Destination is required"),
+  });
+
   return (
-    <div className="w-full flex  justify-center  mt-10 ">
+    <div className="w-full flex  justify-center  mt-10 font-inter">
       <div className="w-full rounded-3xl shadow-lg p-2 lg:p-4 space-y-4 lg:space-y-8 ">
         <Formik
           initialValues={{
@@ -69,45 +71,35 @@ const AdventureSearchForm = () => {
           {({ values, setFieldValue }) => (
             <Form>
               <div className="flex flex-col lg:flex-row gap-4 ">
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-5 w-full">
                   {/* Destination */}
-                  <div className="p-2 rounded-3xl bg-offWhite flex flex-row items-center space-x-2 w-full">
-                    <div className="flex justify-center items-center">
-                      <MapPin className=" w-10 h-10 text-smokyGray opacity-50 " />
+                  <div className="p-2 rounded-2xl bg-offWhite flex flex-row items-center space-x-2 w-full">
+                    <div className="flex justify-center items-center ml-2">
+                      <MapPin className=" w-8 h-8 text-smokyGray opacity-50  " />
                     </div>
                     <div className="flex flex-col space-y-0">
-                      <label className="text-sm text-gray-600 block opacity-50">
+                      <label className="text-sm text-smokyGray block opacity-50">
                         Destination
                       </label>
 
                       <div className="">
-                        <Field name="destination">
-                          {({ field }) => (
-                            <div className="relative">
-                              <select
-                                {...field}
-                                className="w-full border border-none rounded-lg bg-offWhite flex  justify-start "
-                              >
-                                <option value="">Select destination</option>
-                                {destinations.map((dest) => (
-                                  <option key={dest} value={dest}>
-                                    {dest}
-                                  </option>
-                                ))}
-                              </select>
-                            </div>
-                          )}
-                        </Field>
+                        <Field
+                        name="destination"
+                            placeholder="Enter destination"
+                            className="text-sm font-normal bg-transparent text-smokyGray "
+                            value={values.destination}
+                            onChange={(e) => setFieldValue("destination", e.target.value)}
+                          />
                       </div>
                     </div>
                   </div>
 
-                  <div className="p-2 rounded-3xl bg-offWhite flex flex-row items-center space-x-2">
-                    <div className="flex justify-center items-center">
-                      <Calendar className=" w-10 h-10 text-smokyGray opacity-50 " />
+                  <div className="p-2 rounded-2xl bg-offWhite flex flex-row items-center space-x-2">
+                    <div className="flex justify-center items-center ml-2">
+                      <Calendar className=" w-8 h-8 text-smokyGray opacity-50 " />
                     </div>
                     <div className="flex flex-col ">
-                      <label className="text-sm text-gray-600 block opacity-50">
+                      <label className="text-sm text-smokyGray block opacity-50">
                         Travel Period
                       </label>
 
@@ -116,7 +108,7 @@ const AdventureSearchForm = () => {
                           <button
                             type="button"
                             onClick={() => setShowDatePicker(!showDatePicker)}
-                            className="w-full p-1  rounded-lg text-left focus:outline-none focus:ring-2 focus:ring-blue-500 text-nowrap"
+                            className="w-full p-1 rounded-lg text-left text-nowrap text-smokyGray font-normal text-sm leading-[19px]"
                           >
                             {formatDate(values.dateRange.startDate)} -{" "}
                             {formatDate(values.dateRange.endDate)}
@@ -140,15 +132,15 @@ const AdventureSearchForm = () => {
                     </div>
                   </div>
 
-                  <div className="p-2 rounded-3xl bg-offWhite flex flex-row items-center space-x-2">
+                  <div className="p-2 rounded-2xl bg-offWhite flex flex-row items-center space-x-4">
                     <div className="flex justify-center items-center">
-                      <Users className=" w-10 h-10 text-smokyGray opacity-50 " />
+                      <BedDouble className=" w-8 h-8 text-smokyGray opacity-50 ml-2" />
                     </div>
                     <div className="flex flex-col ">
-                      <label className="text-sm text-gray-600 block opacity-50">
+                      <label className="text-sm text-smokyGray block opacity-50">
                         Rooms & Travellers
                       </label>
-                      <div className="w-full  border-slate-400 rounded-lg bg-offWhite flex  justify-start focus:ring-0 ">
+                      <div className="w-full text-smokyGray border-slate-400 rounded-lg bg-offWhite flex text-sm justify-start focus:ring-0 ">
                         {values.rooms} Rooms, {values.persons} Persons
                       </div>
                     </div>
@@ -158,8 +150,8 @@ const AdventureSearchForm = () => {
                   <div className="relative flex items-center">
                     <button
                       type="submit"
-                      className="w-full bg-darkBlue text-white text-xl rounded-3xl py-2 flex items-center justify-center gap-4 hover:bg-blue-800"
-                    >
+                      className="flex w-full items-center justify-center gap-4 px-5 py-[14px] bg-darkBlue text-white text-2xl font-inter font-medium rounded-[20px] hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-primaryColor"
+                      >
                       <Search className="w-8 h-8" />
                       Search
                     </button>
