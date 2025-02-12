@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import EflyLogo from "../../../assets/navbar/EflyLogo.svg";
-import SearchIcon from "../../../assets/navbar/SearchIcon_2.svg";
-import EnglandFlag from "../../../assets/navbar/EnglandFlag.svg";
-import WhiteLogo from "../../../assets/footer/whitelogo.png";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   BookOpen,
   ChevronRight,
@@ -15,7 +12,9 @@ import {
   CircleUserRound,
   Heart,
 } from "lucide-react";
-import { useLocation, useNavigate } from "react-router-dom";
+import SearchIcon from "../../../assets/navbar/SearchIcon_2.svg";
+import EnglandFlag from "../../../assets/navbar/EnglandFlag.svg";
+import WhiteLogo from "../../../assets/footer/whitelogo.png";
 
 const headerText = [
   { text: "Explore", icon: <Globe className="h-5 w-5" />, url: "/explore" },
@@ -32,10 +31,13 @@ const headerText = [
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isOpen, setIsOpen] = useState(false);
-  const [navState, setNavState] = useState(false);
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [navState, setNavState] = useState(false);
+
+  const isHomePage = location.pathname === "/";
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -76,8 +78,6 @@ const Navbar = () => {
     };
   }, []);
 
-  const isHomePage = location.pathname === "/";
-
   return (
     <div
       className={`w-full z-50 bg-darkBlue shadow-lg  top-0 left-0 transition-all duration-300 ${
@@ -85,9 +85,7 @@ const Navbar = () => {
       } ${isHomePage ? "bg-opacity-70" : "bg-opacity-80"}`}
     >
       <div className="h-[57px] flex justify-center items-center bg-opacity-80 ">
-        {/*  <div className="h-[67px] flex justify-center items-center  bg-white  bg-opacity-30 shadow-lg"> */}
         {/* header links */}
-        {/* <div className="max-w-[1100px] w-full flex justify-between items-center h-full font-semibold text-lg text-darkBlue px-2 md:px-4"> */}
         <div className="max-w-[1100px] w-full flex justify-between items-center h-full font-medium text-lg text-white px-2 md:px-4">
           <div className="flex flex-row items-center space-x-12">
             <img
@@ -112,7 +110,6 @@ const Navbar = () => {
           <div className="hidden lg:flex space-x-8 items-center ml-8">
             <button className="focus:outline-none">
               <img src={SearchIcon} alt="Search" className="h-9 w-9" />
-              {/* <img src={SearchIcon} alt="Search" className="h-6 w-6" /> */}
             </button>
             <button
               className="focus:outline-none"
@@ -132,7 +129,6 @@ const Navbar = () => {
               className="flex flex-row space-x-2 items-center focus:outline-none"
               onClick={() => handleNavigation("/login")}
             >
-              {/* <img src={UserCircleIcon} alt="User " className="h-6 w-6" /> */}
               <CircleUserRound className="h-6 w-6 font-normal" />
               <span className="text-lg font-normal">Login</span>
             </button>
