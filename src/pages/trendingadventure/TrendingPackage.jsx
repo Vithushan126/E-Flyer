@@ -1,8 +1,8 @@
 import React from "react";
-import SearchBar from "../searchbar/SearchBar";
 import { useState } from "react";
 import TrendingFilter from "./TrendingFilter";
 import HotelView from "./HotelView";
+import AdventureSearchForm from "../adventure/AdventureSearchForm";
 
 const TrendingPackage = () => {
     const [isFilterVisible, setFilterVisible] = useState(false);
@@ -14,7 +14,7 @@ const TrendingPackage = () => {
     return (
         <div className="w-full flex justify-center bg-gray-50 py-6">
             <div className="w-full max-w-[1100px] px-4 lg:px-0 space-y-6">
-                <SearchBar />
+                <AdventureSearchForm />
                 <div className="flex flex-col space-y-6">
                     {/* Title Section */}
                     <div className="text-left">

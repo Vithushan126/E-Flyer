@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import OfferFilter from "./OfferFilter";
-
 import AllOfferSearchForm from "./AllOfferSearchForm";
 import FlightAndHotelOffer from "./FlightAndHotelOffer";
 import HotelFilter from "./HotelFilter";
-
 import EmiratesLogo from "../../../assets/view/Emirates-Logo.svg";
 import QatarAirwaysLogo from "../../../assets/view/Qatar_Airways_Logo.svg";
 import FlydubaiLogo from "../../../assets/view/Flydubai-Logo.svg";

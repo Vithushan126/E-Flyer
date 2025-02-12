@@ -112,11 +112,13 @@ const CommonCard = ({ adventure, small }) => {
 
             {/* Action Buttons - Shown on Hover */}
             <div className="my-2 space-y-2 hidden duration-500 group-hover:block">
+            <Link to="/HotelAndFlightView">
               <div className="w-full flex justify-center">
                 <button className="w-3/4 rounded-3xl bg-[#024577] py-3 text-center font-semibold text-white transition-colors bg-opacity-40 hover:scale-105">
                   Book Now
                 </button>
               </div>
+              </Link>
               <Link to="/HotelAndFlightView">
               <button className="w-full  text-center font-semibold text-white underline hover:scale-105">
                 Discover

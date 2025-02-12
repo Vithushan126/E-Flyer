@@ -33,7 +33,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [navState, setNavState] = useState(false);
-  const menuRef = useRef(null); // Ref for the dropdown menu
+  const menuRef = useRef(null);
   const buttonRef = useRef(null);
 
   const toggleMenu = () => {
@@ -144,12 +144,12 @@ const Navbar = () => {
                 <X className="h-6 w-6 hover:cursor-pointer" />
               ) : (
                 <div className="flex flex-row space-x-4 items-center text-sm ">
-                  <button
-                    className="focus:outline-none items-center"
+                  <div
+                    className="focus:outline-none items-center cursor-pointer"
                     onClick={() => handleNavigation("/watchlist")}
                   >
                     <Heart className="h-4 w-4" />
-                  </button>
+                  </div>
                   <div className="flex flex-row space-x-2 items-center">
                     <img
                       src={EnglandFlag}
@@ -158,7 +158,6 @@ const Navbar = () => {
                     />
                     <span className="font-normal">EN</span>
                   </div>
-                  {/* Replace the inner button with a div */}
                   <div
                     className="flex flex-row space-x-2 items-center focus:outline-none font-normal"
                     onClick={() => handleNavigation("/login")}

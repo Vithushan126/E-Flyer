@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronDown, ChevronUp, Star } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import Slider from "rc-slider";
 import { Tooltip } from "react-tooltip";
 
@@ -86,20 +86,20 @@ const FilterTag = ({ label, count, selected, onClick }) => (
   <button
     onClick={onClick}
     className={`px-4 py-1 rounded-lg text-sm transition-colors border border-borderGray ${
-      selected ? "bg-darkBlue text-white" : " text-smokyGray hover:bg-gray-200"
+      selected ? "bg-darkBlue text-white" : " text-smokyGray hover:bg-darkBlue"
     }`}
   >
     {label} {count && `(${count})`}
   </button>
 );
 
-const FilterSection = ({ title, isOpen, onToggle, children }) => (
-  <div className="border-b border-gray border-opacity-20 py-4">
+const FilterSection = ({ title, isOpen, onToggle, children, isLastSection }) => (
+  <div className={`py-4 ${!isLastSection ? 'border-b border-gray border-opacity-20' : ''}`}>
     <button
       onClick={onToggle}
       className="w-full flex justify-between items-center mb-2"
     >
-      <span className="text-smokyGray font-semibold text-xl">{title}</span>
+      <span className="text-smokyGray font-medium text-sm">{title}</span>
       {isOpen ? (
         <ChevronUp className="w-5 h-5 text-gray-400" />
       ) : (
@@ -125,10 +125,6 @@ const OfferFilter = () => {
     }
   };
 
-  // rating change
-  const handleRatingChange = (stars) => {
-    setSelectedRating(stars);
-  };
 
   return (
     <div className="w-full rounded-3xl space-y-4 ">
@@ -308,6 +304,7 @@ const OfferFilter = () => {
           onToggle={() =>
             setOpenSection(openSection === "airline" ? "" : "airline")
           }
+          isLastSection={true}
         >
           <div className="flex flex-wrap gap-2">
             {option?.airline.map((option) => (
