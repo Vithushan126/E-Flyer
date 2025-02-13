@@ -35,61 +35,59 @@ const FlightList = () => {
   ];
 
   return (
-    <div className="w-full overflow-x-scroll scrollbar-hide">
-      <div className="rounded-3xl border border-darkBlue overflow-hidden p-6">
-        <table className="w-full">
-          <thead>
-            <tr>
-              <th className="text-center text-smokyGray text-2xl font-normal p-4 border-r border-b border-border">
-                Stops
-              </th>
-              {airlines.map((airline, index) => (
-                <th
-                  key={airline.key}
-                  className={`p-4 border-b border-border ${
-                    index !== airlines.length - 1 ? "border-r" : ""
-                  }`}
-                >
-                  <div className="flex justify-center">
-                    <div className="w-[70px] h-[70px] border border-border rounded-full p-2 flex items-center justify-center">
-                      <img
-                        src={airline.logo}
-                        alt={airline.name}
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
+    <div className="w-full rounded-lg md:rounded-3xl border border-darkBlue overflow-x-scroll scrollbar-hide  p-2 md:p-4 lg:p-6">
+      <table className="w-full">
+        <thead>
+          <tr>
+            <th className="text-center text-smokyGray md:text-2xl font-normal p-2 md:p-4 border-r border-b border-border">
+              Stops
+            </th>
+            {airlines.map((airline, index) => (
+              <th
+                key={airline.key}
+                className={`p-2 md:p-4 border-b border-border ${
+                  index !== airlines.length - 1 ? "border-r" : ""
+                }`}
+              >
+                <div className="flex justify-center">
+                  <div className="w-[50px] md:w-[70px] h-[50px] md:h-[70px] border border-border rounded-full p-1 md:p-2 flex items-center justify-center">
+                    <img
+                      src={airline.logo}
+                      alt={airline.name}
+                      className="w-full h-full object-contain"
+                    />
                   </div>
-                </th>
+                </div>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {stops.map((stop, stopIndex) => (
+            <tr key={stop.key}>
+              <td
+                className={`text-center text-smokyGray text-sm text-nowrap md:font-normal p-2 md:p-4 border-r border-border ${
+                  stopIndex !== stops.length - 1 ? "border-b" : ""
+                }`}
+              >
+                {stop.label}
+              </td>
+              {airlines.map((airline, airlineIndex) => (
+                <td
+                  key={airline.key}
+                  className={`p-2 md:p-4 text-center text-smokyGray font-medium text-nowrap ${
+                    airlineIndex !== airlines.length - 1 ? "border-r" : ""
+                  } ${
+                    stopIndex !== stops.length - 1 ? "border-b" : ""
+                  } border-border`}
+                >
+                  {priceData[stop.key][airline.key] || ""}
+                </td>
               ))}
             </tr>
-          </thead>
-          <tbody>
-            {stops.map((stop, stopIndex) => (
-              <tr key={stop.key}>
-                <td
-                  className={`text-center text-smokyGray font-normal p-4 border-r border-border ${
-                    stopIndex !== stops.length - 1 ? "border-b" : ""
-                  }`}
-                >
-                  {stop.label}
-                </td>
-                {airlines.map((airline, airlineIndex) => (
-                  <td
-                    key={airline.key}
-                    className={`p-4 text-center text-smokyGray font-medium ${
-                      airlineIndex !== airlines.length - 1 ? "border-r" : ""
-                    } ${
-                      stopIndex !== stops.length - 1 ? "border-b" : ""
-                    } border-border`}
-                  >
-                    {priceData[stop.key][airline.key] || ""}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
