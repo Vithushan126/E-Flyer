@@ -15,7 +15,7 @@ const FlightAvailabityView = () => {
           <SearchForm />
         </section>
 
-        <div className="flex flex-row space-x-10">
+        <div className="flex flex-col space-y-10 lg:space-y-0 lg:flex-row lg:space-x-10">
           <div className="flex flex-col space-y-4">
             <div className="text-left ">
               <div className="text-sm md:text-base text-darkBlue mt-2 cursor-pointer ml-4 ">
@@ -27,7 +27,7 @@ const FlightAvailabityView = () => {
           </div>
 
           <div className="flex flex-col space-y-4 w-full">
-            <div className="flex flex-row justify-between px-4 ">
+            <div className="flex flex-row justify-between items-center  md:px-4 ">
               <div className="text-sm md:text-base  mt-2 cursor-pointer text-smokyGray ">
                 Cheapest deals by the number of stops and airlines
               </div>
