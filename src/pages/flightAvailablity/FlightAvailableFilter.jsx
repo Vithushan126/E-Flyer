@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, X } from "lucide-react";
 import Slider from "rc-slider";
 import { Tooltip } from "react-tooltip";
 import { RxStarFilled } from "react-icons/rx";
@@ -78,7 +78,7 @@ const FilterSection = ({
   </div>
 );
 
-const FlightAvailableFilter = () => {
+const FlightAvailableFilter = ({ setIsFilterOpen }) => {
   const [openSection, setOpenSection] = useState("stopover");
   const [selectedTags, setSelectedTags] = useState([]);
   const [values, setValues] = useState([1, 1000]);
@@ -114,8 +114,15 @@ const FlightAvailableFilter = () => {
   console.log(departureReturnTime.map(formatTime));
 
   return (
-    <div className="w-full rounded-3xl space-y-4 ">
-      <div className="sm:w-[389px] border border-darkBlue rounded-xl p-4 shadow-md">
+    <div className="w-full  lg:h-auto h-screen p-2 lg:p-0 overflow-y-scroll scrollbar-hide flex flex-row justify-center items-center">
+      <div className="w-screen lg:w-[389px]  border border-darkBlue rounded-xl p-4 shadow-md  bg-white">
+        <button
+          className=" lg:hidden flex flex-row justify-end w-full   hover:text-black"
+          onClick={() => setIsFilterOpen(false)}
+        >
+          <X className="border border-darkBlue rounded-full p-2 w-10 h-10" />
+        </button>
+
         {/* Stopover section */}
         <FilterSection
           title="Stopover"

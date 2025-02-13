@@ -280,7 +280,7 @@ const BookingFlight = () => {
         <div className="overflow-x-scroll scrollbar-hide">
           <div
             key={index}
-            className="rounded-lg md:rounded-3xl border border-darkBlue text-smokyGray p-2 md:p-4 lg:p-8 w-fit "
+            className="rounded-lg md:rounded-3xl border border-darkBlue text-smokyGray p-2 md:p-4 lg:p-8 w-fit md:w-full "
           >
             <Formik
               initialValues={initialValues}
