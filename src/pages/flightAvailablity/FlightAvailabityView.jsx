@@ -13,41 +13,54 @@ const FlightAvailabityView = () => {
   console.log(isFilterOpen);
 
   const [flightData, setFlightData] = useState([]);
+  const [formattedDepartureDate, setFormattedDepartureDate] = useState("");
+  const [formattedReturnDate, setFormattedReturnDate] = useState("");
   console.log(flightData);
 
-  // Get Flights Availability on Component Load
-  useEffect(() => {
-    const fetchFlightData = async () => {
-      try {
-        const dep_date = "2025-02-19"; // Example departure date
-        const des_date = "2025-02-28"; // Example destination date
-        const dep_apt = "FRA"; // Example departure airport
-        const des_apt = "LHR"; // Example arrival airport
+  const fetchFlightData = async (dep_date, des_date, dep_apt, des_apt) => {
+    try {
+      const response = await API.GetFlightAvailablity(
+        dep_date,
+        des_date,
+        dep_apt,
+        des_apt
+      );
+      console.log("response", response.data);
+      setFlightData(response.data);
+    } catch (error) {
+      console.log("error", error);
+    } finally {
+      console.log("hello");
+    }
+  };
 
-        const response = await API.GetFlightAvailablity(
-          dep_date,
-          des_date,
-          dep_apt,
-          des_apt
-        );
-        console.log("response", response.data);
-        setFlightData(response.data);
-      } catch (error) {
-        console.log("error", error);
-      } finally {
-        console.log("hellow");
-      }
-    };
+  const handleFlightSubmit = (values) => {
+    console.log("Received flight form values in ParentComponent:", values);
+    const { departureDate, returnDate, departure, destination } = values;
 
-    fetchFlightData();
-  }, []);
+    const formattedDepartureDate = departureDate.split("T")[0];
+    const formattedReturnDate = returnDate.split("T")[0];
+
+    setFormattedDepartureDate(formattedDepartureDate);
+    setFormattedReturnDate(formattedReturnDate);
+
+    // Call fetchFlightData with form values
+    fetchFlightData(
+      formattedDepartureDate,
+      formattedReturnDate,
+      "LHR",
+      "FRA"
+      // departure,
+      // destination
+    );
+  };
 
   return (
     <div className="w-full flex justify-center py-8">
       <div className="w-full max-w-[1100px] px-4 lg:px-0 space-y-8">
         {/* Search Form */}
         <section id="search-form" className="pt-6 flex">
-          <SearchForm />
+          <SearchForm handleFlightSubmit={handleFlightSubmit} />
         </section>
 
         <div className="flex flex-col space-y-10 lg:space-y-0 lg:flex-row lg:space-x-10">
@@ -96,7 +109,13 @@ const FlightAvailabityView = () => {
               3 Offers Found
             </div>
 
-            <BookingFlight flightData={flightData} />
+            {/* {flightData?.length > 0 && ( */}
+            <BookingFlight
+              flightData={flightData}
+              formattedDepartureDate={formattedDepartureDate}
+              formattedReturnDate={formattedReturnDate}
+            />
+            {/* )} */}
           </div>
         </div>
       </div>

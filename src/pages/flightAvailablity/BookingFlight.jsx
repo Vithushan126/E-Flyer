@@ -6,7 +6,11 @@ import ReturnFlight from "../../assets/view/ReturnFlight.svg";
 import Line from "../../assets/view/Arrow.svg";
 import QatarAirwaysLogo from "../../assets/view/Qatar_Airways_Logo.svg";
 
-const BookingFlight = ({ flightData }) => {
+const BookingFlight = ({
+  flightData,
+  formattedDepartureDate,
+  formattedReturnDate,
+}) => {
   const initialValues = {
     outboundFlight: "",
     returnFlight: "",
@@ -22,8 +26,8 @@ const BookingFlight = ({ flightData }) => {
   };
 
   // Get the outbound and return flight data for the respective dates
-  const outboundFlights = flightData["2025-02-19"] || [];
-  const returnFlights = flightData["2025-02-20"] || [];
+  const outboundFlights = flightData[formattedDepartureDate] || [];
+  const returnFlights = flightData[formattedReturnDate] || [];
 
   return (
     <div className="flex flex-col space-y-10 w-full">

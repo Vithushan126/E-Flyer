@@ -38,6 +38,8 @@ const Navbar = () => {
   const [navState, setNavState] = useState(false);
 
   const isHomePage = location.pathname === "/";
+  const [backgroundColor, setBackgroundColor] = useState("bg-darkBlue");
+  console.log({ isHomePage });
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -70,19 +72,33 @@ const Navbar = () => {
   useEffect(() => {
     const onNavScroll = () => {
       setNavState(window.scrollY > 180);
+
+      // Set background color based on route and scroll position
+      if (isHomePage) {
+        setBackgroundColor(
+          window.scrollY < 550 ? "bg-transparent" : "bg-darkBlue"
+        );
+      } else {
+        setBackgroundColor("bg-darkBlue");
+      }
     };
 
     window.addEventListener("scroll", onNavScroll);
     return () => {
       window.removeEventListener("scroll", onNavScroll);
     };
-  }, []);
+  }, [isHomePage, location.pathname]);
+
+  // // Update background color when route changes
+  // useEffect(() => {
+  //   setBagroundCol(isHomePage);
+  // }, [location.pathname]);
 
   return (
     <div
-      className={`w-full z-50 bg-darkBlue shadow-lg  top-0 left-0 transition-all duration-300 ${
+      className={`w-full z-50  shadow-lg  top-0 left-0 transition-all duration-300 ${
         navState ? "fixed " : "relative"
-      } ${isHomePage ? "bg-opacity-70" : "bg-opacity-80"}`}
+      } ${isHomePage ? "bg-opacity-70" : "bg-opacity-80"} ${backgroundColor}`}
     >
       <div className="h-[57px] flex justify-center items-center bg-opacity-80 ">
         {/* header links */}

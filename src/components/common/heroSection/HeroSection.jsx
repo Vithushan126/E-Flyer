@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-//import backgroundImage from "../../../assets/heroSection/background.gif";
+import backgroundImage from "../../../assets/heroSection/HomeImage.jpeg";
 import WhiteLogo from "../../../assets/footer/whitelogo.png";
 import ButtonCom from "../../ui/button/ButtonCom";
 import SearchForm from "../../../pages/home/searchform/SearchForm";
@@ -35,43 +35,45 @@ const HeroSection = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const images = [image1, image2, image3, image4, image5];
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [fade, setFade] = useState(false);
+  // const images = [image1, image2, image3, image4, image5];
+  // const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  // const [fade, setFade] = useState(false);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFade(true); 
-      setTimeout(() => {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-        setFade(false); 
-      }, 500); 
-    }, 2000); 
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setFade(true);
+  //     setTimeout(() => {
+  //       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+  //       setFade(false);
+  //     }, 500);
+  //   }, 2000);
 
-    return () => clearInterval(interval);
-  }, [images.length]);
+  //   return () => clearInterval(interval);
+  // }, [images.length]);
 
   return (
     <>
       {/* Hero Section */}
       <div className="w-full  h-screen flex justify-center">
         {/* Static overlay image */}
-        <div className="absolute inset-0 z-0 overflow-hidden" >
-          {/* <img
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <img
             src={backgroundImage}
             alt="Mountains"
             className="w-full h-full object-fill"
-          /> */}
-          {images.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt={`Background ${index + 1}`}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-              index === currentImageIndex ? "opacity-100 z-10" : "opacity-60 z-0"
-            }`}
           />
-        ))}
+          {/* {images.map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt={`Background ${index + 1}`}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                index === currentImageIndex
+                  ? "opacity-100 z-10"
+                  : "opacity-60 z-0"
+              }`}
+            />
+          ))} */}
         </div>
         <div className="absolute inset-0 bg-[#222222] bg-opacity-30"></div>
         <div className="px-2 w-full items-center flex justify-center pb-36">
@@ -87,26 +89,29 @@ const HeroSection = () => {
         </div> */}
         {/* Offer Section Inside Hero */}
         <div className="absolute bottom-0 w-full h-24 bg-darkBlue bg-opacity-85 ">
-          <OfferSectionContent timeLeft={timeLeft} className="max-w-[1100px] flex flex-row mx-auto space-x-44 space-y-8 px-4 md:px-8 lg:px-16  flex-wrap items-center justify-between md:space-y-0 py-6" />
+          <OfferSectionContent
+            timeLeft={timeLeft}
+            className="max-w-[1100px] flex flex-row mx-auto space-x-44 space-y-8 px-4 md:px-8 lg:px-16  flex-wrap items-center justify-between md:space-y-0 py-6"
+          />
         </div>
       </div>
 
       {/* Mobile View */}
       <div className="md:hidden relative">
         {/* Background container with image and overlay */}
-        <div className="absolute inset-0 z-0">
-          {/* <img
+        {/* <div className="absolute inset-0 z-0"> */}
+        {/* <img
             src={backgroundImage}
             alt="Mountains"
             className="w-full h-full object-cover"
           /> */}
-          <img
-          src={images[currentImageIndex]}
-          alt={`Background ${currentImageIndex + 1}`}
-          className="w-full h-full object-cover"
-        />
-          <div className="absolute inset-0 bg-darkBlue bg-opacity-85"></div>
-        </div>
+        {/* <img
+            src={images[currentImageIndex]}
+            alt={`Background ${currentImageIndex + 1}`}
+            className="w-full h-full object-cover"
+          /> */}
+        {/* <div className="absolute inset-0 bg-darkBlue bg-opacity-85"></div> */}
+        {/* </div> */}
         {/* Offer Section Container */}
         <div className="relative z-10 px-4 flex-col block items-center justify-center space-y-4 py-6 -mt-20 mb-0">
           <OfferSectionContent timeLeft={timeLeft} />
@@ -140,7 +145,9 @@ const OfferSectionContent = ({ timeLeft }) => (
 
       {/* Offer Box */}
       <div className="bg-red text-white p-2 md:p-4 rounded-xl ">
-        <div className="text-2xl md:text-xl font-semibold flex flex-wrap items-center justify-center md:ml-0 w-auto my-4 md:my-0 mr-2 md:mr-0">30% OFF</div>
+        <div className="text-2xl md:text-xl font-semibold flex flex-wrap items-center justify-center md:ml-0 w-auto my-4 md:my-0 mr-2 md:mr-0">
+          30% OFF
+        </div>
         {/* <div className="text-xs">OFF</div> */}
       </div>
 

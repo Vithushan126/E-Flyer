@@ -22,10 +22,12 @@ const ValidationSchema = Yup.object().shape({
     .required("Required"),
 });
 
-const SearchForm = () => {
+const SearchForm = ({ handleFlightSubmit }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const calendarRef = useRef(null);
+
+  const isHomePage = location.pathname === "/";
 
   const [searchStatusVal, setSearchStatusVal] = useState(
     location.state?.selectedTab || 0
@@ -114,7 +116,7 @@ const SearchForm = () => {
 
   const formComponents = [
     (props) => <FlightHotelForm {...props} />,
-    (props) => <FlightForm {...props} />,
+    (props) => <FlightForm onFormSubmit={handleFlightSubmit} {...props} />,
     (props) => <HotelForm {...props} />,
     (props) => <CruiseForm {...props} />,
     (props) => <TourForm {...props} />,
@@ -125,7 +127,11 @@ const SearchForm = () => {
     <div className="w-full flex justify-center  z-40 relative mb-2">
       {/* <div className="w-full flex justify-center -mt-24 lg:-mt-44 z-50 relative mb-20"> */}
       {/* <div className="max-w-[1100px] w-full bg-white rounded-3xl shadow-lg p-2 lg:p-8 space-y-4 lg:space-y-8"> */}
-      <div className="w-[100%] lg:max-w-[1100px] bg-white rounded-3xl shadow-lg p-2 md:p-6 lg:p-8 space-y-4 lg:space-y-8">
+      <div
+        className={`w-[100%] lg:max-w-[1100px] bg-white  rounded-3xl shadow-lg p-2 md:p-6 lg:p-8 space-y-4 lg:space-y-8 ${
+          isHomePage ? "bg-opacity-30" : "bg-opacity-100"
+        }`}
+      >
         <div className="flex flex-row w-full justify-between items-center gap-4 overflow-x-auto scrollbar-hide pt-4">
           {searchTabs.map((item, index) => (
             <div
