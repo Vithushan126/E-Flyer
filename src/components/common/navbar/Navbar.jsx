@@ -135,11 +135,11 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden">
+          <div className="lg:hidden ">
             <button
               ref={buttonRef} // Attach ref to button
               onClick={toggleMenu}
-              className="p-2 focus:outline-none"
+              className="p-2 focus:outline-none "
             >
               {isOpen ? (
                 <X className="h-6 w-6 hover:cursor-pointer" />

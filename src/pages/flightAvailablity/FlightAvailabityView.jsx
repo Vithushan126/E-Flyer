@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchForm from "../home/searchform/SearchForm";
 import HotelList from "../TopCityPackage/HotelList";
 import FlightAvailableFilter from "./FlightAvailableFilter";
@@ -6,9 +6,41 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import FlightList from "./FlightList";
 import BookingFlight from "./BookingFlight";
 
+import * as API from "../../../src/services/api/Api";
+
 const FlightAvailabityView = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   console.log(isFilterOpen);
+
+  const [flightData, setFlightData] = useState([]);
+  console.log(flightData);
+
+  // Get Flights Availability on Component Load
+  useEffect(() => {
+    const fetchFlightData = async () => {
+      try {
+        const dep_date = "2025-02-19"; // Example departure date
+        const des_date = "2025-02-28"; // Example destination date
+        const dep_apt = "FRA"; // Example departure airport
+        const des_apt = "LHR"; // Example arrival airport
+
+        const response = await API.GetFlightAvailablity(
+          dep_date,
+          des_date,
+          dep_apt,
+          des_apt
+        );
+        console.log("response", response.data);
+        setFlightData(response.data);
+      } catch (error) {
+        console.log("error", error);
+      } finally {
+        console.log("hellow");
+      }
+    };
+
+    fetchFlightData();
+  }, []);
 
   return (
     <div className="w-full flex justify-center py-8">
@@ -41,7 +73,7 @@ const FlightAvailabityView = () => {
 
           {/* Filter Modal for Mobile/Tablet */}
           {isFilterOpen && (
-            <div className="fixed inset-0 h-screen bg-black bg-opacity-85 z-40 flex items-center justify-center">
+            <div className="fixed inset-0 h-screen bg-black bg-opacity-85 z-50 flex items-center justify-center">
               <FlightAvailableFilter setIsFilterOpen={setIsFilterOpen} />
             </div>
           )}
@@ -64,7 +96,7 @@ const FlightAvailabityView = () => {
               3 Offers Found
             </div>
 
-            <BookingFlight />
+            <BookingFlight flightData={flightData} />
           </div>
         </div>
       </div>
