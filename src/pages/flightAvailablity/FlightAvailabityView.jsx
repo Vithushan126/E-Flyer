@@ -48,10 +48,10 @@ const FlightAvailabityView = () => {
     fetchFlightData(
       formattedDepartureDate,
       formattedReturnDate,
-      "LHR",
-      "FRA"
-      // departure,
-      // destination
+      // "LHR",
+      // "FRA"
+      departure,
+      destination
     );
   };
 
