@@ -11,6 +11,9 @@ import {
 import CityAutocomplete from "./CityAutocomplete";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import { useDispatch } from "react-redux";
+import { GetFlightAvailablity } from "../../../redux/feature/flightDetailsSlice";
+import { useNavigate } from "react-router-dom";
 
 const initialValues = {
   tripType: "Return",
@@ -24,8 +27,11 @@ const initialValues = {
   travelClass: "Economy",
 };
 
-const FlightForm = ({ onFormSubmit }) => {
+const FlightForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const calendarRef = useRef(null);
+
   const [showDatePicker, setShowDatePicker] = useState(false);
 
   const toggleCalendar = () => {
@@ -36,7 +42,21 @@ const FlightForm = ({ onFormSubmit }) => {
 
   const onSubmit = (values) => {
     console.log("Submitting form with values:", values);
-    onFormSubmit(values);
+
+    const { departureDate, returnDate, departure, destination } = values;
+
+    const formattedDepartureDate = departureDate.split("T")[0];
+    const formattedReturnDate = returnDate.split("T")[0];
+
+    dispatch(
+      GetFlightAvailablity({
+        dep_date: formattedDepartureDate,
+        des_date: formattedReturnDate,
+        dep_apt: "LHR",
+        des_apt: "FRA",
+      })
+    );
+    navigate("/available-flights");
   };
 
   return (
@@ -44,7 +64,7 @@ const FlightForm = ({ onFormSubmit }) => {
       {({ values, setFieldValue, errors, touched }) => (
         <Form>
           {/* Trip Type */}
-          <div className="flex flex-row justify-start items-center mb-8 space-x-8 m-8">
+          <div className="flex flex-row justify-start items-center mb-8 space-x-8 m-8 ">
             {["Return", "One Way", "Multi City"].map((type) => (
               <label key={type} className="flex items-center space-x-2">
                 <Field
@@ -60,9 +80,7 @@ const FlightForm = ({ onFormSubmit }) => {
                   }}
                   className="accent-darkBlue"
                 />
-                <span className="text-smokeGray lg:text-base text-xs">
-                  {type}
-                </span>
+                <span className=" lg:text-base text-xs text-black">{type}</span>
               </label>
             ))}
           </div>

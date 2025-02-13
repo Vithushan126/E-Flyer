@@ -115,12 +115,12 @@ const FlightAvailableFilter = ({ setIsFilterOpen }) => {
 
   return (
     <div className="w-full  lg:h-auto h-screen p-2 lg:p-0 overflow-y-scroll scrollbar-hide flex flex-row justify-center items-center z-40">
-      <div className="w-screen lg:w-[389px]  border border-darkBlue rounded-xl p-4 shadow-md  bg-white z-50">
+      <div className="w-[500px] lg:w-[389px]  border border-darkBlue rounded-xl p-4 shadow-md  bg-white z-50">
         <button
           className=" lg:hidden flex flex-row justify-end w-full   hover:text-black"
           onClick={() => setIsFilterOpen(false)}
         >
-          <X className="border border-darkBlue rounded-full p-2 w-10 h-10" />
+          <X className="w-10 h-10" />
         </button>
 
         {/* Stopover section */}

@@ -22,7 +22,7 @@ const Explore = () => {
           {/* Title Section */}
           <div className="text-left">
             <button
-              className="text-sm md:text-base text-darkBlue mt-2 cursor-pointer underline"
+              className="text-sm md:text-base text-darkBlue mt-2 cursor-pointer lg:cursor-default"
               onClick={toggleFilterSidebar}
             >
               Filter

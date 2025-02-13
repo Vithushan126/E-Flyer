@@ -11,6 +11,7 @@ const APIUser = axios.create({
 // Update the API function to pass parameters in the query string
 export const GetFlightAvailablity = (dep_date, des_date, dep_apt, des_apt) => {
   console.log("Requesting flight availability");
+  console.log(dep_date);
   return APIUser.get(`/getFlights`, {
     params: {
       dep_date,

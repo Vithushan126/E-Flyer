@@ -5,12 +5,13 @@ import OutboundFlight from "../../assets/view/OutboundFlight.svg";
 import ReturnFlight from "../../assets/view/ReturnFlight.svg";
 import Line from "../../assets/view/Arrow.svg";
 import QatarAirwaysLogo from "../../assets/view/Qatar_Airways_Logo.svg";
+import { useSelector } from "react-redux";
 
-const BookingFlight = ({
-  flightData,
-  formattedDepartureDate,
-  formattedReturnDate,
-}) => {
+const BookingFlight = () => {
+  const { flights, dep_date, des_date, loading, error } = useSelector(
+    (state) => state.flightDetails
+  );
+
   const initialValues = {
     outboundFlight: "",
     returnFlight: "",
@@ -26,8 +27,8 @@ const BookingFlight = ({
   };
 
   // Get the outbound and return flight data for the respective dates
-  const outboundFlights = flightData[formattedDepartureDate] || [];
-  const returnFlights = flightData[formattedReturnDate] || [];
+  const outboundFlights = flights[dep_date] || [];
+  const returnFlights = flights[des_date] || [];
 
   return (
     <div className="flex flex-col space-y-10 w-full">

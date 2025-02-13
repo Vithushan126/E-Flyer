@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home2 from "../pages/home/Home2";
+import LoadingScreen from "../components/ui/loading/LoadingScreen";
 
 const WatchList = React.lazy(() => import("../pages/watchlist/Watchlist"));
 const Contact = React.lazy(() => import("../pages/contact/Contact"));
@@ -89,15 +90,19 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      //   <React.Suspense fallback={<div>Loading...</div>}>
-      <MainLayout />
-      //   </React.Suspense>
+      <Suspense fallback={<LoadingScreen />}>
+        <MainLayout />
+      </Suspense>
     ),
     errorElement: <NotFound />,
     children: [
       {
         index: true,
-        element: <Home />,
+        element: (
+          <Suspense fallback={<LoadingScreen />}>
+            <Home />
+          </Suspense>
+        ),
       },
       {
         path: "Home2",

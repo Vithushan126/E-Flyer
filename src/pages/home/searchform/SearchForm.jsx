@@ -22,7 +22,7 @@ const ValidationSchema = Yup.object().shape({
     .required("Required"),
 });
 
-const SearchForm = ({ handleFlightSubmit }) => {
+const SearchForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const calendarRef = useRef(null);
@@ -116,7 +116,7 @@ const SearchForm = ({ handleFlightSubmit }) => {
 
   const formComponents = [
     (props) => <FlightHotelForm {...props} />,
-    (props) => <FlightForm onFormSubmit={handleFlightSubmit} {...props} />,
+    (props) => <FlightForm {...props} />,
     (props) => <HotelForm {...props} />,
     (props) => <CruiseForm {...props} />,
     (props) => <TourForm {...props} />,
