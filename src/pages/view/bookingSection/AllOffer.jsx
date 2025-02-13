@@ -150,5 +150,4 @@ const AllOffer = () => {
   );
 };
 
-
 export default AllOffer;
