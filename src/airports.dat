@@ -1,0 +1,34 @@
+var csv = require("csv");
+var JSONStream = require("JSONStream");
+var fs = require("fs");
+import _ from "lodash";
+
+var columns = [
+  "id",
+  "name",
+  "city",
+  "country",
+  "iata",
+  "icao",
+  "latitude",
+  "longitude",
+  "altitude",
+  "timezone",
+  "dst",
+  "tz",
+];
+
+var readStream = fs.createReadStream("airports.dat");
+var writeStream = fs.createWriteStream("src/data/airports.json");
+
+var transformer = csv.transform(function (data) {
+  // Using lodash to create an object from two arrays:
+  return _.zipObject(columns, data);
+});
+
+readStream
+  .pipe(csv.parse())
+  .pipe(transformer)
+  .pipe(JSONStream.stringify())
+  .pipe(writeStream)
+  .on("finish", () => console.log("Airports JSON created in src/data/airports.json"));

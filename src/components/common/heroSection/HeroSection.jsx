@@ -129,7 +129,7 @@ const OfferSectionContent = ({ timeLeft }) => (
     ></div>
 
     {/* Center Content */}
-    <div className="w-full md:w-auto flex flex-col md:flex-row justify-center md:justify-between items-center text-base space-y-4 md:space-y-0 space-x-0 md:space-x-4 lg:space-x-12">
+    <div className="w-full md:w-auto flex flex-col lg:flex-row justify-center lg:justify-between items-center text-base space-y-4 md:space-y-0 space-x-0 md:space-x-4 lg:space-x-12">
       {/* Timer */}
       <div className="flex flex-col items-center md:items-end w-full md:w-auto px-2 md:px-0 mb-0 md:mb-0">
         <h1 className="text-orange lg:text-sm uppercase">Offer ends soon</h1>

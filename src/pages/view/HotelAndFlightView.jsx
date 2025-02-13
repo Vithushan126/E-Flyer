@@ -5,6 +5,7 @@ import ArrowLeft from "../../assets/view/ArrowLeft.svg";
 import WellcomSection from "./WellcomSection";
 import Booking from "./bookingSection/Booking";
 
+
 const HotelAndFlightView = () => {
   return (
     <>
