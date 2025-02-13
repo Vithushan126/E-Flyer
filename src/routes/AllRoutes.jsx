@@ -79,6 +79,9 @@ const YungAdultAdventure = React.lazy(() =>
 );
 const PageReview = React.lazy(() => import("../pages/pageReview/PageReview"));
 const FAQ = React.lazy(() => import("../pages/faq/FAQ"));
+const FlightAvailabityView = React.lazy(() =>
+  import("../pages/flightAvailablity/FlightAvailabityView")
+);
 const Login = React.lazy(() => import("../pages/auth/login/Login"));
 const Register = React.lazy(() => import("../pages/auth/register/Register"));
 
@@ -231,6 +234,10 @@ export const router = createBrowserRouter([
       {
         path: "faq",
         element: <FAQ />,
+      },
+      {
+        path: "/available-flights",
+        element: <FlightAvailabityView />,
       },
       {
         path: "login",

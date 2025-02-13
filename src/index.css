@@ -27,4 +27,8 @@
   .custom-slider .rc-slider-rail {
     background-color: #e5e7eb; /* Light Gray for the rail */
   }
+
+  .custom-slider .rc-slider-mark-text {
+    white-space: nowrap;
+  }
 }

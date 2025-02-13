@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import SRVLogo from "../../../assets/footer/logo-4.png";
 import Image2 from "../../../assets/footer/logo-2.png";
 import Image4 from "../../../assets/footer/logo-3.png";
@@ -14,6 +14,13 @@ import { PiTiktokLogoBold } from "react-icons/pi";
 import { FaXTwitter } from "react-icons/fa6";
 import { RiYoutubeLine } from "react-icons/ri";
 
+const links = [
+  { text: "Accessibility statement", href: "#" },
+  { text: "Contact us", href: "/contact" },
+  { text: "Privacy policy", href: "#" },
+  { text: "Terms and conditions", href: "#" },
+  { text: "Cookie Policy", href: "#" },
+];
 
 const Footer = () => {
   const [selectedPayment, setSelectedPayment] = useState(null);
@@ -269,8 +276,11 @@ const Footer = () => {
                       key={index}
                       src={method.src}
                       alt={method.alt}
-                      className={`h-6 w-8 md:h-8 md:w-11 object-contain cursor-pointer ${selectedPayment === index ? "ring-2 ring-darkBlue rounded" : ""
-                        }`}
+                      className={`h-6 w-8 md:h-8 md:w-11 object-contain cursor-pointer ${
+                        selectedPayment === index
+                          ? "ring-2 ring-darkBlue rounded"
+                          : ""
+                      }`}
                       onClick={() => setSelectedPayment(index)}
                     />
                   ))}
@@ -286,8 +296,11 @@ const Footer = () => {
                   {languages.map((lang) => (
                     <button
                       key={lang}
-                      className={`px-2 py-1 h-9 w-12 border rounded-xl ${selectedLanguage === lang ? "bg-darkBlue text-white" : ""
-                        } hover:bg-darkBlue hover:text-white`}
+                      className={`px-2 py-1 h-9 w-12 border rounded-xl ${
+                        selectedLanguage === lang
+                          ? "bg-darkBlue text-white"
+                          : ""
+                      } hover:bg-darkBlue hover:text-white`}
                       onClick={() => setSelectedLanguage(lang)}
                     >
                       {lang}
@@ -296,7 +309,7 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            
+
             {/* Contact Info */}
             <div className="flex flex-col space-y-4 text-center md:text-start">
               <div>
@@ -348,23 +361,17 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom Links */}
-        <div className="mt-4 border-t border-lightGray pt-8 max-w-[1300px] mx-auto">
-          <div className="flex justify-center gap-4 font-medium text-sm space-x-2 mt-2 sm:flex-nowrap">
-            <a href="#" className="text-lightGray hover:underline">
-              Accessibility statement
-            </a>
-            <a href="/contact" className="text-lightGray hover:underline">
-              Contact us
-            </a>
-            <a href="#" className="text-lightGray hover:underline">
-              Privacy policy
-            </a>
-            <a href="#" className="text-lightGray hover:underline">
-              Terms and conditions
-            </a>
-            <a href="#" className="text-lightGray hover:underline">
-              Cookie Policy
-            </a>
+        <div className="mt-4 border-t border-lightGray pt-8 max-w-[1300px]  ">
+          <div className="flex justify-center gap-2 font-medium text-sm space-x-2 mt-2 sm:flex-nowrap overflow-x-scroll mx-0">
+            {links.map((link, index) => (
+              <a
+                key={index}
+                href={link.href}
+                className="text-lightGray hover:underline "
+              >
+                {link.text}
+              </a>
+            ))}
           </div>
           <p
             className="text-darkcolor mt-4 text-center font-medium text-sm"
