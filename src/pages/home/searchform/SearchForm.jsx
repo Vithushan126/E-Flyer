@@ -124,9 +124,7 @@ const SearchForm = () => {
   ];
 
   return (
-    <div className="w-full flex justify-center  z-40 relative mb-2">
-      {/* <div className="w-full flex justify-center -mt-24 lg:-mt-44 z-50 relative mb-20"> */}
-      {/* <div className="max-w-[1100px] w-full bg-white rounded-3xl shadow-lg p-2 lg:p-8 space-y-4 lg:space-y-8"> */}
+    <div className="w-full flex justify-center  z-40 relative mb-2 ">
       <div
         className={`w-[100%] lg:max-w-[1100px] bg-white  rounded-3xl shadow-lg p-2 md:p-6 lg:p-8 space-y-4 lg:space-y-8 ${
           isHomePage ? "bg-opacity-30" : "bg-opacity-100"
@@ -139,7 +137,7 @@ const SearchForm = () => {
               onClick={() => handleTabClick(index)}
               className={`cursor-pointer hover:text-primaryColor hover:scale-105 ${
                 searchStatusVal === index
-                  ? "p-2 lg:p-4 rounded-3xl bg-orange text-white"
+                  ? "p-2 lg:p-2 lg:px-4 rounded-3xl bg-orange text-white"
                   : ""
               }`}
             >

@@ -19,8 +19,8 @@ const getSuggestionValue = (suggestion) =>
 const renderSuggestion = (suggestion) => (
   <div className="w-full px-4 py-2 hover:bg-darkBlue hover:text-white cursor-pointer">
     <div className="flex flex-row justify-between">
-    <span className="font-medium text-gray-800">{suggestion.city}</span>{" "}
-    <span className="text-gray-500">{suggestion.iata}</span>
+      <span className="font-medium text-gray-800">{suggestion.city}</span>{" "}
+      <span className="text-gray-500">{suggestion.iata}</span>
     </div>
     <span className="text-gray-500">({suggestion.country})</span>
   </div>
@@ -68,8 +68,7 @@ const CityAutocomplete = ({ field, form, placeholder }) => {
     placeholder: placeholder || "Type a city...",
     value: displayValue,
     onChange: onChange,
-    className:
-      "w-64 bg-backgroundColor focus:outline-none",
+    className: "w-fit bg-backgroundColor focus:outline-none",
   };
 
   return (
@@ -85,7 +84,12 @@ const CityAutocomplete = ({ field, form, placeholder }) => {
         renderSuggestionsContainer={renderSuggestionsContainer}
       />
       {/* Hidden input to ensure Formik submits the IATA code */}
-      <input type="hidden" {...field} />
+      <input
+        type="hidden"
+        name={field.name}
+        value={field.value}
+        onChange={form.handleChange}
+      />
     </div>
   );
 };

@@ -3,11 +3,6 @@ import backgroundImage from "../../../assets/heroSection/HomeImage.jpeg";
 import WhiteLogo from "../../../assets/footer/whitelogo.png";
 import ButtonCom from "../../ui/button/ButtonCom";
 import SearchForm from "../../../pages/home/searchform/SearchForm";
-import image1 from "../../../assets/heroSection/img1.jpg";
-import image2 from "../../../assets/heroSection/img2.jpg";
-import image3 from "../../../assets/heroSection/img3.jpg";
-import image4 from "../../../assets/heroSection/img4.jpg";
-import image5 from "../../../assets/heroSection/img5.jpg";
 
 const HeroSection = () => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
@@ -35,22 +30,6 @@ const HeroSection = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // const images = [image1, image2, image3, image4, image5];
-  // const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  // const [fade, setFade] = useState(false);
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setFade(true);
-  //     setTimeout(() => {
-  //       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-  //       setFade(false);
-  //     }, 500);
-  //   }, 2000);
-
-  //   return () => clearInterval(interval);
-  // }, [images.length]);
-
   return (
     <>
       {/* Hero Section */}
@@ -62,18 +41,6 @@ const HeroSection = () => {
             alt="Mountains"
             className="w-full h-full object-fill"
           />
-          {/* {images.map((image, index) => (
-            <img
-              key={index}
-              src={image}
-              alt={`Background ${index + 1}`}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-                index === currentImageIndex
-                  ? "opacity-100 z-10"
-                  : "opacity-60 z-0"
-              }`}
-            />
-          ))} */}
         </div>
         <div className="absolute inset-0 bg-[#222222] bg-opacity-30"></div>
         <div className="px-2 w-full items-center flex justify-center pb-36">
@@ -98,20 +65,6 @@ const HeroSection = () => {
 
       {/* Mobile View */}
       <div className="md:hidden relative">
-        {/* Background container with image and overlay */}
-        {/* <div className="absolute inset-0 z-0"> */}
-        {/* <img
-            src={backgroundImage}
-            alt="Mountains"
-            className="w-full h-full object-cover"
-          /> */}
-        {/* <img
-            src={images[currentImageIndex]}
-            alt={`Background ${currentImageIndex + 1}`}
-            className="w-full h-full object-cover"
-          /> */}
-        {/* <div className="absolute inset-0 bg-darkBlue bg-opacity-85"></div> */}
-        {/* </div> */}
         {/* Offer Section Container */}
         <div className="relative z-10 px-4 flex-col block items-center justify-center space-y-4 py-6 -mt-20 mb-0">
           <OfferSectionContent timeLeft={timeLeft} />

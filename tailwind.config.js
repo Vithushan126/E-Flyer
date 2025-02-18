@@ -1,4 +1,4 @@
-import { button } from 'framer-motion/client';
+import { button } from "framer-motion/client";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -25,11 +25,12 @@ export default {
         lightGray: "#9C9C9C",
         darkcolor: "#484747",
         offWhite: "#F5F5F5",
-        buttoncolor:"#8B8B8B",
-        border:"#D5D5D5",
-        socialmedia:"#666666",
-        green:"#1CAC03",
-        day:"#EAEAEA",
+        buttoncolor: "#8B8B8B",
+        border: "#D5D5D5",
+        socialmedia: "#666666",
+        green: "#1CAC03",
+        day: "#EAEAEA",
+        disable: "#D1D5DB",
       },
 
       maxWidth: {
