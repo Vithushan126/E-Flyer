@@ -11,6 +11,8 @@ import {
   BriefcaseBusiness,
   ChevronDown,
   ChevronUp,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import CityAutocomplete from "./CityAutocomplete";
 import "react-date-range/dist/styles.css";
@@ -248,19 +250,58 @@ const FlightForm = () => {
 
               {/* Departure */}
               <div className="flex flex-col">
-                <div className="flex items-center p-[10px_20px] gap-5 bg-backgroundColor rounded-[20px]">
-                  <Calendar className="text-smokyGray" />
+                <div className="flex  justify-between items-center p-[10px_20px] gap-5 bg-backgroundColor rounded-[20px]">
+                  <div className="flex flex-row items-center space-x-4">
+                    <Calendar className="text-smokyGray" />
 
-                  <div className="flex flex-col  items-start">
-                    <span className="text-smokyGray text-xs">Departure</span>
-                    <div className="">
-                      <Field
-                        name="departureDate"
-                        type="date"
-                        min={new Date().toISOString().split("T")[0]}
-                        className="text-base focus:outline-none bg-backgroundColor"
-                      />
+                    <div className="flex flex-col  items-start">
+                      <span className="text-smokyGray text-xs">Departure</span>
+                      <div className="">
+                        <Field
+                          name="departureDate"
+                          type="date"
+                          min={new Date().toISOString().split("T")[0]}
+                          className="text-base focus:outline-none bg-backgroundColor"
+                        />
+                      </div>
                     </div>
+                  </div>
+
+                  <div className="flex flex-row space-x-2 items-end h-full">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (values.departureDate) {
+                          const nextDate = new Date(values.departureDate);
+                          nextDate.setDate(nextDate.getDate() - 1);
+                          setFieldValue(
+                            "departureDate",
+                            nextDate.toISOString().split("T")[0]
+                          );
+                        }
+                      }}
+                      className={`flex justify-center items-center h-8 w-8 bg-white rounded-full`}
+                    >
+                      <ChevronLeft />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (values.departureDate) {
+                          const nextDate = new Date(values.departureDate);
+                          nextDate.setDate(nextDate.getDate() + 1);
+                          setFieldValue(
+                            "departureDate",
+                            nextDate.toISOString().split("T")[0]
+                          );
+                        }
+                      }}
+                      className={`flex justify-center items-center h-8 w-8 bg-white rounded-full `}
+                    >
+                      <ChevronRight />
+                    </button>
                   </div>
                 </div>
                 {errors.departureDate && touched.departureDate && (
@@ -273,27 +314,66 @@ const FlightForm = () => {
               {/* Return */}
               <div className="flex flex-col">
                 <div
-                  className={`flex items-center p-[10px_20px] gap-5 bg-backgroundColor  rounded-[20px]  ${
+                  className={`flex justify-between items-center p-[10px_20px] gap-5 bg-backgroundColor  rounded-[20px]  ${
                     tripType == "One Way" ? "bg-opacity-30" : ""
                   }`}
                 >
-                  <Calendar className="text-smokyGray" />
+                  <div className="flex flex-row items-center space-x-4">
+                    <Calendar className="text-smokyGray" />
 
-                  <div className="flex flex-col  items-start">
-                    <span className="text-smokyGray text-xs">Return</span>
-                    <div className="">
-                      <Field
-                        name="returnDate"
-                        type="date"
-                        min={values.departureDate}
-                        disabled={tripType == "One Way"}
-                        className={`text-base focus:outline-none bg-backgroundColor  ${
-                          tripType == "One Way"
-                            ? "cursor-not-allowed  bg-opacity-0"
-                            : ""
-                        }`}
-                      />
+                    <div className="flex flex-col  items-start">
+                      <span className="text-smokyGray text-xs">Return</span>
+                      <div className="">
+                        <Field
+                          name="returnDate"
+                          type="date"
+                          min={values.departureDate}
+                          disabled={tripType == "One Way"}
+                          className={`text-base focus:outline-none bg-backgroundColor  ${
+                            tripType == "One Way"
+                              ? "cursor-not-allowed  bg-opacity-0"
+                              : ""
+                          }`}
+                        />
+                      </div>
                     </div>
+                  </div>
+
+                  <div className="flex flex-row space-x-2 items-end h-full">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (values.returnDate) {
+                          const nextDate = new Date(values.returnDate);
+                          nextDate.setDate(nextDate.getDate() - 1);
+                          setFieldValue(
+                            "returnDate",
+                            nextDate.toISOString().split("T")[0]
+                          );
+                        }
+                      }}
+                      className={`flex justify-center items-center h-8 w-8 bg-white rounded-full`}
+                    >
+                      <ChevronLeft />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (values.returnDate) {
+                          const nextDate = new Date(values.returnDate);
+                          nextDate.setDate(nextDate.getDate() + 1);
+                          setFieldValue(
+                            "returnDate",
+                            nextDate.toISOString().split("T")[0]
+                          );
+                        }
+                      }}
+                      className={`flex justify-center items-center h-8 w-8 bg-white rounded-full `}
+                    >
+                      <ChevronRight />
+                    </button>
                   </div>
                 </div>
                 {errors.returnDate && touched.returnDate && (
