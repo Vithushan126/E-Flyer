@@ -1,31 +1,46 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const data = [
-  { label: "Adult", field: "adults", age: "Ages 12+" },
-  { label: "Child", field: "children", age: "Ages 2-11" },
-  { label: "Baby", field: "babies", age: "Ages Under 2" },
+  { label: "Adult", field: "adults", age: "Ages 12+", max: 6 },
+  { label: "Child", field: "children", age: "Ages 2-11", max: 6 },
+  { label: "Baby", field: "babies", age: "Ages Under 2", max: 1 },
 ];
 
 const PassengersAttachment = ({ values, setFieldValue, onClose }) => {
   const modalRef = useRef(null);
   const maxPassengers = 9;
 
+  // Create local state to track temporary changes
+  const [tempValues, setTempValues] = useState({
+    adults: values.adults,
+    children: values.children,
+    babies: values.babies,
+  });
+
   const handleIncrement = (field) => {
-    const total = values.adults + values.children + values.babies;
+    const total = tempValues.adults + tempValues.children + tempValues.babies;
     if (total < maxPassengers) {
-      setFieldValue(field, values[field] + 1);
+      setTempValues({
+        ...tempValues,
+        [field]: tempValues[field] + 1,
+      });
     }
   };
 
   const handleDecrement = (field) => {
-    if (field === "adults" && values[field] > 1) {
-      setFieldValue(field, values[field] - 1); // Ensure adults never go below 1
-    } else if (field !== "adults" && values[field] > 0) {
-      setFieldValue(field, values[field] - 1); // Other fields can go to 0
+    if (field === "adults" && tempValues[field] > 1) {
+      setTempValues({
+        ...tempValues,
+        [field]: tempValues[field] - 1,
+      }); // Ensure adults never go below 1
+    } else if (field !== "adults" && tempValues[field] > 0) {
+      setTempValues({
+        ...tempValues,
+        [field]: tempValues[field] - 1,
+      }); // Other fields can go to 0
     }
   };
 
-  // Close when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -37,9 +52,47 @@ const PassengersAttachment = ({ values, setFieldValue, onClose }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [onClose]);
 
+  const handleConfirm = () => {
+    // Update the actual Formik values when confirm is clicked
+    setFieldValue("adults", tempValues.adults);
+    setFieldValue("children", tempValues.children);
+    setFieldValue("babies", tempValues.babies);
+    onClose();
+  };
+
+  // Function to check if decrement button should be disabled
+  const isDecrementDisabled = (field) => {
+    if (field === "adults") {
+      return tempValues.adults <= 1; // Adults can't go below 1
+    } else {
+      return tempValues[field] <= 0; // Other passengers can't go below 0
+    }
+  };
+
+  // Function to check if increment button should be disabled
+  const isIncrementDisabled = (field, maxFieldValue) => {
+    const total = tempValues.adults + tempValues.children + tempValues.babies;
+
+    // Check if we've reached total max passengers
+    if (total >= maxPassengers) {
+      return true;
+    }
+
+    // Check individual passenger type limits
+    if (field === "adults" && tempValues.adults >= maxFieldValue) {
+      return true;
+    } else if (field === "children" && tempValues.children >= maxFieldValue) {
+      return true;
+    } else if (field === "babies" && tempValues.babies >= maxFieldValue) {
+      return true;
+    }
+
+    return false;
+  };
+
   return (
     <div
-      className="absolute z-20 w-full bg-white px-8 py-4 rounded-lg  text-smokyGray left-auto mt-14"
+      className="absolute z-20 w-full bg-white px-8 py-4 rounded-lg text-smokyGray left-auto mt-14"
       ref={modalRef}
     >
       <div className="flex flex-col space-y-4">
@@ -47,27 +100,34 @@ const PassengersAttachment = ({ values, setFieldValue, onClose }) => {
           Passengers
         </span>
 
-        {data.map(({ label, field, age }) => (
+        {data.map(({ label, field, age, max }) => (
           <div key={field} className="">
             <div className="flex items-center justify-between">
               <button
                 type="button"
                 onClick={() => handleDecrement(field)}
-                className="bg-darkBlue bg-opacity-50 flex justify-center items-center px-2 text-white rounded-full text-xl"
+                disabled={isDecrementDisabled(field)}
+                className={`flex justify-center h-8 w-8  text-white rounded-full text-xl bg-darkBlue bg-opacity-50 ${
+                  isDecrementDisabled(field) ? " cursor-not-allowed" : " "
+                }`}
               >
                 –
               </button>
 
               <div>
                 <span className="text-base font-semibold">
-                  {values[field]} {label}
+                  {tempValues[field]} {label}
                 </span>
                 <div className="text-sm">{age}</div>
               </div>
 
               <button
+                type="button"
                 onClick={() => handleIncrement(field)}
-                className="bg-darkBlue flex justify-center items-center px-2 text-white rounded-full text-xl"
+                disabled={isIncrementDisabled(field, max)}
+                className={`flex justify-center h-8 w-8  text-white rounded-full text-xl bg-darkBlue ${
+                  isIncrementDisabled(field, max) ? " cursor-not-allowed" : ""
+                }`}
               >
                 +
               </button>
@@ -77,8 +137,10 @@ const PassengersAttachment = ({ values, setFieldValue, onClose }) => {
         <p className="text-xs flex justify-center text-center">
           Note: You can book for a maximum of {maxPassengers} passengers.
         </p>
+
         <button
-          onClick={onClose}
+          type="button"
+          onClick={handleConfirm}
           className="w-full bg-darkBlue text-white py-2 rounded-3xl"
         >
           Confirm
