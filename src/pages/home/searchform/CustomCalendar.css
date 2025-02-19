@@ -1,0 +1,46 @@
+/* General Calendar Styling */
+.custom-calendar {
+  border: none !important;
+  /* width: 100% !important; */
+  background-color: white !important;
+}
+
+/* Remove default navigation styles */
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* Custom Styling for Selected Range */
+.react-calendar__tile--active,
+.react-calendar__tile--range {
+  background: #1677ff !important;
+  color: white !important;
+  border-radius: 6px !important;
+}
+
+/* Highlight Range */
+.react-calendar__tile--hover {
+  background: #e6f4ff !important;
+  border-radius: 6px !important;
+}
+
+/* Custom Disabled Dates */
+.react-calendar__tile--disabled {
+  color: #d9d9d9 !important;
+}
+
+/* Custom Navigation Buttons */
+.react-calendar__navigation button {
+  color: #5a5a5a !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+
+/* Hover Effects */
+.react-calendar__tile:hover {
+  background: #f0faff !important;
+}

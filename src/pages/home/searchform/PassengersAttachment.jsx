@@ -92,7 +92,7 @@ const PassengersAttachment = ({ values, setFieldValue, onClose }) => {
 
   return (
     <div
-      className="absolute z-20 w-full bg-white px-8 py-4 rounded-lg text-smokyGray left-auto mt-14"
+      className="absolute z-20 w-full bg-white px-8 py-4 rounded-lg text-smokyGray left-auto mt-14 border border-border"
       ref={modalRef}
     >
       <div className="flex flex-col space-y-4">
@@ -114,7 +114,7 @@ const PassengersAttachment = ({ values, setFieldValue, onClose }) => {
                 –
               </button>
 
-              <div>
+              <div className="text-center">
                 <span className="text-base font-semibold">
                   {tempValues[field]} {label}
                 </span>

@@ -33,7 +33,7 @@ const HeroSection = () => {
   return (
     <>
       {/* Hero Section */}
-      <div className="w-full  h-screen flex justify-center">
+      <div className="w-full h-fit  min-h-screen flex justify-center">
         {/* Static overlay image */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img

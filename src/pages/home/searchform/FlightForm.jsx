@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -13,6 +13,7 @@ import {
   ChevronUp,
   ChevronLeft,
   ChevronRight,
+  PlusCircle,
 } from "lucide-react";
 import CityAutocomplete from "./CityAutocomplete";
 import "react-date-range/dist/styles.css";
@@ -20,57 +21,70 @@ import "react-date-range/dist/theme/default.css";
 import { GetFlightAvailablity } from "../../../redux/feature/flightDetailsSlice";
 import PassengersAttachment from "./PassengersAttachment";
 import TravelClassAttachment from "./TravelClassAttachment";
+import CalenderComponent from "./CalenderComponent";
 
 // Get today's date at midnight for consistent comparison
 const today = new Date();
 today.setHours(0, 0, 0, 0);
 
-const validationSchema = Yup.object().shape({
-  departure: Yup.string().required("Departure city is required"),
-  destination: Yup.string()
-    .required("Destination city is required")
-    .test(
-      "different-cities",
-      "Departure and destination cannot be the same",
-      function (value) {
-        return this.parent.departure !== value;
-      }
-    ),
+// const validationSchema = Yup.object().shape({
+//   departure: Yup.string().required("Departure city is required"),
+//   destination: Yup.string()
+//     .required("Destination city is required")
+//     .test(
+//       "different-cities",
+//       "Departure and destination cannot be the same",
+//       function (value) {
+//         return this.parent.departure !== value;
+//       }
+//     ),
 
-  adults: Yup.number().min(1).max(6).required("Adult passengers required"),
-  children: Yup.number().min(0).max(6).required("Child passengers required"),
-  babies: Yup.number().min(0).max(1).required("Baby passengers required"),
+//   // adults: Yup.number().min(1).max(6).required("Adult passengers required"),
+//   // children: Yup.number().min(0).max(6).required("Child passengers required"),
+//   // babies: Yup.number().min(0).max(1).required("Baby passengers required"),
 
-  departureDate: Yup.date()
-    .required("Departure date is required")
-    .min(today, "Departure date cannot be in the past"),
+//   departureDate: Yup.date()
+//     .required("Departure date is required")
+//     .min(today, "Departure date cannot be in the past"),
 
-  returnDate: Yup.date()
-    .nullable() // Allows null values
-    .when("tripType", {
-      is: (tripType) => tripType === "Return" || tripType === "Multi City",
-      then: (schema) =>
-        schema
-          .required("Return date is required")
-          .min(
-            Yup.ref("departureDate"),
-            "Return date must be after departure date"
-          ),
-      otherwise: (schema) => schema.notRequired(),
-    }),
-});
+//   returnDate: Yup.date()
+//     .nullable() // Allows null values
+//     .when("tripType", {
+//       is: (tripType) => tripType === "Return" || tripType === "Multi City",
+//       then: (schema) =>
+//         schema
+//           .required("Return date is required")
+//           .min(
+//             Yup.ref("departureDate"),
+//             "Return date must be after departure date"
+//           ),
+//       otherwise: (schema) => schema.notRequired(),
+//     }),
+// });
 
 const initialValues = {
-  tripType: "Return",
-  departure: "",
-  destination: "",
-  departureDate: "",
-  returnDate: "",
   travelClass: "Economy",
-  baggage: "Carry-on baggage only",
+  baggage: "Carry-on Baggage",
+  tripType: "Return",
   adults: 1,
   children: 0,
   babies: 0,
+  returnDate: "",
+  departureDate: "",
+  flights: [
+    {
+      departure: "",
+      flyTo: "",
+      flexibleDays: 0,
+      departureDate: "",
+    },
+    {
+      departure: "",
+      flyTo: "",
+      flexibleDays: 0,
+      departureDate: "",
+    },
+  ],
 };
 
 const FlightForm = () => {
@@ -80,7 +94,7 @@ const FlightForm = () => {
   const [tripType, setTripType] = useState("Return");
   const [showPassengersModal, setShowPassengersModal] = useState(false);
   const [showTravelClassModal, setShowTravelClassModal] = useState(false);
-  // console.log(tripType);
+  const [showCalenderModal, setShowCalenderModal] = useState(false);
 
   const onSubmit = (values) => {
     console.log("Submitting form with values:", values);
@@ -104,15 +118,15 @@ const FlightForm = () => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={validationSchema}
+      // validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
       {({ values, setFieldValue, errors, touched, resetForm }) => {
         const persons = values.adults + values.children + values.babies;
         return (
-          <Form>
+          <Form className="flex flex-col space-y-4">
             {/* Trip Type */}
-            <div className="flex flex-row justify-center items-center mb-8 space-x-8 m-8 ">
+            <div className="flex flex-row justify-center items-center  space-x-8 ">
               {["Return", "One Way", "Multi City"].map((type) => (
                 <label key={type} className="flex items-center space-x-2">
                   <Field
@@ -134,207 +148,494 @@ const FlightForm = () => {
               ))}
             </div>
 
-            {/* Main Fields */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 gap-4 mb-6">
-              {/* Fly From */}
-              <div className="flex flex-col">
-                <div className="flex items-center p-[10px_20px] gap-4  bg-backgroundColor rounded-[20px]">
-                  <MapPin className="text-smokyGray" />
-                  <div className="flex flex-col items-start">
-                    <span className="text-smokyGray text-xs">Fly From</span>
-                    <Field
-                      name="departure"
-                      component={CityAutocomplete}
-                      className="text-base focus:outline-none"
-                    />
-                  </div>
-                </div>
-                {errors.departure && touched.departure && (
-                  <span className="text-red text-xs  mt-1 ml-2">
-                    {errors.departure}
-                  </span>
-                )}
-              </div>
+            {/* Your dynamic flight inputs */}
+            {tripType === "Multi City" ? (
+              <FieldArray
+                name="flights"
+                render={(arrayHelpers) => (
+                  <div className="">
+                    {values.flights && values.flights.length > 0 && (
+                      <div>
+                        {values.flights.map((flight, index) => (
+                          <div
+                            key={index}
+                            className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 gap-4"
+                          >
+                            {/* Fly From */}
+                            <div className="flex flex-col">
+                              <div className="flex items-center p-[10px_20px] gap-4  bg-backgroundColor rounded-[20px]">
+                                <MapPin className="text-smokyGray w-8 h-8" />
+                                <div className="flex flex-col items-start">
+                                  <span className="text-smokyGray text-xs">
+                                    Fly From
+                                  </span>
+                                  <Field
+                                    name={`flights[${index}].departure`}
+                                    component={CityAutocomplete}
+                                    className="text-base focus:outline-none"
+                                  />
+                                </div>
+                              </div>
+                            </div>
 
-              {/* Fly To */}
-              <div className="flex flex-col">
-                <div className="flex items-center p-[10px_20px] gap-4  bg-backgroundColor rounded-[20px]">
-                  <MapPin className="text-smokyGray" />
-                  <div className="flex flex-col items-start">
-                    <span className="text-smokyGray text-xs">Fly To</span>
-                    <Field
-                      name="destination"
-                      component={CityAutocomplete}
-                      className="text-base focus:outline-none"
-                    />
-                  </div>
-                </div>
-                {errors.destination && touched.destination && (
-                  <span className="text-red text-xs mt-1 ml-2">
-                    {errors.destination}
-                  </span>
-                )}
-              </div>
+                            {/* Fly To */}
+                            <div className="flex flex-col">
+                              <div className="flex items-center p-[10px_20px] gap-4  bg-backgroundColor rounded-[20px]">
+                                <MapPin className="text-smokyGray w-8 h-8" />
+                                <div className="flex flex-col items-start">
+                                  <span className="text-smokyGray text-xs">
+                                    Fly To
+                                  </span>
+                                  <Field
+                                    name={`flights[${index}].flyTo`}
+                                    component={CityAutocomplete}
+                                    className="text-base focus:outline-none"
+                                  />
+                                </div>
+                              </div>
+                            </div>
 
-              {/* Pessengers */}
-              <div className="flex flex-col relative">
-                <div
-                  className="flex justify-between items-center p-[10px_20px] gap-5 bg-backgroundColor rounded-[20px]"
-                  onClick={() => setShowPassengersModal(true)}
-                >
-                  <div className="flex flex-row items-center space-x-4">
-                    <UserRound className="text-smokyGray" />
-                    <div className="flex flex-col">
-                      <span className="text-xs text-smokyGray">Pessengers</span>
-                      <div className="text-s font-semibold text-smokyGray flex flex-row space-x-2">
-                        <span>{persons}</span>
-                        <span>Persons</span>
+                            {/* Departure */}
+                            <div className="flex flex-col">
+                              <div className="flex  justify-between items-center p-[10px_20px] gap-5 bg-backgroundColor rounded-[20px]">
+                                <div className="flex flex-row items-center space-x-4">
+                                  <Calendar className="text-smokyGray w-8 h-8" />
+
+                                  <div className="flex flex-col  items-start">
+                                    <span className="text-smokyGray text-xs">
+                                      Departure
+                                    </span>
+                                    <div className="">
+                                      <Field
+                                        name={`flights[${index}].departureDate`}
+                                        type="date"
+                                        min={
+                                          new Date().toISOString().split("T")[0]
+                                        }
+                                        className="text-base focus:outline-none bg-backgroundColor "
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div className="flex flex-row space-x-2 items-end h-full">
+                                  <button
+                                    type="button"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      if (values.departureDate) {
+                                        const nextDate = new Date(
+                                          values.departureDate
+                                        );
+                                        nextDate.setDate(
+                                          nextDate.getDate() - 1
+                                        );
+                                        setFieldValue(
+                                          "departureDate",
+                                          nextDate.toISOString().split("T")[0]
+                                        );
+                                      }
+                                    }}
+                                    className={`flex justify-center items-center h-8 w-8 bg-white rounded-full`}
+                                  >
+                                    <ChevronLeft />
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      if (values.departureDate) {
+                                        const nextDate = new Date(
+                                          values.departureDate
+                                        );
+                                        nextDate.setDate(
+                                          nextDate.getDate() + 1
+                                        );
+                                        setFieldValue(
+                                          "departureDate",
+                                          nextDate.toISOString().split("T")[0]
+                                        );
+                                      }
+                                    }}
+                                    className={`flex justify-center items-center h-8 w-8 bg-white rounded-full `}
+                                  >
+                                    <ChevronRight />
+                                  </button>
+                                </div>
+                              </div>
+                              {errors.departureDate &&
+                                touched.departureDate && (
+                                  <span className="text-red text-xs mt-1 ml-2">
+                                    {errors.departureDate}
+                                  </span>
+                                )}
+                            </div>
+
+                            {/* Remove Button */}
+                            <div className="flex justify-center">
+                              {index >= 2 && (
+                                <button
+                                  type="button"
+                                  onClick={() => arrayHelpers.remove(index)}
+                                  className="text-red-500 text-xs"
+                                >
+                                  Remove
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        ))}
                       </div>
+                    )}
+
+                    {/* Add New Flight Button */}
+                    <div className="flex flex-col items-center mt-4 w-full">
+                      <button
+                        type="button"
+                        className="flex flex-row items-center space-x-4"
+                        onClick={() =>
+                          arrayHelpers.push({
+                            departure: "",
+                            flyTo: "",
+                            passengers: 1,
+                          })
+                        }
+                      >
+                        <span className="h-8 w-8 rounded-full bg-darkBlue text-white flex items-center justify-center text-2xl">
+                          +
+                        </span>
+                        <span className="text-black font-semibold">
+                          Add Flight
+                        </span>
+                      </button>
                     </div>
                   </div>
-                  <div className="flex flex-row space-x-2 items-center">
-                    <button
-                      type="button"
-                      disabled={values.adults === 6 || persons === 9}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setFieldValue("adults", values.adults + 1);
-                      }}
-                      className={`flex justify-center h-8 w-8 text-white rounded-full text-xl bg-darkBlue ${
-                        values.adults === 6 || persons === 9
-                          ? "cursor-not-allowed bg-opacity-50"
-                          : "cursor-pointer"
-                      }`}
-                    >
-                      +
-                    </button>
+                )}
+              />
+            ) : (
+              <div>
+                {values.flights && values.flights.length > 0 && (
+                  <div>
                     <div
-                      type="button"
-                      disabled={values.adults === 1}
-                      onClick={(e) => {
-                        if (values.adults > 1) {
-                          e.stopPropagation();
-                          setFieldValue("adults", values.adults - 1);
-                        }
-                      }}
-                      className={`flex justify-center h-8 w-8  text-white rounded-full text-xl bg-darkBlue  ${
-                        values.adults === 1
-                          ? "cursor-not-allowed bg-opacity-50"
-                          : "cursor-pointer"
-                      }`}
+                      key={0}
+                      className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 gap-4"
                     >
-                      -
-                    </div>
+                      {/* Fly From */}
+                      <div className="flex flex-col">
+                        <div className="flex items-center p-[10px_20px] gap-4 bg-backgroundColor rounded-[20px]">
+                          <MapPin className="text-smokyGray w-8 h-8" />
+                          <div className="flex flex-col items-start">
+                            <span className="text-smokyGray text-xs">
+                              Fly From
+                            </span>
+                            <Field
+                              name={`flights[0].departure`}
+                              component={CityAutocomplete}
+                              className="text-base focus:outline-none"
+                            />
+                          </div>
+                        </div>
+                      </div>
 
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setShowPassengersModal(!showPassengersModal)
-                      }
-                      className="text-smokyGray"
-                      aria-label="Toggle passenger options"
-                    >
-                      {showPassengersModal ? <ChevronUp /> : <ChevronDown />}
-                    </button>
-                  </div>
-                </div>
+                      {/* Fly To */}
+                      <div className="flex flex-col">
+                        <div className="flex items-center p-[10px_20px] gap-4 bg-backgroundColor rounded-[20px]">
+                          <MapPin className="text-smokyGray w-8 h-8" />
+                          <div className="flex flex-col items-start">
+                            <span className="text-smokyGray text-xs">
+                              Fly To
+                            </span>
+                            <Field
+                              name={`flights[0].flyTo`}
+                              component={CityAutocomplete}
+                              className="text-base focus:outline-none"
+                            />
+                          </div>
+                        </div>
+                      </div>
 
-                {showPassengersModal && (
-                  <PassengersAttachment
-                    values={values}
-                    setFieldValue={setFieldValue}
-                    onClose={() => setShowPassengersModal(false)}
-                  />
-                )}
-              </div>
+                      {/* Passengers */}
+                      <div className="flex flex-col relative">
+                        <div
+                          className="flex justify-between items-center p-[10px_20px] gap-5 bg-backgroundColor rounded-[20px]"
+                          onClick={() => setShowPassengersModal(true)}
+                        >
+                          <div className="flex flex-row items-center space-x-4">
+                            <UserRound className="text-smokyGray w-8 h-8" />
+                            <div className="flex flex-col">
+                              <span className="text-xs text-smokyGray">
+                                Passengers
+                              </span>
+                              <div className="text-s font-semibold text-smokyGray flex flex-row space-x-2">
+                                <span>{persons}</span>
+                                <span>Persons</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex flex-row space-x-2 items-center">
+                            <button
+                              type="button"
+                              disabled={values.adults === 6 || persons === 9}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setFieldValue("adults", values.adults + 1);
+                              }}
+                              className={`flex justify-center h-8 w-8 text-white rounded-full text-xl bg-darkBlue ${
+                                values.adults === 6 || persons === 9
+                                  ? "cursor-not-allowed bg-opacity-50"
+                                  : "cursor-pointer"
+                              }`}
+                            >
+                              +
+                            </button>
+                            <div
+                              type="button"
+                              disabled={values.adults === 1}
+                              onClick={(e) => {
+                                if (values.adults > 1) {
+                                  e.stopPropagation();
+                                  setFieldValue("adults", values.adults - 1);
+                                }
+                              }}
+                              className={`flex justify-center h-8 w-8 text-white rounded-full text-xl bg-darkBlue  ${
+                                values.adults === 1
+                                  ? "cursor-not-allowed bg-opacity-50"
+                                  : "cursor-pointer"
+                              }`}
+                            >
+                              -
+                            </div>
 
-              {/* Departure */}
-              <div className="flex flex-col">
-                <div className="flex  justify-between items-center p-[10px_20px] gap-5 bg-backgroundColor rounded-[20px]">
-                  <div className="flex flex-row items-center space-x-4">
-                    <Calendar className="text-smokyGray" />
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setShowPassengersModal(!showPassengersModal)
+                              }
+                              className="text-smokyGray"
+                              aria-label="Toggle passenger options"
+                            >
+                              {showPassengersModal ? (
+                                <ChevronUp />
+                              ) : (
+                                <ChevronDown />
+                              )}
+                            </button>
+                          </div>
+                        </div>
 
-                    <div className="flex flex-col  items-start">
-                      <span className="text-smokyGray text-xs">Departure</span>
-                      <div className="">
-                        <Field
-                          name="departureDate"
-                          type="date"
-                          min={new Date().toISOString().split("T")[0]}
-                          className="text-base focus:outline-none bg-backgroundColor"
-                        />
+                        {showPassengersModal && (
+                          <PassengersAttachment
+                            values={values}
+                            setFieldValue={setFieldValue}
+                            onClose={() => setShowPassengersModal(false)}
+                          />
+                        )}
                       </div>
                     </div>
                   </div>
-
-                  <div className="flex flex-row space-x-2 items-end h-full">
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (values.departureDate) {
-                          const nextDate = new Date(values.departureDate);
-                          nextDate.setDate(nextDate.getDate() - 1);
-                          setFieldValue(
-                            "departureDate",
-                            nextDate.toISOString().split("T")[0]
-                          );
-                        }
-                      }}
-                      className={`flex justify-center items-center h-8 w-8 bg-white rounded-full`}
-                    >
-                      <ChevronLeft />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (values.departureDate) {
-                          const nextDate = new Date(values.departureDate);
-                          nextDate.setDate(nextDate.getDate() + 1);
-                          setFieldValue(
-                            "departureDate",
-                            nextDate.toISOString().split("T")[0]
-                          );
-                        }
-                      }}
-                      className={`flex justify-center items-center h-8 w-8 bg-white rounded-full `}
-                    >
-                      <ChevronRight />
-                    </button>
-                  </div>
-                </div>
-                {errors.departureDate && touched.departureDate && (
-                  <span className="text-red text-xs mt-1 ml-2">
-                    {errors.departureDate}
-                  </span>
                 )}
               </div>
+            )}
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 gap-4 ">
+              {tripType == "Multi City" ? (
+                <div className="flex flex-col relative">
+                  {/* Passengers */}
+                  <div
+                    className="flex justify-between items-center p-[10px_20px] gap-5 bg-backgroundColor rounded-[20px]"
+                    onClick={() => setShowPassengersModal(true)}
+                  >
+                    <div className="flex flex-row items-center space-x-4">
+                      <UserRound className="text-smokyGray w-8 h-8" />
+                      <div className="flex flex-col">
+                        <span className="text-xs text-smokyGray">
+                          Passengers
+                        </span>
+                        <div className="text-s font-semibold text-smokyGray flex flex-row space-x-2">
+                          <span>{persons}</span>
+                          <span>Persons</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-row space-x-2 items-center">
+                      <button
+                        type="button"
+                        disabled={values.adults === 6 || persons === 9}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setFieldValue("adults", values.adults + 1);
+                        }}
+                        className={`flex justify-center h-8 w-8 text-white rounded-full text-xl bg-darkBlue ${
+                          values.adults === 6 || persons === 9
+                            ? "cursor-not-allowed bg-opacity-50"
+                            : "cursor-pointer"
+                        }`}
+                      >
+                        +
+                      </button>
+                      <div
+                        type="button"
+                        disabled={values.adults === 1}
+                        onClick={(e) => {
+                          if (values.adults > 1) {
+                            e.stopPropagation();
+                            setFieldValue("adults", values.adults - 1);
+                          }
+                        }}
+                        className={`flex justify-center h-8 w-8  text-white rounded-full text-xl bg-darkBlue  ${
+                          values.adults === 1
+                            ? "cursor-not-allowed bg-opacity-50"
+                            : "cursor-pointer"
+                        }`}
+                      >
+                        -
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setShowPassengersModal(!showPassengersModal)
+                        }
+                        className="text-smokyGray"
+                        aria-label="Toggle passenger options"
+                      >
+                        {showPassengersModal ? <ChevronUp /> : <ChevronDown />}
+                      </button>
+                    </div>
+                  </div>
+
+                  {showPassengersModal && (
+                    <PassengersAttachment
+                      values={values}
+                      setFieldValue={setFieldValue}
+                      onClose={() => setShowPassengersModal(false)}
+                    />
+                  )}
+                </div>
+              ) : (
+                <div className="flex flex-col relative">
+                  {/* Departure */}
+                  <div
+                    className="flex  justify-between items-center p-[10px_20px] gap-5 bg-backgroundColor rounded-[20px]"
+                    onClick={() => setShowCalenderModal(!showCalenderModal)}
+                  >
+                    <div className="flex flex-row items-center space-x-4">
+                      <Calendar className="text-smokyGray w-8 h-8" />
+
+                      <div className="flex flex-col  items-start">
+                        <span className="text-smokyGray text-xs">
+                          Departure
+                        </span>
+
+                        <div className="text-nowrap">
+                          {values.flights?.[0]?.departureDate
+                            ? values.flights[0].departureDate.slice(0, 10)
+                            : "mm/dd/yyyy"}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-row space-x-2 items-end h-full">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (values.flights?.[0]?.departureDate) {
+                            const nextDate = new Date(
+                              values.flights[0].departureDate
+                            );
+                            nextDate.setDate(nextDate.getDate() + 1);
+                            setFieldValue(
+                              "flights[0].departureDate",
+                              nextDate.toISOString().split("T")[0]
+                            );
+                          }
+                        }}
+                        className={`flex justify-center items-center h-8 w-8 bg-white rounded-full ${
+                          tripType !== "Return"
+                            ? "bg-opacity-30 cursor-not-allowed"
+                            : ""
+                        }`}
+                      >
+                        <ChevronLeft />
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (values.flights?.[0]?.departureDate) {
+                            const nextDate = new Date(
+                              values.flights[0].departureDate
+                            );
+                            nextDate.setDate(nextDate.getDate() + 1);
+                            setFieldValue(
+                              "flights[0].departureDate",
+                              nextDate.toISOString().split("T")[0]
+                            );
+                          }
+                        }}
+                        className={`flex justify-center items-center h-8 w-8 bg-white rounded-full ${
+                          tripType !== "Return"
+                            ? "bg-opacity-30 cursor-not-allowed"
+                            : ""
+                        }`}
+                      >
+                        <ChevronRight />
+                      </button>
+                    </div>
+                  </div>
+                  {errors.departureDate && touched.departureDate && (
+                    <span className="text-red text-xs mt-1 ml-2">
+                      {errors.departureDate}
+                    </span>
+                  )}
+
+                  {showCalenderModal && (
+                    <CalenderComponent
+                      values={values}
+                      setFieldValue={setFieldValue}
+                      calClose={() => setShowCalenderModal(false)}
+                      tripType={tripType}
+                    />
+                  )}
+                </div>
+              )}
 
               {/* Return */}
-              <div className="flex flex-col">
+              <div className="flex flex-col relative">
                 <div
                   className={`flex justify-between items-center p-[10px_20px] gap-5 bg-backgroundColor  rounded-[20px]  ${
-                    tripType == "One Way" ? "bg-opacity-30" : ""
+                    tripType !== "Return"
+                      ? "bg-opacity-30 cursor-not-allowed"
+                      : ""
                   }`}
+                  onClick={
+                    tripType === "Return"
+                      ? () => setShowCalenderModal(!showCalenderModal)
+                      : undefined
+                  }
                 >
                   <div className="flex flex-row items-center space-x-4">
-                    <Calendar className="text-smokyGray" />
+                    <Calendar className="text-smokyGray w-8 h-8" />
 
                     <div className="flex flex-col  items-start">
                       <span className="text-smokyGray text-xs">Return</span>
-                      <div className="">
-                        <Field
+                      <div className="text-nowrap">
+                        {values.flights?.[0]?.returnDate
+                          ? values.flights[0].returnDate.slice(0, 10)
+                          : "mm/dd/yyyy"}
+                        {/* <Field
                           name="returnDate"
                           type="date"
                           min={values.departureDate}
-                          disabled={tripType == "One Way"}
+                          disabled={tripType !== "Return"}
                           className={`text-base focus:outline-none bg-backgroundColor  ${
-                            tripType == "One Way"
+                            tripType !== "Return"
                               ? "cursor-not-allowed  bg-opacity-0"
                               : ""
                           }`}
-                        />
+                        /> */}
                       </div>
                     </div>
                   </div>
@@ -344,33 +645,46 @@ const FlightForm = () => {
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
-                        if (values.returnDate) {
-                          const nextDate = new Date(values.returnDate);
-                          nextDate.setDate(nextDate.getDate() - 1);
+                        if (values.flights?.[0]?.returnDate) {
+                          const prevDate = new Date(
+                            values.flights[0].returnDate
+                          );
+                          prevDate.setDate(prevDate.getDate() - 1);
                           setFieldValue(
-                            "returnDate",
-                            nextDate.toISOString().split("T")[0]
+                            "flights[0].returnDate",
+                            prevDate.toISOString().split("T")[0]
                           );
                         }
                       }}
-                      className={`flex justify-center items-center h-8 w-8 bg-white rounded-full`}
+                      className={`flex justify-center items-center h-8 w-8 bg-white rounded-full ${
+                        tripType !== "Return"
+                          ? "bg-opacity-30 cursor-not-allowed"
+                          : ""
+                      }`}
                     >
                       <ChevronLeft />
                     </button>
+
                     <button
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
-                        if (values.returnDate) {
-                          const nextDate = new Date(values.returnDate);
+                        if (values.flights?.[0]?.returnDate) {
+                          const nextDate = new Date(
+                            values.flights[0].returnDate
+                          );
                           nextDate.setDate(nextDate.getDate() + 1);
                           setFieldValue(
-                            "returnDate",
+                            "flights[0].returnDate",
                             nextDate.toISOString().split("T")[0]
                           );
                         }
                       }}
-                      className={`flex justify-center items-center h-8 w-8 bg-white rounded-full `}
+                      className={`flex justify-center items-center h-8 w-8 bg-white rounded-full ${
+                        tripType !== "Return"
+                          ? "bg-opacity-30 cursor-not-allowed"
+                          : ""
+                      }`}
                     >
                       <ChevronRight />
                     </button>
@@ -389,13 +703,15 @@ const FlightForm = () => {
                   className="flex items-center p-[10px_20px] gap-5 bg-backgroundColor rounded-[20px]"
                   onClick={() => setShowTravelClassModal(true)}
                 >
-                  <BriefcaseBusiness className="text-smokyGray" />
+                  <BriefcaseBusiness className="text-smokyGray w-8 h-8" />
                   <div className="flex flex-col">
                     <span className="text-xs text-smokyGray">
                       Travel Class & Baggage
                     </span>
                     <div className="text-s font-semibold text-smokyGray">
-                      {values.travelClass} • {values.baggage}
+                      {values.travelClass}{" "}
+                      <span className="text-xs font-thin">with</span>{" "}
+                      {values.baggage}
                     </div>
                   </div>
                 </div>
