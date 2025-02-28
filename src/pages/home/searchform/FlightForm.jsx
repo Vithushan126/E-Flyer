@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   MapPin,
   Calendar,
@@ -91,24 +91,25 @@ const FlightForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const { loading } = useSelector((state) => state.flightDetails);
+
   const [tripType, setTripType] = useState("Return");
   const [showPassengersModal, setShowPassengersModal] = useState(false);
   const [showTravelClassModal, setShowTravelClassModal] = useState(false);
   const [showCalenderModal, setShowCalenderModal] = useState(false);
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     console.log("Submitting form with values:", values);
     console.log("Submitting form with values:", values.flights[0]);
 
-    const { departureDate, returnDate } =
-       values.flights[0];
+    const { departureDate, returnDate } = values.flights[0];
 
-    console.log( departureDate,returnDate);
+    console.log(departureDate, returnDate);
 
     const formattedDepartureDate = departureDate.split("T")[0];
     const formattedReturnDate = returnDate.split("T")[0];
 
-     console.log( formattedDepartureDate,formattedReturnDate);
+    console.log(formattedDepartureDate, formattedReturnDate);
 
     dispatch(
       GetFlightAvailablity({
@@ -116,9 +117,13 @@ const FlightForm = () => {
         des_date: formattedReturnDate,
         dep_apt: "LHR",
         des_apt: "FRA",
-        airline_codes:['BA','QR','EY']
+        adults: values?.adults,
+        children: values?.children,
+        babies: values?.babies,
+        airline_codes: ["BA", "QR", "EY"],
       })
     );
+
     navigate("/available-flights");
   };
 
@@ -732,8 +737,11 @@ const FlightForm = () => {
               {/* Search Button */}
               <button
                 type="submit"
+                disabled={loading}
+                loading={true}
                 className="w-full lg:w-1/3 flex items-center justify-center gap-4 px-5 py-[14px]  h-[57px] bg-darkBlue text-white rounded-[20px] hover:bg-blue-800"
               >
+                {loading && loading}
                 <Search />
                 <span>Search</span>
               </button>

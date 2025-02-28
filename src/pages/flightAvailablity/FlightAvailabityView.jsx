@@ -10,9 +10,13 @@ import { useSelector } from "react-redux";
 const FlightAvailabityView = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  const { flights, dep_date, des_date, loading, error } = useSelector(
-    (state) => state.flightDetails
-  );
+  const {
+    flights,
+    dep_date,
+    des_date,
+    loading,
+    error,
+  } = useSelector((state) => state.flightDetails);
 
   return (
     <div className="w-full flex justify-center py-8">
