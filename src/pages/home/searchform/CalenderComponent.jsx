@@ -8,6 +8,12 @@ import {
 } from "lucide-react";
 import "./CustomCalendar.css";
 
+const toLocalISOString = (date) => {
+  // Create a new date object with local time (without timezone shift)
+  const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+  return localDate.toISOString();
+};
+
 const CalendarComponent = ({ calClose, setFieldValue, values, tripType }) => {
   const calendarRef = useRef(null);
   const [activeDate, setActiveDate] = useState("departure");
@@ -32,7 +38,10 @@ const CalendarComponent = ({ calClose, setFieldValue, values, tripType }) => {
 
   // Handle date selection
   const handleDateSelect = (value) => {
+    console.log(value);
+
     const selectedDate = new Date(value);
+    console.log(selectedDate);
 
     if (activeDate === "departure") {
       setDepartureDate(selectedDate);
@@ -78,11 +87,19 @@ const CalendarComponent = ({ calClose, setFieldValue, values, tripType }) => {
   const handleConfirm = () => {
     // For tripType !== "Return", set only departure date
     if (tripType !== "Return") {
-      setFieldValue(`flights[0].departureDate`, departureDate.toISOString());
+      console.log(departureDate);
+
+      setFieldValue(
+        `flights[0].departureDate`,
+        toLocalISOString(departureDate)
+      );
     } else {
       // For tripType === "Return", set both departure and return dates
-      setFieldValue(`flights[0].departureDate`, departureDate.toISOString());
-      setFieldValue(`flights[0].returnDate`, returnDate.toISOString());
+      setFieldValue(
+        `flights[0].departureDate`,
+        toLocalISOString(departureDate)
+      );
+      setFieldValue(`flights[0].returnDate`, toLocalISOString(returnDate));
     }
     setFieldValue("flexibleDays", flexibleDays);
     calClose();

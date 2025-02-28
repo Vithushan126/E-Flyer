@@ -5,8 +5,6 @@ import * as API from "../../../src/services/api/Api";
 export const GetFlightAvailablity = createAsyncThunk(
   "GetFlightAvailablity",
   async ({ dep_date, des_date, dep_apt, des_apt }, { rejectWithValue }) => {
-    console.log(dep_date);
-
     try {
       const response = await API.GetFlightAvailablity(
         dep_date,
@@ -14,7 +12,7 @@ export const GetFlightAvailablity = createAsyncThunk(
         dep_apt,
         des_apt
       );
-      console.log(response);
+      console.log(response.data);
 
       // return response.data;
       return {
@@ -51,8 +49,8 @@ const flightDetailsSlice = createSlice({
       })
       .addCase(GetFlightAvailablity.fulfilled, (state, action) => {
         state.loading = false;
-        // state.flights = action.payload;
-        state.flights = action.payload.flights;
+        state.flights =
+          action.payload?.flights?.contents?.flight_Availability_Details;
         state.dep_date = action.payload.searchParams.dep_date;
         state.des_date = action.payload.searchParams.des_date;
       })

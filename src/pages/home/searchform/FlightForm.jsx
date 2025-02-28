@@ -98,11 +98,17 @@ const FlightForm = () => {
 
   const onSubmit = (values) => {
     console.log("Submitting form with values:", values);
+    console.log("Submitting form with values:", values.flights[0]);
 
-    const { departureDate, returnDate, departure, destination } = values;
+    const { departureDate, returnDate } =
+       values.flights[0];
+
+    console.log( departureDate,returnDate);
 
     const formattedDepartureDate = departureDate.split("T")[0];
     const formattedReturnDate = returnDate.split("T")[0];
+
+     console.log( formattedDepartureDate,formattedReturnDate);
 
     dispatch(
       GetFlightAvailablity({
@@ -110,6 +116,7 @@ const FlightForm = () => {
         des_date: formattedReturnDate,
         dep_apt: "LHR",
         des_apt: "FRA",
+        airline_codes:['BA','QR','EY']
       })
     );
     navigate("/available-flights");
@@ -155,15 +162,15 @@ const FlightForm = () => {
                 render={(arrayHelpers) => (
                   <div className="">
                     {values.flights && values.flights.length > 0 && (
-                      <div>
+                      <div className="flex flex-col space-y-1 md:space-y-0">
                         {values.flights.map((flight, index) => (
                           <div
                             key={index}
-                            className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 gap-4"
+                            className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 gap-4 border border-border p-1 rounded-xl  md:border-none md:p-0 md:rounded-none"
                           >
                             {/* Fly From */}
                             <div className="flex flex-col">
-                              <div className="flex items-center p-[10px_20px] gap-4  bg-backgroundColor rounded-[20px]">
+                              <div className="flex items-center p-[10px_20px] md:p-[10px_5px] lg:p-[10px_20px] gap-4 md:gap-1 lg:gap-4  bg-backgroundColor rounded-[20px]">
                                 <MapPin className="text-smokyGray w-8 h-8" />
                                 <div className="flex flex-col items-start">
                                   <span className="text-smokyGray text-xs">
@@ -180,7 +187,7 @@ const FlightForm = () => {
 
                             {/* Fly To */}
                             <div className="flex flex-col">
-                              <div className="flex items-center p-[10px_20px] gap-4  bg-backgroundColor rounded-[20px]">
+                              <div className="flex items-center p-[10px_20px] md:p-[10px_5px] lg:p-[10px_20px] gap-4 md:gap-1 lg:gap-4  bg-backgroundColor rounded-[20px]">
                                 <MapPin className="text-smokyGray w-8 h-8" />
                                 <div className="flex flex-col items-start">
                                   <span className="text-smokyGray text-xs">
@@ -197,8 +204,8 @@ const FlightForm = () => {
 
                             {/* Departure */}
                             <div className="flex flex-col">
-                              <div className="flex  justify-between items-center p-[10px_20px] gap-5 bg-backgroundColor rounded-[20px]">
-                                <div className="flex flex-row items-center space-x-4">
+                              <div className="flex  justify-between items-center p-[10px_20px] md:p-[10px_5px] lg:p-[10px_20px] gap-4 md:gap-1 lg:gap-4 bg-backgroundColor rounded-[20px]">
+                                <div className="flex flex-row items-center space-x-4 md:space-x-1 lg:space-x-4">
                                   <Calendar className="text-smokyGray w-8 h-8" />
 
                                   <div className="flex flex-col  items-start">
@@ -322,7 +329,7 @@ const FlightForm = () => {
                     >
                       {/* Fly From */}
                       <div className="flex flex-col">
-                        <div className="flex items-center p-[10px_20px] gap-4 bg-backgroundColor rounded-[20px]">
+                        <div className=" flex items-center p-[10px_20px] md:p-[10px_5px] lg:p-[10px_20px] space-x-4 md:space-x-1 lg:space-x-4 bg-backgroundColor rounded-[20px]">
                           <MapPin className="text-smokyGray w-8 h-8" />
                           <div className="flex flex-col items-start">
                             <span className="text-smokyGray text-xs">
@@ -339,7 +346,7 @@ const FlightForm = () => {
 
                       {/* Fly To */}
                       <div className="flex flex-col">
-                        <div className="flex items-center p-[10px_20px] gap-4 bg-backgroundColor rounded-[20px]">
+                        <div className=" flex items-center p-[10px_20px] md:p-[10px_5px] lg:p-[10px_20px] gap-4 md:gap-1 lg:gap-4 bg-backgroundColor rounded-[20px]">
                           <MapPin className="text-smokyGray w-8 h-8" />
                           <div className="flex flex-col items-start">
                             <span className="text-smokyGray text-xs">
@@ -357,10 +364,10 @@ const FlightForm = () => {
                       {/* Passengers */}
                       <div className="flex flex-col relative">
                         <div
-                          className="flex justify-between items-center p-[10px_20px] gap-5 bg-backgroundColor rounded-[20px]"
+                          className="flex justify-between items-center  p-[10px_20px] md:p-[10px_5px] lg:p-[10px_20px] gap-4 md:gap-0 lg:gap-4 bg-backgroundColor rounded-[20px]"
                           onClick={() => setShowPassengersModal(true)}
                         >
-                          <div className="flex flex-row items-center space-x-4">
+                          <div className="flex flex-row items-center space-x-4 md:space-x-1 lg:space-x-4">
                             <UserRound className="text-smokyGray w-8 h-8" />
                             <div className="flex flex-col">
                               <span className="text-xs text-smokyGray">
@@ -372,7 +379,7 @@ const FlightForm = () => {
                               </div>
                             </div>
                           </div>
-                          <div className="flex flex-row space-x-2 items-center">
+                          <div className="flex flex-row space-x-2 md:space-x-1 lg:space-x-2 items-center">
                             <button
                               type="button"
                               disabled={values.adults === 6 || persons === 9}
@@ -442,10 +449,10 @@ const FlightForm = () => {
                 <div className="flex flex-col relative">
                   {/* Passengers */}
                   <div
-                    className="flex justify-between items-center p-[10px_20px] gap-5 bg-backgroundColor rounded-[20px]"
+                    className="flex justify-between items-center p-[10px_20px] md:p-[10px_5px] lg:p-[10px_20px] gap-4 md:gap-1 lg:gap-4 bg-backgroundColor rounded-[20px]"
                     onClick={() => setShowPassengersModal(true)}
                   >
-                    <div className="flex flex-row items-center space-x-4">
+                    <div className="flex flex-row items-center space-x-4 md:space-x-1 lg:space-x-4">
                       <UserRound className="text-smokyGray w-8 h-8" />
                       <div className="flex flex-col">
                         <span className="text-xs text-smokyGray">
@@ -516,10 +523,10 @@ const FlightForm = () => {
                 <div className="flex flex-col relative">
                   {/* Departure */}
                   <div
-                    className="flex  justify-between items-center p-[10px_20px] gap-5 bg-backgroundColor rounded-[20px]"
+                    className="flex  justify-between items-center p-[10px_20px] md:p-[10px_5px] lg:p-[10px_20px] gap-4 md:gap-1 lg:gap-4 bg-backgroundColor rounded-[20px]"
                     onClick={() => setShowCalenderModal(!showCalenderModal)}
                   >
-                    <div className="flex flex-row items-center space-x-4">
+                    <div className="flex flex-row items-center space-x-4 md:space-x-1 lg:space-x-4">
                       <Calendar className="text-smokyGray w-8 h-8" />
 
                       <div className="flex flex-col  items-start">
@@ -535,7 +542,7 @@ const FlightForm = () => {
                       </div>
                     </div>
 
-                    <div className="flex flex-row space-x-2 items-end h-full">
+                    <div className="flex flex-row space-x-2 md:space-x-1 lg:space-x-2 items-end h-full">
                       <button
                         type="button"
                         onClick={(e) => {
@@ -552,9 +559,7 @@ const FlightForm = () => {
                           }
                         }}
                         className={`flex justify-center items-center h-8 w-8 bg-white rounded-full ${
-                          tripType !== "Return"
-                            ? "bg-opacity-30 cursor-not-allowed"
-                            : ""
+                          tripType !== "Return" ? "bg-opacity-30 " : ""
                         }`}
                       >
                         <ChevronLeft />
@@ -576,9 +581,7 @@ const FlightForm = () => {
                           }
                         }}
                         className={`flex justify-center items-center h-8 w-8 bg-white rounded-full ${
-                          tripType !== "Return"
-                            ? "bg-opacity-30 cursor-not-allowed"
-                            : ""
+                          tripType !== "Return" ? "bg-opacity-30 " : ""
                         }`}
                       >
                         <ChevronRight />
@@ -605,7 +608,7 @@ const FlightForm = () => {
               {/* Return */}
               <div className="flex flex-col relative">
                 <div
-                  className={`flex justify-between items-center p-[10px_20px] gap-5 bg-backgroundColor  rounded-[20px]  ${
+                  className={`flex justify-between items-center p-[10px_20px] md:p-[10px_5px] lg:p-[10px_20px] gap-4 md:gap-1 lg:gap-4 bg-backgroundColor  rounded-[20px]  ${
                     tripType !== "Return"
                       ? "bg-opacity-30 cursor-not-allowed"
                       : ""
@@ -616,7 +619,7 @@ const FlightForm = () => {
                       : undefined
                   }
                 >
-                  <div className="flex flex-row items-center space-x-4">
+                  <div className="flex flex-row items-center space-x-4 md:space-x-1 lg:space-x-4">
                     <Calendar className="text-smokyGray w-8 h-8" />
 
                     <div className="flex flex-col  items-start">
@@ -640,7 +643,7 @@ const FlightForm = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-row space-x-2 items-end h-full">
+                  <div className="flex flex-row space-x-2 md:space-x-1 lg:space-x-2 items-end h-full">
                     <button
                       type="button"
                       onClick={(e) => {
@@ -700,7 +703,7 @@ const FlightForm = () => {
               {/* Travel Class */}
               <div className="flex flex-col relative">
                 <div
-                  className="flex items-center p-[10px_20px] gap-5 bg-backgroundColor rounded-[20px]"
+                  className="flex items-center p-[10px_20px] md:p-[10px_5px] lg:p-[10px_20px] gap-4 md:gap-1 lg:gap-4 bg-backgroundColor rounded-[20px]"
                   onClick={() => setShowTravelClassModal(true)}
                 >
                   <BriefcaseBusiness className="text-smokyGray w-8 h-8" />
@@ -708,9 +711,9 @@ const FlightForm = () => {
                     <span className="text-xs text-smokyGray">
                       Travel Class & Baggage
                     </span>
-                    <div className="text-s font-semibold text-smokyGray">
+                    <div className="text-s font-semibold text-smokyGray flex flex-row space-x-1 text-nowrap ">
                       {values.travelClass}{" "}
-                      <span className="text-xs font-thin">with</span>{" "}
+                      <span className="text-xs font-thin">with</span>
                       {values.baggage}
                     </div>
                   </div>

@@ -5,9 +5,14 @@ import FlightAvailableFilter from "./FlightAvailableFilter";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import FlightList from "./FlightList";
 import BookingFlight from "./BookingFlight";
+import { useSelector } from "react-redux";
 
 const FlightAvailabityView = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  const { flights, dep_date, des_date, loading, error } = useSelector(
+    (state) => state.flightDetails
+  );
 
   return (
     <div className="w-full flex justify-center py-8">
@@ -60,7 +65,7 @@ const FlightAvailabityView = () => {
             <FlightList />
 
             <div className="text-sm md:text-base px-4 text-smokyGray font-medium">
-              3 Offers Found
+              {flights.length} Offers Found
             </div>
 
             {/* {flightData?.length > 0 && ( */}
