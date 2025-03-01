@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home2 from "../pages/home/Home2";
 import LoadingScreen from "../components/ui/loading/LoadingScreen";
 
 const WatchList = React.lazy(() => import("../pages/watchlist/Watchlist"));
@@ -99,10 +98,6 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
-      },
-      {
-        path: "Home2",
-        element: <Home2 />,
       },
       {
         path: "tours",

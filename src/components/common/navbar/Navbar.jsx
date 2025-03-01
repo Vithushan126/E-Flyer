@@ -25,7 +25,6 @@ const headerText = [
     url: "/destinations",
   },
   { text: "Contact", icon: <Package className="h-5 w-5" />, url: "/contact" },
-  { text: "Home2", icon: <Globe className="h-5 w-5" />, url: "/Home2" },
 ];
 
 const Navbar = () => {
