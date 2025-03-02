@@ -20,10 +20,14 @@ const CalendarComponent = ({ calClose, setFieldValue, values, tripType }) => {
   const [departureDate, setDepartureDate] = useState(
     values.departureDate || new Date()
   );
-  const [returnDate, setReturnDate] = useState(values.returnDate || new Date());
+  const [returnDate, setReturnDate] = useState(
+    values.returnDate
+      ? new Date(values.returnDate)
+      : new Date(new Date().setDate(new Date().getDate() + 1))
+  );
+
   const [currentDate, setCurrentDate] = useState(departureDate);
   const [flexibleDays, setFlexibleDays] = useState(values.flexibleDays || 0);
-  const [isFirstSelection, setIsFirstSelection] = useState(true);
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
 
   // Format date to display
@@ -38,21 +42,19 @@ const CalendarComponent = ({ calClose, setFieldValue, values, tripType }) => {
 
   // Handle date selection
   const handleDateSelect = (value) => {
-    console.log(value);
-
     const selectedDate = new Date(value);
-    console.log(selectedDate);
 
     if (activeDate === "departure") {
       setDepartureDate(selectedDate);
       setFieldValue("departureDate", selectedDate);
 
-      // Only switch to return date selection if it's not the first selection
-      if (!isFirstSelection) {
+      // Automatically switch to return date selection after selecting departure date
+      // Only switch if this is a return trip
+      if (tripType === "Return") {
         setActiveDate("return");
       }
-      setIsFirstSelection(false);
     } else {
+      // For return date selection
       if (selectedDate >= departureDate) {
         setReturnDate(selectedDate);
         setFieldValue("returnDate", selectedDate);
@@ -87,8 +89,6 @@ const CalendarComponent = ({ calClose, setFieldValue, values, tripType }) => {
   const handleConfirm = () => {
     // For tripType !== "Return", set only departure date
     if (tripType !== "Return") {
-      console.log(departureDate);
-
       setFieldValue(
         `flights[0].departureDate`,
         toLocalISOString(departureDate)
@@ -134,7 +134,9 @@ const CalendarComponent = ({ calClose, setFieldValue, values, tripType }) => {
         {/* Departure */}
         <div
           className={`w-full flex justify-between items-center p-3 py-2 space-x-6 ${
-            activeDate === "departure" ? "bg-blue-50" : "bg-backgroundColor"
+            activeDate === "departure"
+              ? "bg-blue-50 border border-border"
+              : "bg-backgroundColor"
           } rounded-[20px] cursor-pointer`}
           onClick={() => setActiveDate("departure")}
         >
@@ -176,7 +178,9 @@ const CalendarComponent = ({ calClose, setFieldValue, values, tripType }) => {
         {tripType === "Return" && (
           <div
             className={`w-full flex justify-between items-center p-3 py-2 space-x-6 ${
-              activeDate === "return" ? "bg-blue-50" : "bg-backgroundColor"
+              activeDate === "return"
+                ? "bg-blue-50  border border-border"
+                : "bg-backgroundColor"
             } rounded-[20px] cursor-pointer`}
             onClick={() => setActiveDate("return")}
           >

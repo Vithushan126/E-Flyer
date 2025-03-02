@@ -27,40 +27,81 @@ import CalenderComponent from "./CalenderComponent";
 const today = new Date();
 today.setHours(0, 0, 0, 0);
 
-// const validationSchema = Yup.object().shape({
-//   departure: Yup.string().required("Departure city is required"),
-//   destination: Yup.string()
-//     .required("Destination city is required")
-//     .test(
-//       "different-cities",
-//       "Departure and destination cannot be the same",
-//       function (value) {
-//         return this.parent.departure !== value;
-//       }
-//     ),
+const validationSchema = Yup.object().shape({
+  flights: Yup.array().test(
+    "validate-first-flight",
+    null, // Using null here as we'll provide specific error messages in the test
+    function (flights) {
+      if (!flights || flights.length === 0) {
+        return this.createError({
+          path: `${this.path}[0]`,
+          message: "At least one flight is required",
+        });
+      }
 
-//   // adults: Yup.number().min(1).max(6).required("Adult passengers required"),
-//   // children: Yup.number().min(0).max(6).required("Child passengers required"),
-//   // babies: Yup.number().min(0).max(1).required("Baby passengers required"),
+      const firstFlight = flights[0];
+      const errors = {};
+      let hasErrors = false;
 
-//   departureDate: Yup.date()
-//     .required("Departure date is required")
-//     .min(today, "Departure date cannot be in the past"),
+      // Validate departure
+      if (!firstFlight.departure) {
+        errors.departure = "Departure city is required";
+        hasErrors = true;
+      }
 
-//   returnDate: Yup.date()
-//     .nullable() // Allows null values
-//     .when("tripType", {
-//       is: (tripType) => tripType === "Return" || tripType === "Multi City",
-//       then: (schema) =>
-//         schema
-//           .required("Return date is required")
-//           .min(
-//             Yup.ref("departureDate"),
-//             "Return date must be after departure date"
-//           ),
-//       otherwise: (schema) => schema.notRequired(),
-//     }),
-// });
+      // Validate flyTo
+      if (!firstFlight.flyTo) {
+        errors.flyTo = "Destination city is required";
+        hasErrors = true;
+      } else if (firstFlight.departure === firstFlight.flyTo) {
+        errors.flyTo = "Departure and destination cannot be the same";
+        hasErrors = true;
+      }
+
+      // Validate departureDate for the first flight
+      if (!firstFlight.departureDate) {
+        errors.departureDate = "Departure date is required";
+        hasErrors = true;
+      } else {
+        const flightDepartureDate = new Date(firstFlight.departureDate);
+        if (flightDepartureDate < today) {
+          errors.departureDate = "Departure date cannot be in the past";
+          hasErrors = true;
+        }
+      }
+
+      // Validate returnDate only if tripType is "Return"
+      const tripType = this.parent.tripType;
+      console.log(tripType);
+
+      if (tripType === "Return") {
+        if (!firstFlight.returnDate) {
+          errors.returnDate = "Return date is required";
+          hasErrors = true;
+        } else if (firstFlight.departureDate) {
+          const departureDate = new Date(firstFlight.departureDate);
+          const returnDate = new Date(firstFlight.returnDate);
+
+          if (returnDate < departureDate) {
+            errors.returnDate = "Return date cannot be before departure date";
+            hasErrors = true;
+          }
+        }
+      }
+
+      // If there are errors, return them
+      if (hasErrors) {
+        return this.createError({
+          path: `${this.path}[0]`,
+          message: errors,
+          params: { errors },
+        });
+      }
+
+      return true;
+    }
+  ),
+});
 
 const initialValues = {
   travelClass: "Economy",
@@ -77,12 +118,14 @@ const initialValues = {
       flyTo: "",
       flexibleDays: 0,
       departureDate: "",
+      returnDate: "",
     },
     {
       departure: "",
       flyTo: "",
       flexibleDays: 0,
       departureDate: "",
+      returnDate: "",
     },
   ],
 };
@@ -130,10 +173,11 @@ const FlightForm = () => {
   return (
     <Formik
       initialValues={initialValues}
-      // validationSchema={validationSchema}
+      validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
       {({ values, setFieldValue, errors, touched, resetForm }) => {
+        console.log("Formik Values:", values);
         const persons = values.adults + values.children + values.babies;
         return (
           <Form className="flex flex-col space-y-4">
@@ -148,8 +192,8 @@ const FlightForm = () => {
                     checked={tripType === type}
                     onChange={() => {
                       setTripType(type);
-                      setFieldValue("tripType", type);
                       resetForm();
+                      setFieldValue("tripType", type);
                     }}
                     className="accent-darkBlue"
                   />
@@ -347,6 +391,14 @@ const FlightForm = () => {
                             />
                           </div>
                         </div>
+
+                        {values.flights.length > 0 &&
+                          errors.flights?.[0]?.departure &&
+                          touched.flights?.[0]?.departure && (
+                            <span className="text-red text-xs mt-1 ml-2">
+                              {errors.flights[0].departure}
+                            </span>
+                          )}
                       </div>
 
                       {/* Fly To */}
@@ -364,6 +416,14 @@ const FlightForm = () => {
                             />
                           </div>
                         </div>
+
+                        {values.flights.length > 0 &&
+                          errors.flights?.[0]?.flyTo &&
+                          touched.flights?.[0]?.flyTo && (
+                            <span className="text-red text-xs mt-1 ml-2">
+                              {errors.flights[0].flyTo}
+                            </span>
+                          )}
                       </div>
 
                       {/* Passengers */}
@@ -556,7 +616,7 @@ const FlightForm = () => {
                             const nextDate = new Date(
                               values.flights[0].departureDate
                             );
-                            nextDate.setDate(nextDate.getDate() + 1);
+                            nextDate.setDate(nextDate.getDate() - 1);
                             setFieldValue(
                               "flights[0].departureDate",
                               nextDate.toISOString().split("T")[0]
@@ -593,11 +653,13 @@ const FlightForm = () => {
                       </button>
                     </div>
                   </div>
-                  {errors.departureDate && touched.departureDate && (
-                    <span className="text-red text-xs mt-1 ml-2">
-                      {errors.departureDate}
-                    </span>
-                  )}
+
+                  {errors.flights?.[0]?.departureDate &&
+                    touched.flights?.[0]?.departureDate && (
+                      <span className="text-red text-xs mt-1 ml-2">
+                        {errors.flights[0].departureDate}
+                      </span>
+                    )}
 
                   {showCalenderModal && (
                     <CalenderComponent
@@ -633,17 +695,6 @@ const FlightForm = () => {
                         {values.flights?.[0]?.returnDate
                           ? values.flights[0].returnDate.slice(0, 10)
                           : "mm/dd/yyyy"}
-                        {/* <Field
-                          name="returnDate"
-                          type="date"
-                          min={values.departureDate}
-                          disabled={tripType !== "Return"}
-                          className={`text-base focus:outline-none bg-backgroundColor  ${
-                            tripType !== "Return"
-                              ? "cursor-not-allowed  bg-opacity-0"
-                              : ""
-                          }`}
-                        /> */}
                       </div>
                     </div>
                   </div>
@@ -698,11 +749,14 @@ const FlightForm = () => {
                     </button>
                   </div>
                 </div>
-                {errors.returnDate && touched.returnDate && (
-                  <span className="text-red text-xs mt-1 ml-2">
-                    {errors.returnDate}
-                  </span>
-                )}
+                {/* Return error message conditional rendering */}
+                {errors.flights?.[0]?.returnDate &&
+                  touched.flights?.[0]?.returnDate &&
+                  tripType === "Return" && (
+                    <span className="text-red text-xs mt-1 ml-2">
+                      {errors.flights[0].returnDate}
+                    </span>
+                  )}
               </div>
 
               {/* Travel Class */}
@@ -741,7 +795,6 @@ const FlightForm = () => {
                 loading={true}
                 className="w-full lg:w-1/3 flex items-center justify-center gap-4 px-5 py-[14px]  h-[57px] bg-darkBlue text-white rounded-[20px] hover:bg-blue-800"
               >
-                {loading && loading}
                 <Search />
                 <span>Search</span>
               </button>
