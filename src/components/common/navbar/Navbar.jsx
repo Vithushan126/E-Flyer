@@ -113,7 +113,9 @@ const Navbar = () => {
               {headerText.map((item, index) => (
                 <span
                   key={index}
-                  className=" cursor-pointer hover:text-orange font-normal"
+                  className={`cursor-pointer font-normal hover:text-orange ${
+                    location.pathname === item.url ? "text-orange" : ""
+                  }`}
                   onClick={() => handleNavigation(item?.url)}
                 >
                   {item.text}
