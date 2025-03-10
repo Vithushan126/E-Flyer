@@ -284,14 +284,7 @@ const SearchForm = ({ initialData = {} }) => {
     },
   ];
 
-  const formComponents = [
-    FlightHotelForm,
-    FlightForm,
-    HotelForm,
-    // CruiseForm,
-    TourForm,
-    // VacationApartmentForm,
-  ];
+  const formComponents = [FlightHotelForm, FlightForm, HotelForm, TourForm];
 
   // Select the proper component based on searchStatusVal.
   const FormComponent = formComponents[searchStatusVal] || FlightForm;
