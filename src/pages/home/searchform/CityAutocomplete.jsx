@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Autosuggest from "react-autosuggest";
 import airports from "../../../data/airports.json";
 
@@ -38,6 +38,17 @@ const renderSuggestionsContainer = ({ containerProps, children, query }) => (
 const CityAutocomplete = ({ field, form, placeholder }) => {
   const [displayValue, setDisplayValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+
+  useEffect(() => {
+    if (field.value) {
+      const selectedAirport = airports.find(
+        (airport) => airport.iata === field.value
+      );
+      if (selectedAirport) {
+        setDisplayValue(getSuggestionValue(selectedAirport));
+      }
+    }
+  }, [field.value]);
 
   // Update input value
   const onChange = (event, { newValue }) => {

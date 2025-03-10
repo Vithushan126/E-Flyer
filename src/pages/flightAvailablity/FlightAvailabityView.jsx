@@ -65,9 +65,13 @@ const FlightAvailabityView = () => {
 
             <FlightList />
 
-            <div className="text-sm md:text-base px-4 text-smokyGray font-medium">
-              {flights.length} Offers Found
-            </div>
+            {loading ? (
+              ""
+            ) : (
+              <div className="text-sm md:text-base px-4 text-smokyGray font-medium">
+                {flights.length} Offers Found
+              </div>
+            )}
 
             {loading ? <LoadingScreen /> : <BookingFlight />}
           </div>

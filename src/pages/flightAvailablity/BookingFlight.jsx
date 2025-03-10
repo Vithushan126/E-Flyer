@@ -28,9 +28,15 @@ const BookingFlight = () => {
     }
   }, [flights, loading]);
 
+
+   const firstOutboundFlight =
+     flights[0]?.fareDTOList[0]?.flightDTOS[0]?.flightId || "";
+   const firstReturnFlight =
+     flights[0]?.fareDTOList[1]?.flightDTOS[0]?.flightId || "";
+
   const initialValues = {
-    outboundFlight: "",
-    returnFlight: "",
+    outboundFlight: firstOutboundFlight,
+    returnFlight: firstReturnFlight,
   };
 
   const validationSchema = Yup.object({
@@ -74,7 +80,7 @@ const BookingFlight = () => {
   };
 
   return (
-    <div className="flex flex-col space-y-10 w-full">
+    <div className="flex flex-col space-y-10 w-full ">
       <div className="overflow-x-scroll scrollbar-hide space-y-4">
         {flights.map((data, index) => (
           <div

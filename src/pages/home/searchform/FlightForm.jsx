@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   MapPin,
@@ -22,6 +22,8 @@ import { GetFlightAvailablity } from "../../../redux/feature/flightDetailsSlice"
 import PassengersAttachment from "./PassengersAttachment";
 import TravelClassAttachment from "./TravelClassAttachment";
 import CalenderComponent from "./CalenderComponent";
+import LoadingScreen from "../../../components/ui/loading/LoadingScreen";
+import { FaSpinner } from "react-icons/fa";
 
 // Get today's date at midnight for consistent comparison
 const today = new Date();
@@ -103,36 +105,41 @@ const validationSchema = Yup.object().shape({
   ),
 });
 
-const initialValues = {
-  travelClass: "Economy",
-  baggage: "Carry-on Baggage",
-  tripType: "Return",
-  adults: 1,
-  children: 0,
-  babies: 0,
-  returnDate: "",
-  departureDate: "",
-  flights: [
-    {
-      departure: "",
-      flyTo: "",
-      flexibleDays: 0,
-      departureDate: "",
-      returnDate: "",
-    },
-    {
-      departure: "",
-      flyTo: "",
-      flexibleDays: 0,
-      departureDate: "",
-      returnDate: "",
-    },
-  ],
-};
-
 const FlightForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  console.log(location.state?.formValues);
+
+  const defaultInitialValues = {
+    travelClass: "Economy",
+    baggage: "Carry-on Baggage",
+    tripType: "Return",
+    adults: 1,
+    children: 0,
+    babies: 0,
+    returnDate: "",
+    departureDate: "",
+    flights: [
+      {
+        departure: "",
+        flyTo: "",
+        flexibleDays: 0,
+        departureDate: "",
+        returnDate: "",
+      },
+      {
+        departure: "",
+        flyTo: "",
+        flexibleDays: 0,
+        departureDate: "",
+        returnDate: "",
+      },
+    ],
+  };
+
+  const initialValues = location.state?.formValues || defaultInitialValues;
 
   const { loading } = useSelector((state) => state.flightDetails);
 
@@ -167,12 +174,15 @@ const FlightForm = () => {
       })
     );
 
-    navigate("/available-flights");
+    navigate("/available-flights", {
+      state: { selectedTab: 1, formValues: values },
+    });
   };
 
   return (
     <Formik
       initialValues={initialValues}
+      enableReinitialize
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
@@ -192,7 +202,9 @@ const FlightForm = () => {
                     checked={tripType === type}
                     onChange={() => {
                       setTripType(type);
-                      resetForm();
+                      resetForm({
+                        values: { ...defaultInitialValues, tripType: type },
+                      });
                       setFieldValue("tripType", type);
                     }}
                     className="accent-darkBlue"
@@ -792,9 +804,11 @@ const FlightForm = () => {
               <button
                 type="submit"
                 disabled={loading}
-                loading={true}
                 className="w-full lg:w-1/3 flex items-center justify-center gap-4 px-5 py-[14px]  h-[57px] bg-darkBlue text-white rounded-[20px] hover:bg-blue-800"
               >
+                {loading && (
+                  <FaSpinner className="animate-spin text-white text-xl" />
+                )}
                 <Search />
                 <span>Search</span>
               </button>

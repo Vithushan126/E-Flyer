@@ -114,7 +114,7 @@ const FlightAvailableFilter = ({ setIsFilterOpen }) => {
   console.log(departureReturnTime.map(formatTime));
 
   return (
-    <div className="w-full  lg:h-auto h-screen p-2 lg:p-0 overflow-y-scroll scrollbar-hide flex flex-row justify-center items-center z-40">
+    <div className="w-full  lg:h-auto h-screen p-2 lg:p-0 overflow-y-scroll scrollbar-hide flex flex-row justify-center items-center z-30">
       <div className="w-[500px] lg:w-[389px]  border border-darkBlue rounded-xl p-4 shadow-md  bg-white z-50">
         <button
           className=" lg:hidden flex flex-row justify-end w-full   hover:text-black"
