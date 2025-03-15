@@ -6,8 +6,11 @@ import img4 from "../../../assets/explore/img_4.jpg";
 import img5 from "../../../assets/explore/img_5.jpg";
 import img6 from "../../../assets/explore/img_6.jpg";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import { useTranslation } from "react-i18next";
 
 const Explore = () => {
+  const { t } = useTranslation();
+
   const countries = [
     {
       id: "egypt",
@@ -46,13 +49,12 @@ const Explore = () => {
       {/* Header Section */}
       <div className="ml-4 xs:ml-6 sm:ml-16 md:ml-36 mb-6 sm:mb-8">
         <h1 className="text-lg xs:text-xl sm:text-2xl md:text-4xl font-bold">
-          Explore The Country
+          {t("explore.title")}
         </h1>
         <p className="mt-2 text-sm xs:text-base sm:text-lg md:text-xl">
-          Discover our world of exclusive offers and services that change the way you travel.
+          {t("explore.subTitle")}
         </p>
       </div>
-
 
       {/* Arrow Navigation */}
       <button
@@ -81,7 +83,9 @@ const Explore = () => {
           return (
             <div
               key={index}
-              className={`relative w-full sm:w-[480px] md:w-[480px] lg:w-[480px] h-[250px] sm:h-[380px] md:h-[451px] ${isMiddle ? "bg-black bg-opacity-90" : ""}`}
+              className={`relative w-full sm:w-[480px] md:w-[480px] lg:w-[480px] h-[250px] sm:h-[380px] md:h-[451px] ${
+                isMiddle ? "bg-black bg-opacity-90" : ""
+              }`}
               style={{
                 backgroundImage: `url(${image})`,
                 backgroundSize: "cover",
@@ -98,7 +102,7 @@ const Explore = () => {
                   </p>
                   <div className="absolute flex justify-center items-center bg-darkBlue rounded-[20px] p-3 xs:p-4 sm:p-5 w-[100px] sm:w-[150px] md:w-[200px] h-[40px] sm:h-[60px] md:h-[70px] left-[30px] sm:left-[50px] top-[200px] sm:top-[300px]">
                     <span className="text-xs sm:text-sm md:text-base font-medium">
-                      Explore
+                      {t("explore.explore")}
                     </span>
                   </div>
                 </div>
@@ -106,7 +110,6 @@ const Explore = () => {
             </div>
           );
         })}
-
       </div>
     </div>
   );

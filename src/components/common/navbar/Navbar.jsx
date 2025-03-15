@@ -13,18 +13,14 @@ import {
   Heart,
 } from "lucide-react";
 import SearchIcon from "../../../assets/navbar/SearchIcon_2.svg";
-import EnglandFlag from "../../../assets/navbar/EnglandFlag.svg";
 import WhiteLogo from "../../../assets/footer/whitelogo.png";
+import { useTranslation } from "react-i18next";
 
-const headerText = [
-  { text: "Explore", icon: <Globe className="h-5 w-5" />, url: "/explore" },
-  { text: "Offers", icon: <BookOpen className="h-5 w-5" />, url: "/offers" },
-  {
-    text: "Destinations",
-    icon: <MapPin className="h-5 w-5" />,
-    url: "/destinations",
-  },
-  { text: "Contact", icon: <Package className="h-5 w-5" />, url: "/contact" },
+const languages = [
+  { code: "EN", label: "English", countryCode: "gb", lang: "en" },
+  { code: "FR", label: "French", countryCode: "fr", lang: "fr" },
+  { code: "GE", label: "German", countryCode: "de", lang: "de" },
+  { code: "IT", label: "Italian", countryCode: "it", lang: "it" },
 ];
 
 const Navbar = () => {
@@ -32,9 +28,38 @@ const Navbar = () => {
   const location = useLocation();
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
+  const dropdownRef = useRef(null);
+  const mobileDropdownRef = useRef(null);
+  const { i18n, t } = useTranslation();
 
   const [isOpen, setIsOpen] = useState(false);
   const [navState, setNavState] = useState(false);
+  const [selectedLang, setSelectedLang] = useState(languages[0]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
+
+  const headerText = [
+    {
+      text: t("navigation.explore"),
+      icon: <Globe className="h-5 w-5" />,
+      url: "/explore",
+    },
+    {
+      text: t("navigation.offers"),
+      icon: <BookOpen className="h-5 w-5" />,
+      url: "/offers",
+    },
+    {
+      text: t("navigation.destinations"),
+      icon: <MapPin className="h-5 w-5" />,
+      url: "/destinations",
+    },
+    {
+      text: t("navigation.contact"),
+      icon: <Package className="h-5 w-5" />,
+      url: "/contact",
+    },
+  ];
 
   const isHomePage = location.pathname === "/";
   const [backgroundColor, setBackgroundColor] = useState("bg-darkBlue");
@@ -48,24 +73,6 @@ const Navbar = () => {
     navigate(url);
     setIsOpen(false);
   };
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target) &&
-        buttonRef.current &&
-        !buttonRef.current.contains(event.target)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   // Track scroll position
   useEffect(() => {
@@ -92,6 +99,46 @@ const Navbar = () => {
   // useEffect(() => {
   //   setBagroundCol(isHomePage);
   // }, [location.pathname]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Desktop dropdown
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+
+      // Mobile dropdown
+      if (
+        mobileDropdownRef.current &&
+        !mobileDropdownRef.current.contains(event.target)
+      ) {
+        setIsMobileDropdownOpen(false);
+      }
+
+      // Mobile menu
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        !buttonRef.current.contains(event.target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleLanguageChange = (lang) => {
+    console.log("lang.code", lang);
+
+    setSelectedLang(lang);
+    setIsDropdownOpen(false);
+    setIsMobileDropdownOpen(false);
+    i18n.changeLanguage(lang?.lang);
+  };
 
   return (
     <div
@@ -134,32 +181,69 @@ const Navbar = () => {
             >
               <Heart className="h-6 w-6" />
             </button>
-            <div className="flex flex-row space-x-2 items-center">
-              <img
-                src={EnglandFlag}
-                alt="England Flag"
-                className="w-5 h-5 rounded-full object-cover"
-              />
-              <span className="text-lg font-normal">EN</span>
+
+            {/* language dropdown */}
+            <div
+              className="relative flex flex-row space-x-2 items-center"
+              ref={dropdownRef}
+            >
+              {/* Language Selection Button */}
+              <button
+                className="flex flex-row items-center space-x-2 focus:outline-none"
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              >
+                <img
+                  src={`https://flagcdn.com/w40/${selectedLang.countryCode}.png`}
+                  alt={`${selectedLang.label} Flag`}
+                  className="w-5 h-5 rounded-full object-cover"
+                />
+                <span className="text-lg font-normal">{selectedLang.code}</span>
+              </button>
+
+              {/* Language Dropdown */}
+              {isDropdownOpen && (
+                <div className="absolute top-10 left-0 bg-white shadow-lg rounded-md w-28 p-2">
+                  {languages.map((lang) => (
+                    <div
+                      key={lang.code}
+                      className={`flex items-center space-x-2 px-3 py-1 cursor-pointer rounded-md  ${
+                        selectedLang.code === lang.code
+                          ? "bg-blue-100 text-blue-700"
+                          : "hover:bg-smokeGray"
+                      }`}
+                      onClick={() => handleLanguageChange(lang)}
+                    >
+                      <img
+                        src={`https://flagcdn.com/w40/${lang.countryCode}.png`}
+                        alt={`${lang.label} Flag`}
+                        className="w-4 h-4"
+                      />
+                      <span className="text-textColor text-sm">
+                        {lang.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
+
             <button
               className="flex flex-row space-x-2 items-center focus:outline-none"
               onClick={() => handleNavigation("/login")}
             >
               <CircleUserRound className="h-6 w-6 font-normal" />
-              <span className="text-lg font-normal">Login</span>
+              <span className="text-lg font-normal">{t("login")}</span>
             </button>
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden ">
-            <button
-              ref={buttonRef} // Attach ref to button
-              onClick={toggleMenu}
-              className="p-2 focus:outline-none "
-            >
+          <div className="lg:hidden">
+            <button ref={buttonRef} className="p-2 focus:outline-none ">
               {isOpen ? (
-                <X className="h-6 w-6 hover:cursor-pointer" />
+                <X
+                  className="h-6 w-6 hover:cursor-pointer"
+                  onClick={toggleMenu}
+                />
               ) : (
                 <div className="flex flex-row space-x-4 items-center text-sm ">
                   <div
@@ -168,22 +252,63 @@ const Navbar = () => {
                   >
                     <Heart className="h-4 w-4" />
                   </div>
-                  <div className="flex flex-row space-x-2 items-center">
-                    <img
-                      src={EnglandFlag}
-                      alt="England Flag"
-                      className="w-4 h-4 rounded-full object-cover"
-                    />
-                    <span className="font-normal">EN</span>
+
+                  {/* language dropdown */}
+                  <div className="relative" ref={mobileDropdownRef}>
+                    <button
+                      className="flex flex-row items-center space-x-2 focus:outline-none"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsMobileDropdownOpen(!isMobileDropdownOpen);
+                      }}
+                    >
+                      <img
+                        src={`https://flagcdn.com/w40/${selectedLang.countryCode}.png`}
+                        alt={`${selectedLang.label} Flag`}
+                        className="w-5 h-5 rounded-full object-cover"
+                      />
+                      <span className="text-lg font-normal">
+                        {selectedLang.code}
+                      </span>
+                    </button>
+
+                    {isMobileDropdownOpen && (
+                      <div className="absolute top-8 right-0 bg-white shadow-lg rounded-md w-28 p-2 z-50">
+                        {languages.map((lang) => (
+                          <div
+                            key={lang.code}
+                            className={`flex items-center space-x-2 px-3 py-1 cursor-pointer rounded-md ${
+                              selectedLang.code === lang.code
+                                ? "bg-blue-100 text-blue-700"
+                                : "hover:bg-smokeGray"
+                            }`}
+                            onClick={() => handleLanguageChange(lang)}
+                          >
+                            <img
+                              src={`https://flagcdn.com/w40/${lang.countryCode}.png`}
+                              alt={`${lang.label} Flag`}
+                              className="w-4 h-4"
+                            />
+                            <span className="text-textColor text-sm">
+                              {lang.label}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
+
                   <div
                     className="flex flex-row space-x-2 items-center focus:outline-none font-normal"
                     onClick={() => handleNavigation("/login")}
                   >
                     <CircleUserRound className="h-4 w-4" />
-                    <span className="font-normal">Login</span>
+                    <span className="font-normal">{t("login")}</span>
                   </div>
-                  <Menu className="h-4 w-4 hover:cursor-pointer" />
+                  <Menu
+                    className="h-4 w-4 hover:cursor-pointer"
+                    onClick={toggleMenu}
+                  />
                 </div>
               )}
             </button>

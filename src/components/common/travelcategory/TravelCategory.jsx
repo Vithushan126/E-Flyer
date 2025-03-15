@@ -5,27 +5,49 @@ import familyImage from "../../../assets/travelcategory/image-2.png";
 import couplesImage from "../../../assets/travelcategory/image-3.png";
 import seniorsImage from "../../../assets/travelcategory/image-4.png";
 import youngAdultsImage from "../../../assets/travelcategory/image-5.png";
-
-const categories = [
-  { id: 1, title: "Solo", image: soloImage, link: "soloAdventure" },
-  { id: 2, title: "Family", image: familyImage, link: "familyAdventure" },
-  { id: 3, title: "Couples", image: couplesImage, link: "couplesAdventure" },
-  { id: 4, title: "Seniors", image: seniorsImage, link: "seniorsAdventure" },
-  {
-    id: 5,
-    title: "Young Adults",
-    image: youngAdultsImage,
-    link: "youngAdultsAdventure",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 function TravelCategory() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
+
+  const categories = [
+    {
+      id: 1,
+      title: t("travelCategory.category.solo"),
+      image: soloImage,
+      link: "soloAdventure",
+    },
+    {
+      id: 2,
+      title: t("travelCategory.category.family"),
+      image: familyImage,
+      link: "familyAdventure",
+    },
+    {
+      id: 3,
+      title: t("travelCategory.category.couples"),
+      image: couplesImage,
+      link: "couplesAdventure",
+    },
+    {
+      id: 4,
+      title: t("travelCategory.category.seniors"),
+      image: seniorsImage,
+      link: "seniorsAdventure",
+    },
+    {
+      id: 5,
+      title: t("travelCategory.category.youngAdults"),
+      image: youngAdultsImage,
+      link: "youngAdultsAdventure",
+    },
+  ];
   return (
     <div className="w-full flex justify-center py-6">
       <div className="max-w-[1100px] w-full flex flex-col space-y-6">
         <h1 className="text-3xl font-medium text-gray mb-8 text-center">
-          The Best Tour and Adventure For Everyone
+          {t("travelCategory.title")}
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 hover:cursor-pointer">
           {categories.map((category, index) => (

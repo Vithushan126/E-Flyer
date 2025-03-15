@@ -1,0 +1,55 @@
+{
+  "navigation": {
+    "explore": "Explorer",
+    "offers": "Offres",
+    "destinations": "Destinations",
+    "contact": "Contact"
+  },
+  "login": "Connexion",
+  "flight": "Vol",
+  "hotel": "Hôtel",
+  "tour": "Tour",
+  "viewMoreOffers": "Voir plus d'offres",
+  "findHere": "Trouver ici",
+  "beachHoliday": "Vacances à la plage",
+  "sunnyHoliday": "Vacances ensoleillées jaunes",
+
+  "trandingAdventure": {
+    "trendingAdventuresTitle": "Aventures tendances",
+    "trendingAdventuresSubtitle": "Vous pensez à voyager bientôt ? Voici quelques options pour vous aider à commencer."
+  },
+
+  "cardAndCity": {
+    "title": "Meilleurs voyages en ville avec vol et hôtel"
+  },
+
+  "holidayPlane": {
+    "stillNotDecided": "Vous n'avez toujours pas décidé où aller ?",
+    "findYourPerfectHoliday": "Trouvez votre séjour parfait en toute simplicité. Laissez-vous inspirer."
+  },
+
+  "hillCamping": {
+    "title": "Camping en montagne"
+  },
+
+  "travelCategory": {
+    "title": "Le meilleur tour et aventure pour tout le monde",
+    "category": {
+      "solo": "Solo",
+      "family": "Famille",
+      "couples": "Couples",
+      "seniors": "Séniors",
+      "youngAdults": "Jeunes Adultes"
+    }
+  },
+
+  "explore": {
+    "title": "Explorez Le Pays",
+    "subTitle": "Découvrez notre monde d'offres et de services exclusifs qui changent votre façon de voyager.",
+    "explore": "Explorer"
+  },
+
+  "feedback": {
+    "title": "Commentaires et Avis"
+  }
+}

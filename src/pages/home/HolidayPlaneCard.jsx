@@ -1,13 +1,15 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import CityCard3 from "../../assets/adventure/HotelImage4.svg";
 import HolidayLogo from "../../assets/cityAndTrip/HolidayLogo.svg";
+import { useTranslation } from "react-i18next";
 
 const HolidayPlaneCard = () => {
-  const navigate = useNavigate(); 
+  const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const handleFindHereClick = () => {
-    navigate("holidayPlanner_1"); 
+    navigate("holidayPlanner_1");
   };
 
   return (
@@ -40,18 +42,17 @@ const HolidayPlaneCard = () => {
         <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between">
           <div className="flex flex-col space-y-3 md:space-y-2">
             <h1 className="text-2xl md:text-3xl text-white text-center md:text-left">
-              Still Not Decided Where To Go?
+              {t("holidayPlane.stillNotDecided")}
             </h1>
             <p className="text-sm md:text-base text-white/90 mb-6 md:mb-8 text-center md:text-left">
-              Find your perfect holiday match with ease. Let yourself be
-              inspired.
+              {t("holidayPlane.findYourPerfectHoliday")}
             </p>
           </div>
-           <button
+          <button
             onClick={handleFindHereClick} // Attach the click handler
             className="w-full md:w-auto bg-orange rounded-2xl text-white text-lg md:text-xl font-semibold py-3 md:py-4 px-4 md:mx-2 md:mb-8 hover:bg-[#FF9000] transition-colors"
           >
-            Find Here
+            {t("findHere")}
           </button>
         </div>
       </div>

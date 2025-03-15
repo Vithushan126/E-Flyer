@@ -6,8 +6,11 @@ import HotelImage2 from "../../assets/adventure/HotelImage2.svg";
 import HotelImage3 from "../../assets/adventure/HotelImage3.svg";
 import HotelImage4 from "../../assets/adventure/HotelImage4.svg";
 import HotelImage5 from "../../assets/adventure/HotelImage5.svg";
+import { useTranslation } from "react-i18next";
 
 const TrendingAdventures = ({ title, subtitle }) => {
+  const { t } = useTranslation();
+
   const adventures = [
     {
       id: 1,
@@ -86,9 +89,13 @@ const TrendingAdventures = ({ title, subtitle }) => {
       <div className="max-w-[1100px] w-full space-y-8">
         <div className="space-y-2">
           <Link to="/TrendingPackage">
-            <h2 className="text-3xl font-medium text-center text-gray">{title}</h2>
+            <h2 className="text-3xl font-medium text-center text-gray">
+              {title}
+            </h2>
           </Link>
-          <p className="text-base font-extralight text-center text-smokyGray">{subtitle}</p>
+          <p className="text-base font-extralight text-center text-smokyGray">
+            {subtitle}
+          </p>
         </div>
 
         <div className="flex flex-col space-y-6 ">
@@ -117,7 +124,7 @@ const TrendingAdventures = ({ title, subtitle }) => {
 
         <div className="flex justify-center">
           <button className="px-6 py-3 font-semibold text-darkBlue border border-darkBlue rounded-full hover:bg-blue-50 hover:scale-105 transition-colors">
-            View more Offers
+            {t("viewMoreOffers")}
           </button>
         </div>
       </div>

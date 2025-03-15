@@ -5,8 +5,10 @@ import HillCamping9 from "../../assets/hillcamping/HillCamping9.png";
 import HillCamping10 from "../../assets/hillcamping/HillCamping10.png";
 import HillCamping11 from "../../assets/hillcamping/HillCamping11.png";
 import HillCamping12 from "../../assets/hillcamping/HillCamping12.png";
+import { useTranslation } from "react-i18next";
 
 const HillCamping = ({title}) => {
+  const { t } = useTranslation();
   const cardCitys = [
     {
       id: 1,
@@ -55,7 +57,9 @@ const HillCamping = ({title}) => {
       <div className="max-w-[1100px] w-full space-y-8">
         {/* Title Content */}
         <Link to="/TopCityPackage">
-        <h2 className="text-3xl font-medium text-center text-gray">{title}</h2>
+          <h2 className="text-3xl font-medium text-center text-gray">
+            {title}
+          </h2>
         </Link>
 
         {/* Card Section */}
@@ -68,7 +72,7 @@ const HillCamping = ({title}) => {
         {/* Button Content */}
         <div className="flex justify-center">
           <button className="px-6 py-3 font-semibold text-darkBlue border border-darkBlue rounded-full hover:bg-blue-50 hover:scale-105 transition-colors">
-            View more Offers
+            {t("viewMoreOffers")}
           </button>
         </div>
       </div>

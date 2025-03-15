@@ -187,6 +187,7 @@ import HotelForm from "./HotelForm";
 import TourForm from "./TourForm";
 // import CruiseForm from "./CruiseForm";
 import { Plane, Ship, Navigation, BedDouble, House } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const ValidationSchema = Yup.object().shape({
   destination: Yup.string().required("Destination is required"),
@@ -201,6 +202,7 @@ const ValidationSchema = Yup.object().shape({
 });
 
 const SearchForm = ({ initialData = {} }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const calendarRef = useRef(null);
@@ -251,10 +253,10 @@ const SearchForm = ({ initialData = {} }) => {
       component: (
         <div className="flex items-center text-base space-x-1 lg:space-x-4">
           <Plane className="h-5 w-5" />
-          <span>Flight</span>
+          <span>{t("flight")}</span>
           <span>+</span>
           <BedDouble className="h-5 w-5" />
-          <span>Hotel</span>
+          <span>{t("hotel")}</span>
         </div>
       ),
     },
@@ -262,7 +264,7 @@ const SearchForm = ({ initialData = {} }) => {
       component: (
         <div className="flex items-center text-base space-x-1 lg:space-x-4">
           <Plane className="h-5 w-5" />
-          <span>Flight</span>
+          <span>{t("flight")}</span>
         </div>
       ),
     },
@@ -270,7 +272,7 @@ const SearchForm = ({ initialData = {} }) => {
       component: (
         <div className="flex items-center text-base space-x-1 lg:space-x-4">
           <BedDouble className="h-5 w-5" />
-          <span>Hotel</span>
+          <span>{t("hotel")}</span>
         </div>
       ),
     },
@@ -278,7 +280,7 @@ const SearchForm = ({ initialData = {} }) => {
       component: (
         <div className="flex items-center text-base space-x-1 lg:space-x-4">
           <Navigation className="h-5 w-5" />
-          <span>Tour</span>
+          <span>{t("tour")}</span>
         </div>
       ),
     },

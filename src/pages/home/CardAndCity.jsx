@@ -6,8 +6,11 @@ import CityCard2 from "../../assets/adventure/HotelImage1.svg";
 import CityCard5 from "../../assets/adventure/HotelImage2.svg";
 import CityCard3 from "../../assets/adventure/HotelImage4.svg";
 import CityCard4 from "../../assets/adventure/HotelImage5.svg";
+import { useTranslation } from "react-i18next";
 
 const CardAndCity = ({ title }) => {
+  const { t } = useTranslation();
+
   const cardCitys = [
     {
       id: 1,
@@ -73,7 +76,7 @@ const CardAndCity = ({ title }) => {
         {/* button contant */}
         <div className="flex justify-center">
           <button className="px-6 py-3 font-semibold text-darkBlue border border-darkBlue rounded-full hover:bg-blue-50 hover:scale-105 transition-colors">
-            View more Offers
+            {t("viewMoreOffers")}
           </button>
         </div>
       </div>

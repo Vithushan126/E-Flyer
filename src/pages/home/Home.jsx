@@ -10,29 +10,27 @@ import BeachHoliday from "./BeachHoliday";
 import SunnyHoliday from "./SunnyHoliday";
 import HillCamping from "./HillCamping";
 import HeroSection from "../../components/common/heroSection/HeroSection";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
+  const { t } = useTranslation();
   return (
     <>
       <div className="">
         <HeroSection />
-        {/* <div className="px-2 w-full">
-          <SearchForm />
-        </div> */}
         <div className="space-y-20 pt-16 mx-2">
           <TrendingAdventures
-            title=" Trending Adventures"
-            subtitle=" Thinking of travelling somewhere soon? Here are some options to help
-            you get started."
+            title={t("trandingAdventure.trendingAdventuresTitle")}
+            subtitle={t("trandingAdventure.trendingAdventuresSubtitle")}
           />
-          <CardAndCity title="Top city trips with Flight & Hotel" />
+          <CardAndCity title={t("cardAndCity.title")} />
           <HolidayPlaneCard />
           <BeachHoliday />
           <SunnyHoliday />
-          <HillCamping title="Hill Country Camping" />
+          <HillCamping title={t("hillCamping.title")} />
           <TravelCategory />
           <Explore />
-          <Feedback title="Feedback and Reviews" />
+          <Feedback title={t("feedback.title")} />
         </div>
       </div>
     </>

@@ -1,0 +1,55 @@
+{
+  "navigation": {
+    "explore": "Explore",
+    "offers": "Offers",
+    "destinations": "Destinations",
+    "contact": "Contact"
+  },
+  "login": "Login",
+  "flight": "Flight",
+  "hotel": "Hotel",
+  "tour": "Tour",
+  "viewMoreOffers": "View more Offers",
+  "findHere": "Find Here",
+  "beachHoliday": "Beach Holiday",
+  "sunnyHoliday": "Yellow Sunny Holiday",
+
+  "trandingAdventure": {
+    "trendingAdventuresTitle": "Trending Adventures",
+    "trendingAdventuresSubtitle": "Thinking of travelling somewhere soon? Here are some options to help you get started."
+  },
+
+  "cardAndCity": {
+    "title": "Top city trips with Flight & Hotel"
+  },
+
+  "holidayPlane": {
+    "stillNotDecided": "Still Not Decided Where To Go?",
+    "findYourPerfectHoliday": "Find your perfect holiday match with ease. Let yourself be inspired."
+  },
+
+  "hillCamping": {
+    "title": "Hill Country Camping"
+  },
+
+  "travelCategory": {
+    "title": "The Best Tour and Adventure For Everyone",
+    "category": {
+      "solo": "Solo",
+      "family": "Family",
+      "couples": "Couples",
+      "seniors": "Seniors",
+      "youngAdults": "Young Adults"
+    }
+  },
+
+  "explore": {
+    "title": "Explore The Country",
+    "subTitle": "Discover our world of exclusive offers and services that change the way you travel.",
+    "explore": "Explore"
+  },
+
+  "feedback": {
+    "title": "Feedback and Reviews"
+  }
+}
